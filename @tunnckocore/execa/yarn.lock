@@ -1392,15 +1392,15 @@ hawk@~6.0.2:
     hoek "4.x.x"
     sntp "2.x.x"
 
-hela-config-tunnckocore@2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/hela-config-tunnckocore/-/hela-config-tunnckocore-2.2.1.tgz#28df0e18432732d402fabaaeee6b06fbf2f66c8f"
+hela-config-tunnckocore@2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/hela-config-tunnckocore/-/hela-config-tunnckocore-2.2.2.tgz#331afcb960b2cde53d97da0273c015430b3e628b"
   dependencies:
     all-contributors-cli "4.8.1"
     gitcommit "0.2.4"
     hela "1.3.14"
     is-ci "1.0.10"
-    new-release "2.1.1"
+    new-release "2.1.2"
     nyc "11.3.0"
     prettier "1.8.2"
     prettier-eslint "8.2.1"
@@ -2098,9 +2098,9 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
 
-new-release@2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/new-release/-/new-release-2.1.1.tgz#724864a8b806e7f95c5cbf9c0232ae074517eb75"
+new-release@2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/new-release/-/new-release-2.1.2.tgz#c99be2c9c07cbf7a79e4dd87ab387a5d757cd841"
   dependencies:
     detect-next-version "1.1.3"
     execa-pro "1.0.2"
