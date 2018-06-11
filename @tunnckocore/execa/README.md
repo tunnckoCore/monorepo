@@ -8,24 +8,22 @@ _You might also be interested in [execa][highlighted-link] or in the other [rela
 
 ## Quality Assurance :100:
 
-[![bitHound Code][bithound-code-img]][bithound-code-url] 
 [![Code Style Standard][standard-img]][standard-url] 
 [![Linux Build][circleci-img]][circleci-url] 
 [![Code Coverage][codecov-img]][codecov-url] 
-[![bitHound Score][bithound-score-img]][bithound-score-url] 
-[![bitHound Deps][bithound-deps-img]][bithound-deps-url] 
 [![Dependencies Status][dependencies-img]][dependencies-url] 
+[![Renovate App Status][renovate-img]][renovate-url] 
+[![Make A Pull Request][prs-welcome-img]][prs-welcome-url] 
 
 If you have any _how-to_ kind of questions, please read [Code of Conduct](./CODE_OF_CONDUCT.md) and **join the chat** rooms or [open an issue][open-issue-url].  
 You may also read the [Contributing Guide](./CONTRIBUTING.md). There, beside _"How to contribute?"_, we describe everything **_stated_** by  the badges.
 
 [![tunnckoCore support][chat-img]][chat-url] 
 [![Code Format Prettier][prettier-img]][prettier-url] 
+[![PayPal Author Support][paypal-donate-img]][paypal-donate-url] 
 [![Node Security Status][nodesecurity-img]][nodesecurity-url] 
 [![Conventional Commits][ccommits-img]][ccommits-url] 
-[![Make A Pull Request][prs-welcome-img]][prs-welcome-url] 
 [![Node Version Required][nodeversion-img]][nodeversion-url] 
-[![Renovate App Status][renovate-img]][renovate-url]
 
 <!--
 <a target="_blank" rel="nofollow" href="https://app.codesponsor.io/link/K7yYzzA5nb2ZDR4GTKmgUdfe/tunnckoCore/execa-pro">
@@ -34,9 +32,7 @@ You may also read the [Contributing Guide](./CONTRIBUTING.md). There, beside _"H
 <p></p>-->
 
 [![All Contributors Spec][all-contributors-img]](#contributors) 
-[![Make A Pull Request][prs-welcome-img]][prs-welcome-url] 
 [![Newsletter Subscribe][tinyletter-img]][tinyletter-url] 
-[![PayPal Author Support][paypal-donate-img]][paypal-donate-url] 
 [![Share Love Tweet][share-love-img]][share-love-url] 
 [![NPM Downloads Weekly][downloads-weekly-img]][npmv-url] 
 [![NPM Downloads Monthly][downloads-monthly-img]][npmv-url] 
