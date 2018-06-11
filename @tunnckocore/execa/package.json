@@ -4,10 +4,13 @@
   "description": "Thin layer on top of [execa][] that allows executing multiple commands in series",
   "repository": "tunnckoCore/execa-pro",
   "author": "Charlike Mike Reagent (https://i.am.charlike.online)",
+  "contributors": [
+    "Thiago Delgado Pinto (https://github.com/thiagodp)"
+  ],
   "nspId": "777a99d4-955c-441e-9f5d-8d7352f93d71",
   "main": "./src/index.js",
   "scripts": {
-    "test": "NODE_ENV=test yarn hela test",
+    "test": "yarn hela test",
     "precommit": "yarn hela precommit",
     "commit": "yarn hela commit",
     "prepublishOnly": "yarn hela protect"
@@ -24,7 +27,8 @@
   ],
   "dependencies": {
     "execa": "0.9.0",
-    "p-map-series": "1.0.0"
+    "p-map-series": "1.0.0",
+    "split-cmd": "^1.0.0"
   },
   "devDependencies": {
     "eslint": "4.18.0",

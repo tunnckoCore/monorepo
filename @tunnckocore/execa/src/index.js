@@ -5,6 +5,7 @@
 
 const execa = require('execa')
 const pMap = require('p-map-series')
+const { splitToObject } = require( 'split-cmd' );
 
 module.exports = { exec, shell }
 
@@ -117,12 +118,8 @@ function factory (type) {
         return run(cmdLine, options)
       }
 
-      const parts = cmdLine
-        .split(' ')
-        .map((x) => x.trim())
-        .filter(Boolean)
-
-      return run(parts.shift(), parts, options)
+      const parts = splitToObject(cmdLine)
+      return run(parts.command, parts.args || [], options)
     }
 
     return pMap(commands, mapper)
