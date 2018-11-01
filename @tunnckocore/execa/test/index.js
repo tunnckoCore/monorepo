@@ -1,19 +1,19 @@
-/**
- * @copyright 2017-present, Charlike Mike Reagent <olsten.larck@gmail.com>
- * @license Apache-2.0
- */
+import proc from 'process';
+import test from 'asia';
+import { exec, shell } from '../src';
 
-const test = require('mukla')
-const execaPro = require('../src/index.js')
+test('export an object with "exec" and "shell" functions', (t) => {
+  t.strictEqual(typeof exec, 'function');
+  t.strictEqual(typeof shell, 'function');
+});
 
-test('export an object with "exec" and "shell" functions', (done) => {
-  test.strictEqual(typeof execaPro, 'object')
-  test.strictEqual(typeof execaPro.exec, 'function')
-  test.strictEqual(typeof execaPro.shell, 'function')
-  done()
-})
+test('the `exec` accepts arguments with quotes', async (t) => {
+  const results = await exec('echo "some content with spaces"');
+  t.strictEqual(results[0].stdout, 'some content with spaces');
+});
 
-test('exec accepts arguments with quotes', async () => {
-  const results = await execaPro.exec('echo "some content with spaces"')
-  test.strictEqual(results[0].stdout, 'some content with spaces')
-})
+test('the `shell` should be able to access ENVs', async (t) => {
+  const results = await shell('echo "foo-$HOME-bar"', { env: proc.env });
+
+  t.ok(/^foo-.*-bar$/.test(results[0].stdout));
+});

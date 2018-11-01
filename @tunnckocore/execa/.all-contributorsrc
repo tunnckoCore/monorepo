@@ -1,23 +1,26 @@
 {
-  "projectName": "execa-pro",
-  "projectOwner": "tunnckoCore",
+  "projectName": "execa",
+  "projectOwner": "tunnckoCoreLabs",
+  "repoType": "github",
+  "repoHost": "https://github.com",
   "files": [
-    "CONTRIBUTORS.md"
+    "README.md"
   ],
-  "imageSize": 150,
-  "commit": true,
+  "imageSize": 120,
+  "commit": false,
+  "contributorsPerLine": 6,
   "contributors": [
     {
-      "login": "olstenlarck",
+      "login": "tunnckoCore",
       "name": "Charlike Mike Reagent",
       "avatar_url": "https://avatars3.githubusercontent.com/u/5038030?v=4",
-      "profile": "https://i.am.charlike.online",
+      "profile": "https://tunnckocore.com",
       "contributions": [
-        "question",
         "code",
         "doc",
+        "question",
         "review",
-        "test"
+        "fundingFinding"
       ]
     }
   ]

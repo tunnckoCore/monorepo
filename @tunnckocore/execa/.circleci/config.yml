@@ -1,85 +1,149 @@
 version: 2
 
-defaults: &defaults
-  working_directory: ~/execa-pro
+workdir: &workdir
+  working_directory: ~/execa
+
+# node8osx: &node8osx
+#   <<: *workdir
+#   macos:
+#     xcode: "9.2"
+
+# node10osx: &node10osx
+#   <<: *workdir
+#   macos:
+#     xcode: "9"
+
+node8linux: &node8linux
+  <<: *workdir
   docker:
     - image: circleci/node:8
+
+node10linux: &node10linux
+  <<: *workdir
+  docker:
+    - image: circleci/node:10
 
 restore_modules_cache: &restore_modules_cache
   restore_cache:
     keys:
-    - execa-pro-{{ checksum "yarn.lock" }}
-    # fallback to using the latest cache if no exact match is found
-    - execa-pro-
+      - execa-{{ checksum "yarn.lock" }}
+      # fallback to using the latest cache if no exact match is found
+      - execa-
 
+# jobinstall: &jobinstall
+#   steps:
+#     - checkout
+#     # - *restore_modules_cache
+#     - run:
+#         name: Installing PNPM package manager
+#         command: sudo npm i -g pnpm
+#     - run:
+#         name: Installing project dependencies
+#         command: pnpm run inst
+#     - save_cache:
+#         key: execa-{{ checksum "yarn.lock" }}
+#         paths: node_modules
+#     - run:
+#         name: Remove node_modules to cleanup workspace
+#         command: rm -rf node_modules
+
+jobtest: &jobtest
+  steps:
+    - checkout
+    - *restore_modules_cache
+    - run:
+        name: Installing project dependencies
+        command: yarn install --prefer-offline || yarn install
+    - run:
+        name: Testing your project
+        command: yarn test
+    - save_cache:
+        key: execa-{{ checksum "yarn.lock" }}
+        paths: node_modules
+    - run:
+        name: Sending test coverage to CodeCov
+        command: bash <(curl -s https://codecov.io/bash)
 
 jobs:
-  install:
-    <<: *defaults
-    steps:
-      - checkout
-      - *restore_modules_cache
-      - run:
-          name: Installing Dependencies
-          command: yarn install
-      - save_cache:
-          key: execa-pro-{{ checksum "yarn.lock" }}
-          paths: node_modules
-      - run:
-          name: Remove node_modules to cleanup workspace
-          command: rm -rf node_modules
+  # install-node8linux:
+  #   <<: *node8linux
+  #   <<: *jobinstall
 
-  test:
-    <<: *defaults
-    steps:
-      - checkout
-      - *restore_modules_cache
-      - run:
-          name: Running tests and checks
-          command: yarn test
-      - run:
-          name: Sending test coverage to CodeCov
-          command: bash <(curl -s https://codecov.io/bash)
+  test-node8linux:
+    <<: *node8linux
+    <<: *jobtest
 
-  build:
-    <<: *defaults
-    steps:
-      - checkout
-      - *restore_modules_cache
-      - run:
-          name: Creating distributable files
-          command: echo ok
-      - store_artifacts:
-          path: dist
-          destination: execa-pro
+  # install-node10linux:
+  # <<: *node10linux
+  # <<: *jobinstall
 
-  publish:
-    <<: *defaults
+  test-node10linux:
+    <<: *node10linux
+    <<: *jobtest
+
+  # install-node8osx:
+  #   <<: *node8osx
+  #   <<: *jobinstall
+
+  # test-node8osx:
+  #   <<: *node8osx
+  #   <<: *jobtest
+
+  # install-node10osx:
+  #   <<: *node10osx
+  #   <<: *jobinstall
+
+  # test-node10osx:
+  #   <<: *node10osx
+  #   <<: *jobtest
+
+  release:
+    <<: *node10linux
     steps:
       - checkout
       - *restore_modules_cache
       - run:
-          name: Trying to deploy
-          command: yarn hela release
+          name: Bundling your awesome project
+          command: yarn build || echo "No build step."
+      - run:
+          name: Releasing and publishing
+          command: yarn new-release
 
 workflows:
   version: 2
   automated:
     jobs:
-      - install
-      - test:
+      # Linux
+      - test-node8linux
+      - test-node10linux
+
+      # - install-node8linux
+      # - test-node8linux:
+      #     requires:
+      #       - install-node8linux
+      # - install-node10linux
+      # - test-node10linux:
+      #     requires:
+      #       - install-node10linux
+      # OSX
+      # - install-node8osx
+      # - test-node8osx:
+      #     requires:
+      #       - install-node8osx
+      # - install-node10osx
+      # - test-node10osx:
+      #     requires:
+      #       - install-node10osx
+
+      # Release and NPM publish
+      # Executed only on master
+      - release:
           requires:
-            - install
-      - build:
-          requires:
-            - test
+            # - test-node8osx
+            # - test-node10osx
+            - test-node8linux
+            - test-node10linux
           filters:
             branches:
               only: master
-      - publish:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
-          context: org-global
+          context: org-secret

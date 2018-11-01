@@ -1,7 +1,17 @@
 {
-  "statements": 0,
-  "functions": 0,
-  "branches": 0,
-  "lines": 0,
-  "exclude": ["test"]
+  "statements": 100,
+  "branches": 100,
+  "functions": 100,
+  "lines": 100,
+  "cache": true,
+  "check-coverage": true,
+  "require": "esm",
+  "include": [
+    "src/**/*.js"
+  ],
+  "exclude": [
+    "*.test.js",
+    "**/*.test.js",
+    "test"
+  ]
 }
