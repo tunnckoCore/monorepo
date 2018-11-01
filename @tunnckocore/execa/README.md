@@ -5,8 +5,8 @@
 <div id="thetop"></div>
 
 ### DEPRECATED! No more future versions! 
-### Instead install `yarn add @tunnckocore/execa`.
-#### When it get above v2 this package MAY BREAK, so switch whenever possible.
+### Instead install `yarn add @tunnckocore/execa@^2`.
+#### When it get above v3 this package MAY BREAK, so switch whenever possible.
 
 _You might also be interested in [execa][highlighted-link] or in the other [related projects](#related-projects)._
 
@@ -39,8 +39,6 @@ You may also read the [Contributing Guide](./CONTRIBUTING.md). There, beside _"H
 ## Table of Contents
 - [Install](#install)
 - [API](#api)
-  * [.exec](#exec)
-  * [.shell](#shell)
 - [Related Projects](#related-projects)
 - [Contributing](#contributing)
 - [Contributors](#contributors)
@@ -65,81 +63,6 @@ See available bundles at [`https://unpkg.com/execa-pro/dist/browser/`](https://u
  
 ## API
 Review carefully the provided examples and the working [tests](./test).
-
-### [.exec](src/index.js#L47)
-> Same as [execa][]'s main export [here](https://github.com/sindresorhus/execa#execafile-arguments-options) As state there, think of it as mix of `child_process`'s `.execFile` and `.spawn`. It is pretty similar to the `.shell` method too, but only visually because it does not uses the system's shell.
-
-> It also can accept array of multiple strings of commands that will be
-executed in series.
-
-**Params**
-
-* `cmds` **{string|Array}**: a commands to execute, if array of strings executes them serially    
-* `opts` **{Object}**: directly passed to [execa][] and so to `child_process`    
-* `returns` **{Promise}**: resolved or rejected promises  
-
-**Example**
-
-```js
-const { exec } = require('execa-pro')
-
-async function init () {
-  await exec('echo "hello world"', { stdio: 'inherit' })
-
-  // executes in series
-  await exec([
-    'prettier-eslint --write foobar.js',
-    'eslint --format codeframe foobar.js --fix'
-  ], { stdio: 'inherit', preferLocal: true })
-}
-
-init()
-```
-
-### [.shell](src/index.js#L100)
-> Same as [execa][]'s `.shell` method, but also can accept an array of multiple commands that will be executed in the system's shell, [see its docs](https://github.com/sindresorhus/execa#execashellcommand-options) for more info.
-
-**Params**
-
-* `cmds` **{string|Array}**: a commands to execute, if array of strings executes them serially    
-* `opts` **{Object}**: directly passed to `execa.shell` method.    
-* `returns` **{Promise}**: resolved or rejected promises  
-
-**Example**
-
-```js
-const { shell } = require('execa-pro')
-
-async function init () {
-  // executes in series
-  await shell([
-    'echo unicorns',
-    'echo dragons'
-  ], { stdio: 'inherit' })
-
-  // exits with code 3
-  try {
-    await shell([
-      'exit 3',
-      'echo nah'
-    ])
-  } catch (er) {
-    console.error(er)
-    // => {
-    //  message: 'Command failed: /bin/sh -c exit 3'
-    //  killed: false,
-    //  code: 3,
-    //  signal: null,
-    //  cmd: '/bin/sh -c exit 3',
-    //  stdout: '',
-    //  stderr: '',
-    //  timedOut: false
-    // }
-  }
-}
-
-init()
-```
 
 **[back to top](#thetop)**
 
