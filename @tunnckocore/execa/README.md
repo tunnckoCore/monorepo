@@ -4,6 +4,10 @@
 
 <div id="thetop"></div>
 
+### DEPRECATED! No more future versions! 
+### Instead install `yarn add @tunnckocore/execa`.
+#### When it get above v2 this package MAY BREAK, so switch whenever possible.
+
 _You might also be interested in [execa][highlighted-link] or in the other [related projects](#related-projects)._
 
 ## Quality Assurance :100:
@@ -12,27 +16,21 @@ _You might also be interested in [execa][highlighted-link] or in the other [rela
 [![Linux Build][circleci-img]][circleci-url] 
 [![Code Coverage][codecov-img]][codecov-url] 
 [![Dependencies Status][dependencies-img]][dependencies-url] 
-[![Renovate App Status][renovate-img]][renovate-url] 
-[![Make A Pull Request][prs-welcome-img]][prs-welcome-url] 
 
 If you have any _how-to_ kind of questions, please read [Code of Conduct](./CODE_OF_CONDUCT.md) and **join the chat** rooms or [open an issue][open-issue-url].  
 You may also read the [Contributing Guide](./CONTRIBUTING.md). There, beside _"How to contribute?"_, we describe everything **_stated_** by  the badges.
 
 [![tunnckoCore support][chat-img]][chat-url] 
 [![Code Format Prettier][prettier-img]][prettier-url] 
-[![PayPal Author Support][paypal-donate-img]][paypal-donate-url] 
-[![Node Security Status][nodesecurity-img]][nodesecurity-url] 
 [![Conventional Commits][ccommits-img]][ccommits-url] 
+[![Make A Pull Request][prs-welcome-img]][prs-welcome-url] 
 [![Node Version Required][nodeversion-img]][nodeversion-url] 
-
-<!--
-<a target="_blank" rel="nofollow" href="https://app.codesponsor.io/link/K7yYzzA5nb2ZDR4GTKmgUdfe/tunnckoCore/execa-pro">
-  <img alt="Sponsor" width="888" height="68" src="https://app.codesponsor.io/embed/K7yYzzA5nb2ZDR4GTKmgUdfe/tunnckoCore/execa-pro.svg" />
-</a>
-<p></p>-->
+[![Renovate App Status][renovate-img]][renovate-url]
 
 [![All Contributors Spec][all-contributors-img]](#contributors) 
+[![Make A Pull Request][prs-welcome-img]][prs-welcome-url] 
 [![Newsletter Subscribe][tinyletter-img]][tinyletter-url] 
+[![PayPal Author Support][paypal-donate-img]][paypal-donate-url] 
 [![Share Love Tweet][share-love-img]][share-love-url] 
 [![NPM Downloads Weekly][downloads-weekly-img]][npmv-url] 
 [![NPM Downloads Monthly][downloads-monthly-img]][npmv-url] 
@@ -68,7 +66,7 @@ See available bundles at [`https://unpkg.com/execa-pro/dist/browser/`](https://u
 ## API
 Review carefully the provided examples and the working [tests](./test).
 
-### [.exec](src/index.js#L46)
+### [.exec](src/index.js#L47)
 > Same as [execa][]'s main export [here](https://github.com/sindresorhus/execa#execafile-arguments-options) As state there, think of it as mix of `child_process`'s `.execFile` and `.spawn`. It is pretty similar to the `.shell` method too, but only visually because it does not uses the system's shell.
 
 > It also can accept array of multiple strings of commands that will be
@@ -98,7 +96,7 @@ async function init () {
 init()
 ```
 
-### [.shell](src/index.js#L99)
+### [.shell](src/index.js#L100)
 > Same as [execa][]'s `.shell` method, but also can accept an array of multiple commands that will be executed in the system's shell, [see its docs](https://github.com/sindresorhus/execa#execashellcommand-options) for more info.
 
 **Params**
@@ -149,7 +147,7 @@ init()
 Some of these projects are used here or were inspiration for this one, others are just related. So, thanks for your existance! 
 - [dush](https://www.npmjs.com/package/dush): Microscopic & functional event emitter in ~350 bytes, extensible through plugins | [homepage](https://github.com/tunnckocore/dush#readme "Microscopic & functional event emitter in ~350 bytes, extensible through plugins")
 - [execa](https://www.npmjs.com/package/execa): A better `child_process` | [homepage](https://github.com/sindresorhus/execa#readme "A better `child_process`")
-- [hela](https://www.npmjs.com/package/hela): Powerful & flexible task runner framework in 80 lines, based on execa… [more](https://github.com/tunnckoCore/hela#readme) | [homepage](https://github.com/tunnckoCore/hela#readme "Powerful & flexible task runner framework in 80 lines, based on execa. Supports presets, a la ESLint but for tasks & npm scripts")
+- [hela](https://www.npmjs.com/package/hela): Powerful & flexible task runner framework in 80 lines, based on [execa… [more](https://github.com/tunnckoCore/hela#readme) | [homepage](https://github.com/tunnckoCore/hela#readme "Powerful & flexible task runner framework in 80 lines, based on [execa][]. Supports shareable configs, a la ESLint")
 - [mri](https://www.npmjs.com/package/mri): Quickly scan for CLI flags and arguments | [homepage](https://github.com/lukeed/mri#readme "Quickly scan for CLI flags and arguments")
 - [p-map-series](https://www.npmjs.com/package/p-map-series): Map over promises serially | [homepage](https://github.com/sindresorhus/p-map-series#readme "Map over promises serially")
 
@@ -173,7 +171,7 @@ Released under the [Apache-2.0 License][license-url].
 
 ***
 
-_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.6.0, on November 14, 2017._  
+_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.8.0, on November 01, 2018._  
 _Project scaffolded and managed with [hela][]._
 
 [execa]: https://github.com/sindresorhus/execa
@@ -183,36 +181,28 @@ _Project scaffolded and managed with [hela][]._
 [npmv-url]: https://www.npmjs.com/package/execa-pro
 [npmv-img]: https://img.shields.io/npm/v/execa-pro.svg?label=npm%20version
 
-[github-release-url]: https://github.com/tunnckoCore/execa-pro/releases/latest
-[github-release-img]: https://img.shields.io/github/release/tunnckoCore/execa-pro.svg?label=github%20release
+[github-release-url]: https://github.com/tunnckoCoreLabs/execa-pro/releases/latest
+[github-release-img]: https://img.shields.io/github/release/tunnckoCoreLabs/execa-pro.svg?label=github%20release
 
-[license-url]: https://github.com/tunnckoCore/execa-pro/blob/master/LICENSE
+[license-url]: https://github.com/tunnckoCoreLabs/execa-pro/blob/master/LICENSE
 [license-img]: https://img.shields.io/npm/l/execa-pro.svg
 <!-- [license-img]: https://img.shields.io/badge/license-tunnckoCore_1%2E0-blue.svg -->
 
 [downloads-monthly-img]: https://img.shields.io/npm/dm/execa-pro.svg
 
 <!-- Front line badges -->
-[bithound-score-url]: https://www.bithound.io/github/tunnckoCore/execa-pro
-[bithound-score-img]: https://www.bithound.io/github/tunnckoCore/execa-pro/badges/score.svg
-
-[bithound-code-url]: https://www.bithound.io/github/tunnckoCore/execa-pro
-[bithound-code-img]: https://www.bithound.io/github/tunnckoCore/execa-pro/badges/code.svg
 
 [standard-url]: https://github.com/airbnb/javascript
 [standard-img]: https://img.shields.io/badge/code_style-airbnb-brightgreen.svg
 
-[circleci-url]: https://circleci.com/gh/tunnckoCore/execa-pro/tree/master
-[circleci-img]: https://img.shields.io/circleci/project/github/tunnckoCore/execa-pro/master.svg
+[circleci-url]: https://circleci.com/gh/tunnckoCoreLabs/execa-pro/tree/master
+[circleci-img]: https://img.shields.io/circleci/project/github/tunnckoCoreLabs/execa-pro/master.svg
 
-[codecov-url]: https://codecov.io/gh/tunnckoCore/execa-pro
-[codecov-img]: https://img.shields.io/codecov/c/github/tunnckoCore/execa-pro/master.svg
+[codecov-url]: https://codecov.io/gh/tunnckoCoreLabs/execa-pro
+[codecov-img]: https://img.shields.io/codecov/c/github/tunnckoCoreLabs/execa-pro/master.svg
 
-[bithound-deps-url]: https://www.bithound.io/github/tunnckoCore/execa-pro/dependencies/npm
-[bithound-deps-img]: https://www.bithound.io/github/tunnckoCore/execa-pro/badges/dependencies.svg
-
-[dependencies-url]: https://david-dm.org/tunnckoCore/execa-pro
-[dependencies-img]: https://img.shields.io/david/tunnckoCore/execa-pro.svg
+[dependencies-url]: https://david-dm.org/tunnckoCoreLabs/execa-pro
+[dependencies-img]: https://img.shields.io/david/tunnckoCoreLabs/execa-pro.svg
 
 <!-- Second front of badges -->
 [chat-url]: https://tunnckocore.flock.com/?i=cx2xoeofjtj6eo6c
@@ -221,8 +211,6 @@ _Project scaffolded and managed with [hela][]._
 [prettier-url]: https://github.com/prettier/prettier
 [prettier-img]: https://img.shields.io/badge/styled_with-prettier-f952a5.svg
 
-[nodesecurity-url]: https://nodesecurity.io/orgs/tunnckocore/projects/777a99d4-955c-441e-9f5d-8d7352f93d71/master
-[nodesecurity-img]: https://nodesecurity.io/orgs/tunnckocore/projects/777a99d4-955c-441e-9f5d-8d7352f93d71/badge
 <!-- the original color of nsp: 
 [nodesec-img]: https://img.shields.io/badge/nsp-no_known_vulns-35a9e0.svg -->
 
@@ -239,7 +227,7 @@ _Project scaffolded and managed with [hela][]._
 [renovate-img]: https://img.shields.io/badge/renovate-enabled-brightgreen.svg
 
 <!-- Third badges line (After CodeSponsor ads) -->
-[all-contributors-img]: https://img.shields.io/github/contributors/tunnckoCore/execa-pro.svg?label=all%20contributors&colorB=ffa500
+[all-contributors-img]: https://img.shields.io/github/contributors/tunnckoCoreLabs/execa-pro.svg?label=all%20contributors&colorB=ffa500
 
 [tinyletter-url]: https://tinyletter.com/tunnckoCore
 [tinyletter-img]: https://img.shields.io/badge/join-newsletter-9caaf8.svg
@@ -251,9 +239,9 @@ _Project scaffolded and managed with [hela][]._
 [downloads-total-img]: https://img.shields.io/npm/dt/execa-pro.svg
 
 <!-- Miscellaneous -->
-[share-love-url]: https://twitter.com/intent/tweet?text=https://github.com/tunnckoCore/execa-pro&via=tunnckoCore
+[share-love-url]: https://twitter.com/intent/tweet?text=https://github.com/tunnckoCoreLabs/execa-pro&via=tunnckoCore
 [share-love-img]: https://img.shields.io/badge/share-love-1da1f2.svg
-[open-issue-url]: https://github.com/tunnckoCore/execa-pro/issues/new
+[open-issue-url]: https://github.com/tunnckoCoreLabs/execa-pro/issues/new
 
 [highlighted-link]: https://ghub.now.sh/execa
 [author-link]: https://i.am.charlike.online

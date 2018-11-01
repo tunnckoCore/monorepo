@@ -72,6 +72,16 @@
   version "0.11.3"
   resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.11.3.tgz#78afd0edb3546e36e68e73d0128cf930e4817606"
 
+"@tunnckocore/execa@>= 0.1.0 < 2":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@tunnckocore/execa/-/execa-0.1.0.tgz#d95e5fa824ecdf8ebf0f255995a403f4b7abfd26"
+  integrity sha512-TYoD4NuErCp7eKLJ6L+DIDq43sRMyg/iRDVwnTx7LpBVzdmgR5/i8o94YI5p1/TPunZl1eAcZJrWY0GnCqmZDg==
+  dependencies:
+    esm "^3.0.84"
+    execa "1.0.0"
+    p-map-series "1.0.0"
+    split-cmd "^1.0.0"
+
 "@tunnckocore/pretty-config@0.2.2":
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/@tunnckocore/pretty-config/-/pretty-config-0.2.2.tgz#19cba311b6d9ebc536947acf7e8544368870c612"
@@ -1119,6 +1129,11 @@ eslint@^4.5.0:
     strip-json-comments "~2.0.1"
     table "^4.0.1"
     text-table "~0.2.0"
+
+esm@^3.0.84:
+  version "3.0.84"
+  resolved "https://registry.yarnpkg.com/esm/-/esm-3.0.84.tgz#bb108989f4673b32d4f62406869c28eed3815a63"
+  integrity sha512-SzSGoZc17S7P+12R9cg21Bdb7eybX25RnIeRZ80xZs+VZ3kdQKzqTp2k4hZJjR7p9l0186TTXSgrxzlMDBktlw==
 
 espree@^3.5.2:
   version "3.5.2"
