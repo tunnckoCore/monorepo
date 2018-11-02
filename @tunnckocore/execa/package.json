@@ -17,7 +17,7 @@
     "split-cmd": "^1.0.0"
   },
   "devDependencies": {
-    "@tunnckocore/config": "^0.4.0",
+    "@tunnckocore/config": "^0.5.0",
     "@tunnckocore/scripts": "^1.0.1",
     "asia": "^0.19.7"
   },

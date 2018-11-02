@@ -108,10 +108,10 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
   integrity sha512-ONhaKPIufzzrlNbqtWFFd+jlnemX6lJAgq9ZeiZtS7I1PIf/la7CW4m83rTXRnVnsMbW2k56pGYu7AUFJD9Pow==
 
-"@tunnckocore/config@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@tunnckocore/config/-/config-0.4.0.tgz#e5e07d2b758c22d7142b2c88be2f4fd8c81175e7"
-  integrity sha512-Accil48433WolN2T0Pa9xVo66weY+q0wJQ7HAdg5U0DB7DRnA4Xu5AeysEvKsWea4/VGv3JsNtKbexsiTMbFEQ==
+"@tunnckocore/config@^0.5.0":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@tunnckocore/config/-/config-0.5.1.tgz#f2ca7cf4442614ead3e5660522c3c02e3312116b"
+  integrity sha512-+a4VWl1KHSNL0aN3g56h5T78tkM/rPKdc9eb+zXd3kpX2iTvOtbWk+IC9TZ5SQuU7QcmuYs0pYhl8FuOJPQYdg==
   dependencies:
     all-contributors-cli "^5.4.0"
     docks "^0.6.0"
