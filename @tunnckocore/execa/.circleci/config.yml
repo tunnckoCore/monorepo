@@ -56,7 +56,7 @@ jobtest: &jobtest
         command: yarn install --prefer-offline || yarn install
     - run:
         name: Testing your project
-        command: yarn test
+        command: yarn tunnckocore-scripts test
     - save_cache:
         key: execa-{{ checksum "yarn.lock" }}
         paths: node_modules
@@ -104,10 +104,10 @@ jobs:
       - *restore_modules_cache
       - run:
           name: Bundling your awesome project
-          command: yarn build || echo "No build step."
+          command: yarn tunnckocore-scripts build || echo "No build step."
       - run:
           name: Releasing and publishing
-          command: yarn new-release
+          command: yarn tunnckocore-scripts release
 
 workflows:
   version: 2

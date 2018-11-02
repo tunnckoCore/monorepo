@@ -1,21 +1,3 @@
 {
-  "statements": 100,
-  "branches": 100,
-  "functions": 100,
-  "lines": 100,
-  "cache": true,
-  "check-coverage": true,
-  "require": "esm",
-  "include": [
-    "src/**/*.js"
-  ],
-  "reporter": [
-    "lcov",
-    "text"
-  ],
-  "exclude": [
-    "*.test.js",
-    "**/*.test.js",
-    "test"
-  ]
+  "extends": "./node_modules/@tunnckocore/config/nyc.json"
 }
