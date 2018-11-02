@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "esm": "^3.0.84",
-    "execa": "1.0.0",
-    "p-map-series": "1.0.0",
+    "execa": "^1.0.0",
+    "p-map-series": "^1.0.0",
     "split-cmd": "^1.0.0"
   },
   "devDependencies": {

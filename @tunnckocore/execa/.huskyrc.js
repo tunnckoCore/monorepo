@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = require('@tunnckocore/config/husky')
+module.exports = require('@tunnckocore/config/husky');
