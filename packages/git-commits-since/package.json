@@ -15,16 +15,21 @@
     "node": "^8.11.0 || >=10.13.0"
   },
   "dependencies": {
+    "@tunnckocore/execa": "^2.1.2",
+    "@tunnckocore/git-semver-tags": "^0.2.0",
     "detect-next-version": "^3.0.1",
     "esm": "^3.0.84",
     "git-raw-commits": "^2.0.0",
-    "git-semver-tags": "^2.0.2",
     "parse-commit-message": "^2.1.4"
   },
   "devDependencies": {
     "@tunnckocore/config": "^0.5.1",
     "@tunnckocore/scripts": "^1.1.0",
-    "asia": "^0.19.7"
+    "asia": "^0.19.7",
+    "charlike": "^3.1.9",
+    "dedent": "^0.7.0",
+    "fs-extra": "^7.0.0",
+    "simple-git": "^1.107.0"
   },
   "files": [
     "src",

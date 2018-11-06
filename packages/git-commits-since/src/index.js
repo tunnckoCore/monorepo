@@ -1,21 +1,19 @@
-import util from 'util';
-import gitSemverTags from 'git-semver-tags';
 import gitRawCommits from 'git-raw-commits';
-import { parse, plugins } from 'parse-commit-message';
 import detectNextVersion from 'detect-next-version';
-
-const getAllTags = async () => util.promisify(gitSemverTags)();
+import { parse, plugins } from 'parse-commit-message';
+import getAllTags from '@tunnckocore/git-semver-tags';
 
 export default async function gitCommitsSince(options) {
-  const opts = Object.assign({}, options);
-  const tags = await getAllTags();
+  const tags = await getAllTags(options);
+
+  const opts = Object.assign({ from: tags[0] || '', to: '@' }, options);
   const rawCommits = [];
   const commits = [];
-  const from = opts.from || tags[0] || '';
-  const to = opts.to || '@';
 
   const promise = new Promise((resolve, reject) => {
-    gitRawCommits(Object.assign({ from, to }, opts))
+    const { cwd, from, to } = opts;
+
+    gitRawCommits({ from, to }, { cwd })
       .on('data', (res) => {
         const rawCommit = res.toString();
         const commit = parse(
@@ -28,7 +26,14 @@ export default async function gitCommitsSince(options) {
       })
       .on('error', reject)
       .on('end', () => {
-        resolve({ from, to, rawCommits, commits, options: opts });
+        resolve({
+          from: opts.from,
+          to: opts.to,
+          cwd: opts.cwd,
+          rawCommits,
+          commits,
+          options: opts,
+        });
       });
   });
 
