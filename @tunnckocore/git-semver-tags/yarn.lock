@@ -133,10 +133,20 @@
     p-map-series "1.0.0"
     split-cmd "^1.0.0"
 
-"@tunnckocore/scripts@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@tunnckocore/scripts/-/scripts-1.0.1.tgz#7cc92e3fc5d5fcbc82992e222e1ef1b685c19ae2"
-  integrity sha512-yjKYbfqla6Qx3gSTP9ITjlkkJ5/JF+SnMKhjdo5I3GXAAar63IYVnu3elMQpkMaSXmiNLiiIp8HrRB0U0tivNA==
+"@tunnckocore/execa@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@tunnckocore/execa/-/execa-2.1.2.tgz#c60dcc49ffbe8edb06211db966dda05eb2318186"
+  integrity sha512-uV3ocBiZurQajYx8mIqlg8mTDaoOH2Wp2HDqUUHMLEn2AArXK99BF1Cac6FYpj7m7IVXOP94mOWvjK5c8Aa+Bg==
+  dependencies:
+    esm "^3.0.84"
+    execa "^1.0.0"
+    p-map-series "^1.0.0"
+    split-cmd "^1.0.0"
+
+"@tunnckocore/scripts@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@tunnckocore/scripts/-/scripts-1.1.0.tgz#52fa83dcbb6ebff1880569186421c2851b976ed9"
+  integrity sha512-1b2YmmzwmC86ad5mfNWJFZQnuSeEeKiw6cq4joCx5F4sAKuIVUsvafS9ehIWVtxln1BkUArEyAC6iWYAgG4lSg==
   dependencies:
     "@tunnckocore/execa" "^2.0.2"
     esm "^3.0.84"
@@ -3346,7 +3356,7 @@ semver-compare@^1.0.0:
   resolved "https://registry.yarnpkg.com/semver-compare/-/semver-compare-1.0.0.tgz#0dee216a1c941ab37e9efb1788f6afc5ff5537fc"
   integrity sha1-De4hahyUGrN+nvsXiPavxf9VN/w=
 
-"semver@2 || 3 || 4 || 5", semver@5.6.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1:
+"semver@2 || 3 || 4 || 5", semver@5.6.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0:
   version "5.6.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.6.0.tgz#7e74256fbaa49c75aa7c7a205cc22799cac80004"
   integrity sha512-RS9R6R35NYgQn++fkDWaOmqGoj4Ek9gGs+DPxNUZKuwE183xjJroKvyo1IzVFeXvUrvmALy6FWD5xrdJT25gMg==
