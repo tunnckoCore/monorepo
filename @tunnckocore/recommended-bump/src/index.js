@@ -69,7 +69,7 @@ import { parse, plugins } from 'parse-commit-message';
  * main().catch(console.error);
  *
  * @name recommendedBump
- * @param {string[]|string} commitMessages commit messages, `string`, `Array<string>` or `Array<Commit>`
+ * @param {string[]} commitMessages commit messages: one of `string`, `Array<string>` or `Array<Commit>`
  * @returns {object} result like `{ increment: boolean, patch?, minor?, major? }`
  * @public
  */
