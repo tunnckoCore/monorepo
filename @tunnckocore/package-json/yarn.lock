@@ -133,10 +133,10 @@
     p-map-series "1.0.0"
     split-cmd "^1.0.0"
 
-"@tunnckocore/scripts@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@tunnckocore/scripts/-/scripts-1.0.1.tgz#7cc92e3fc5d5fcbc82992e222e1ef1b685c19ae2"
-  integrity sha512-yjKYbfqla6Qx3gSTP9ITjlkkJ5/JF+SnMKhjdo5I3GXAAar63IYVnu3elMQpkMaSXmiNLiiIp8HrRB0U0tivNA==
+"@tunnckocore/scripts@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@tunnckocore/scripts/-/scripts-1.1.0.tgz#52fa83dcbb6ebff1880569186421c2851b976ed9"
+  integrity sha512-1b2YmmzwmC86ad5mfNWJFZQnuSeEeKiw6cq4joCx5F4sAKuIVUsvafS9ehIWVtxln1BkUArEyAC6iWYAgG4lSg==
   dependencies:
     "@tunnckocore/execa" "^2.0.2"
     esm "^3.0.84"
@@ -360,6 +360,14 @@ aws4@^1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
   integrity sha512-ReZxvNHIOv88FlT7rxcXIIC0fPt4KZqZbOlivyWtXLt8ESx84zd3kMC6iK5jVeS2qt+g7ftS7ye4fi06X5rtRQ==
+
+axios@^0.18.0:
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
+  integrity sha1-MtU+SFHv3AoRmTts0AB4nXDAUQI=
+  dependencies:
+    follow-redirects "^1.3.0"
+    is-buffer "^1.1.5"
 
 axobject-query@^2.0.1:
   version "2.0.2"
@@ -724,6 +732,13 @@ debug-log@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/debug-log/-/debug-log-1.0.1.tgz#2307632d4c04382b8df8a32f70b895046d52745f"
   integrity sha1-IwdjLUwEOCuN+KMvcLiVBG1SdF8=
+
+debug@=3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
+  integrity sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==
+  dependencies:
+    ms "2.0.0"
 
 debug@^2.2.0, debug@^2.3.3, debug@^2.6.8, debug@^2.6.9:
   version "2.6.9"
@@ -1417,6 +1432,13 @@ flat-cache@^1.2.1:
     del "^2.0.2"
     graceful-fs "^4.1.2"
     write "^0.2.1"
+
+follow-redirects@^1.3.0:
+  version "1.5.9"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.9.tgz#c9ed9d748b814a39535716e531b9196a845d89c6"
+  integrity sha512-Bh65EZI/RU8nx0wbYF9shkFZlqLP+6WT/5FnA3cE/djNSuKNHJEinGGZgu/cQEkeeb2GdFOgenAmn8qaqYke2w==
+  dependencies:
+    debug "=3.1.0"
 
 for-in@^1.0.2:
   version "1.0.2"
@@ -2872,6 +2894,11 @@ parse-ms@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/parse-ms/-/parse-ms-1.0.1.tgz#56346d4749d78f23430ca0c713850aef91aa361d"
   integrity sha1-VjRtR0nXjyNDDKDHE4UK75GqNh0=
+
+parse-package-name@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/parse-package-name/-/parse-package-name-0.1.0.tgz#3f44dd838feb4c2be4bf318bae4477d7706bade4"
+  integrity sha1-P0Tdg4/rTCvkvzGLrkR313BrreQ=
 
 pascalcase@^0.1.1:
   version "0.1.1"
