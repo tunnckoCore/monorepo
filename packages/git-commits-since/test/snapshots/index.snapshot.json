@@ -1,0 +1,1 @@
+{"todo":{"skip":false,"todo":false,"run":false,"isPending":false,"isRejected":false,"isFulfilled":true,"id":1,"str":"(t) => {\n  t.strictEqual(typeof mod, 'function');\n}","title":"todo"}}

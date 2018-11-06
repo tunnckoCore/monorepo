@@ -15,7 +15,11 @@
     "node": "^8.11.0 || >=10.13.0"
   },
   "dependencies": {
-    "esm": "^3.0.84"
+    "detect-next-version": "^3.0.1",
+    "esm": "^3.0.84",
+    "git-raw-commits": "^2.0.0",
+    "git-semver-tags": "^2.0.2",
+    "parse-commit-message": "^2.1.4"
   },
   "devDependencies": {
     "@tunnckocore/config": "^0.5.1",
@@ -70,7 +74,13 @@
     },
     "reflinks": [
       "new-release",
-      "semantic-release"
+      "semantic-release",
+      "detect-next-version",
+      "execa",
+      "git-raw-commits",
+      "git-semver-tags",
+      "parse-commit-message",
+      "recommended-bump"
     ]
   }
 }
