@@ -5,7 +5,11 @@
   "licenseStart": "2017",
   "scripts": {
     "start": "tunnckocore-scripts",
-    "extends": "@tunnckocore/config/scripts"
+    "extends": "@tunnckocore/config/scripts",
+    "docs": "tunnckocore-scripts docs",
+    "lint": "tunnckocore-scripts lint",
+    "test": "tunnckocore-scripts test",
+    "commit": "tunnckocore-scripts commit"
   },
   "engines": {
     "node": "^8.11.0 || >=10.13.0"
@@ -17,8 +21,8 @@
     "split-cmd": "^1.0.0"
   },
   "devDependencies": {
-    "@tunnckocore/config": "^0.5.0",
-    "@tunnckocore/scripts": "^1.0.1",
+    "@tunnckocore/config": "^0.5.1",
+    "@tunnckocore/scripts": "^1.1.0",
     "asia": "^0.19.7"
   },
   "files": [
@@ -28,7 +32,7 @@
   "main": "index.js",
   "module": "src/index.js",
   "typings": "src/index.d.ts",
-  "version": "0.0.0-semantically-released",
+  "version": "2.1.1",
   "repository": "tunnckoCoreLabs/execa",
   "homepage": "https://github.com/tunnckoCoreLabs/execa",
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",
