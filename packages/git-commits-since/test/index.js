@@ -28,6 +28,9 @@ test('basic test', async (t) => {
     filemode = true
     bare = false
     logallrefupdates = true
+  [user]
+    name = Foo Bar Baz
+    email = foobar@example.com
   [commit]
     gpgsign = false`;
 
