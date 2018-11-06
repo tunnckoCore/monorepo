@@ -70,14 +70,21 @@ import { parse, plugins } from 'parse-commit-message';
  *
  * @name recommendedBump
  * @param {string[]} commitMessages commit messages: one of `string`, `Array<string>` or `Array<Commit>`
+ * @param {object} [options] pass additional `options.plugins` to be passed to [parse-commit-message][]
  * @returns {object} result like `{ increment: boolean, patch?, minor?, major? }`
  * @public
  */
-export default function recommendedBump(commitMessages) {
+export default function recommendedBump(commitMessages, options) {
+  const opts = Object.assign({ plugins: [] }, options);
   const commits = []
     .concat(commitMessages)
     .filter(Boolean)
-    .map((cmt) => (cmt && typeof cmt === 'object' ? cmt : parse(cmt, plugins)))
+    .map((cmt) => {
+      if (cmt && typeof cmt === 'object') {
+        return cmt;
+      }
+      return parse(cmt, plugins.concat(opts.plugins).filter(Boolean));
+    })
     .filter((cmt) => /major|minor|patch/.test(cmt.increment));
 
   if (commits.length === 0) return { increment: false };
