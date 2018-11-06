@@ -5,6 +5,7 @@ import { parse, plugins } from 'parse-commit-message';
  * It always returns an object. If no commits are given it is `{ increment: false }`.
  * Otherwise it may contain `patch`, `minor`, or `major` properties which are
  * of `Array<CommitObject>` type, based on [parse-commit-message][].
+ * ProTip: Use `result[result.increment]` to get most meanigful result.
  *
  * See the tests and examples for more clarity.
  * It understands and follows [Conventional Commits Specification](https://www.conventionalcommits.org/).
@@ -42,7 +43,7 @@ import { parse, plugins } from 'parse-commit-message';
  *
  * @name recommendedBump
  * @param {string[]} commitMessages an array of commit message strings
- * @returns {object} result like `{ increment: boolean, ?patch[], ?minor[], ?major[] }`
+ * @returns {object} result like `{ increment: boolean, patch?, minor?, major? }`
  * @public
  */
 export default function recommendedBump(commitMessages) {
