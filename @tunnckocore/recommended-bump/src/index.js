@@ -4,11 +4,24 @@ import { parse, plugins } from 'parse-commit-message';
  * Calculates recommended bump (next version), based on given `commitMessages`.
  * It always returns an object. If no commits are given it is `{ increment: false }`.
  * Otherwise it may contain `patch`, `minor`, or `major` properties which are
- * of `Array<CommitObject>` type, based on [parse-commit-message][].
+ * of `Array<Commit>` type, based on [parse-commit-message][].
+ *
  * ProTip: Use `result[result.increment]` to get most meanigful result.
  *
  * See the tests and examples for more clarity.
  * It understands and follows [Conventional Commits Specification](https://www.conventionalcommits.org/).
+ *
+ * @example ts
+ * type Commit = {
+ *   header: {
+ *     type: string,
+ *     scope: string,
+ *     subject: string,
+ *     toString: Function,
+ *   },
+ *   body: string | null,
+ *   footer: string | null
+ * }
  *
  * @example
  * import recommendedBump from 'recommended-bump';
@@ -41,8 +54,22 @@ import { parse, plugins } from 'parse-commit-message';
  *
  * main().catch(console.error);
  *
+ * @example
+ * import { parse, plugins } from 'parse-commit-message';
+ * import recommendedBump from 'recommended-bump';
+ *
+ * async function main() {
+ *   const commitOne = parse('fix: foo bar', plugins);
+ *   const commitTwo = parse('feat: some feature subject', plugins);
+ *
+ *   const result = recommendedBump([commitOne, commitTwo]);
+ *   console.log(result.increment); // => 'minor'
+ * }
+ *
+ * main().catch(console.error);
+ *
  * @name recommendedBump
- * @param {string[]} commitMessages an array of commit message strings
+ * @param {string[]|string} commitMessages commit messages, `string`, `Array<string>` or `Array<Commit>`
  * @returns {object} result like `{ increment: boolean, patch?, minor?, major? }`
  * @public
  */
@@ -50,7 +77,7 @@ export default function recommendedBump(commitMessages) {
   const commits = []
     .concat(commitMessages)
     .filter(Boolean)
-    .map((cmt) => parse(cmt, plugins))
+    .map((cmt) => (cmt && typeof cmt === 'object' ? cmt : parse(cmt, plugins)))
     .filter((cmt) => /major|minor|patch/.test(cmt.increment));
 
   if (commits.length === 0) return { increment: false };

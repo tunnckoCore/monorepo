@@ -1,4 +1,5 @@
 import test from 'asia';
+import { parse, plugins } from 'parse-commit-message';
 import recommendedBump from '../src';
 
 test('should recommend major', (t) => {
@@ -71,4 +72,12 @@ test('should recommend patch', (t) => {
 
 test('should return {increment: false} when no commits', (t) => {
   t.deepStrictEqual(recommendedBump(), { increment: false });
+});
+
+test('should be able to accept Array of Commit objects as commits', (t) => {
+  const commitOne = parse('fix: foo bar baz', plugins);
+  const commitTwo = parse('feat: quxie', plugins);
+
+  const result = recommendedBump([commitOne, commitTwo]);
+  t.strictEqual(result.increment, 'minor');
 });

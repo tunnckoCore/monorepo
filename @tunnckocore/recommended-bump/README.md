@@ -70,23 +70,36 @@ _Generated using [docks](http://npm.im/docks)._
 
 ### [src/index.js](/src/index.js)
 
-#### [recommendedBump](/src/index.js#L49)
+#### [recommendedBump](/src/index.js#L76)
 Calculates recommended bump (next version), based on given `commitMessages`.
 It always returns an object. If no commits are given it is `{ increment: false }`.
 Otherwise it may contain `patch`, `minor`, or `major` properties which are
-of `Array<CommitObject>` type, based on [parse-commit-message][].
+of `Array<Commit>` type, based on [parse-commit-message][].
+
 ProTip: Use `result[result.increment]` to get most meanigful result.
 
 See the tests and examples for more clarity.
 It understands and follows [Conventional Commits Specification](https://www.conventionalcommits.org/).
 
 **Params**
-- `commitMessages` **{Array&lt;string&gt;}** an array of commit message strings
+- `commitMessages` **{|string}** commit messages, `string`, `Array<string>` or `Array<Commit>`
 
 **Returns**
 - `object` result like `{ increment: boolean, patch?, minor?, major? }`
 
 **Examples**
+```ts
+type Commit = {
+  header: {
+    type: string,
+    scope: string,
+    subject: string,
+    toString: Function,
+  },
+  body: string | null,
+  footer: string | null
+}
+```
 ```javascript
 import recommendedBump from 'recommended-bump';
 
@@ -114,6 +127,20 @@ Signed-off-by: Awesome footer <foobar@gmail.com>
   console.log(minor[0].body); // => 'Some awesome body.'
   console.log(minor[0].footer);
   // => 'Great footer and GPG sign off, yeah!\nSigned-off-by: Awesome footer <foobar@gmail.com>'
+}
+
+main().catch(console.error);
+```
+```javascript
+import { parse, plugins } from 'parse-commit-message';
+import recommendedBump from 'recommended-bump';
+
+async function main() {
+  const commitOne = parse('fix: foo bar', plugins);
+  const commitTwo = parse('feat: some feature subject', plugins);
+
+  const result = recommendedBump([commitOne, commitTwo]);
+  console.log(result.increment); // => 'minor'
 }
 
 main().catch(console.error);
