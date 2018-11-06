@@ -133,10 +133,10 @@
     p-map-series "1.0.0"
     split-cmd "^1.0.0"
 
-"@tunnckocore/scripts@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@tunnckocore/scripts/-/scripts-1.0.1.tgz#7cc92e3fc5d5fcbc82992e222e1ef1b685c19ae2"
-  integrity sha512-yjKYbfqla6Qx3gSTP9ITjlkkJ5/JF+SnMKhjdo5I3GXAAar63IYVnu3elMQpkMaSXmiNLiiIp8HrRB0U0tivNA==
+"@tunnckocore/scripts@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@tunnckocore/scripts/-/scripts-1.1.0.tgz#52fa83dcbb6ebff1880569186421c2851b976ed9"
+  integrity sha512-1b2YmmzwmC86ad5mfNWJFZQnuSeEeKiw6cq4joCx5F4sAKuIVUsvafS9ehIWVtxln1BkUArEyAC6iWYAgG4lSg==
   dependencies:
     "@tunnckocore/execa" "^2.0.2"
     esm "^3.0.84"
@@ -596,6 +596,13 @@ collect-mentions@0.1.1:
   integrity sha512-seEeKufgpcHKbW41+o7EoW0hyjLAvjYRbFeAVgPUADTCfDMzFeMlXjFdAa5X5JThp/05Tpn3K2Xl/7r9a5BpHw==
   dependencies:
     mentions-regex "2.0.3"
+
+collect-mentions@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/collect-mentions/-/collect-mentions-1.0.2.tgz#30734fcb33cbf8999cf7fd6d9c3133045f0b4dcc"
+  integrity sha512-/jRhzWp5bkZnvgtR+agXT0RvYKBXOl4uG+eKA6ip3tp1x+jRAV36jW2TceKutOeuEPjHKaQ6DJjeh5zvZF0fWQ==
+  dependencies:
+    mentions-regex "^2.0.3"
 
 collection-visit@^1.0.0:
   version "1.0.0"
@@ -2397,7 +2404,7 @@ mem@^1.1.0:
   dependencies:
     mimic-fn "^1.0.0"
 
-mentions-regex@2.0.3:
+mentions-regex@2.0.3, mentions-regex@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/mentions-regex/-/mentions-regex-2.0.3.tgz#442717a0048e53c2d2e2ae5e63a4e54a55ca9603"
   integrity sha1-RCcXoASOU8LS4q5eY6TlSlXKlgM=
@@ -2842,6 +2849,13 @@ parse-commit-message@1.1.2:
   dependencies:
     arrayify "1.0.0"
     collect-mentions "0.1.1"
+
+parse-commit-message@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/parse-commit-message/-/parse-commit-message-2.1.4.tgz#b9ee527f9fff6b181bcdd7d22363a12159284ec9"
+  integrity sha512-yV1yen81YdfoSG9Ganf0SrwIVs2gSNdOnKwLarGnUUO1Ry8Wd2mHn1sFrtq/tVoAQqgsPHX6zoGVOnOnKyFpjw==
+  dependencies:
+    collect-mentions "^1.0.1"
 
 parse-git-log@0.2.1:
   version "0.2.1"

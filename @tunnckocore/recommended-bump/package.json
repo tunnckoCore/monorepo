@@ -15,7 +15,8 @@
     "node": "^8.11.0 || >=10.13.0"
   },
   "dependencies": {
-    "esm": "^3.0.84"
+    "esm": "^3.0.84",
+    "parse-commit-message": "^2.1.4"
   },
   "devDependencies": {
     "@tunnckocore/config": "^0.5.1",
