@@ -1,0 +1,76 @@
+{
+  "name": "git-commits-since",
+  "description": "Get all commits since given period of time or by default from latest git semver tag. Also detects and calculates next needed / recommended bump for your package. Based on [recommended-bump][], [parse-commit-message][], [detect-next-version][], [git-semver-tags][] and [git-raw-commits][]. Follows Conventional Commits specification.",
+  "license": "Apache-2.0",
+  "licenseStart": "2018",
+  "scripts": {
+    "start": "tunnckocore-scripts",
+    "extends": "@tunnckocore/config/scripts",
+    "docs": "tunnckocore-scripts docs",
+    "lint": "tunnckocore-scripts lint",
+    "test": "tunnckocore-scripts test",
+    "commit": "tunnckocore-scripts commit"
+  },
+  "engines": {
+    "node": "^8.11.0 || >=10.13.0"
+  },
+  "dependencies": {
+    "esm": "^3.0.84"
+  },
+  "devDependencies": {
+    "@tunnckocore/config": "^0.5.1",
+    "@tunnckocore/scripts": "^1.1.0",
+    "asia": "^0.19.7"
+  },
+  "files": [
+    "src",
+    "index.js"
+  ],
+  "main": "index.js",
+  "module": "src/index.js",
+  "typings": "src/index.d.ts",
+  "version": "0.0.0",
+  "repository": "tunnckoCoreLabs/git-commits-since",
+  "homepage": "https://github.com/tunnckoCoreLabs/git-commits-since",
+  "author": "Charlike Mike Reagent (https://tunnckocore.com)",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "renovate": {
+    "extends": "tunnckocore"
+  },
+  "verb": {
+    "run": true,
+    "toc": {
+      "render": true,
+      "method": "preWrite",
+      "maxdepth": 4
+    },
+    "layout": "empty",
+    "tasks": [
+      "readme"
+    ],
+    "related": {
+      "list": [
+        "asia",
+        "charlike",
+        "docks",
+        "gitcommit",
+        "@tunnckocore/execa",
+        "@tunnckocore/package-json",
+        "@tunnckocore/create-project",
+        "@tunnckocore/update",
+        "@tunnckocore/config",
+        "@tunnckocore/scripts"
+      ]
+    },
+    "lint": {
+      "reflinks": true
+    },
+    "reflinks": [
+      "new-release",
+      "semantic-release"
+    ]
+  }
+}
