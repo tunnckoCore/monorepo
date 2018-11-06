@@ -71,7 +71,9 @@
     },
     "reflinks": [
       "new-release",
-      "semantic-release"
+      "semantic-release",
+      "execa",
+      "parse-commit-message"
     ]
   }
 }
