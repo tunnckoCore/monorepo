@@ -39,7 +39,7 @@ export default async function gitCommitsSince(options) {
 
   return promise.then(async (result) => {
     if (typeof opts.name === 'string') {
-      const res = await detectNextVersion(opts.name, commits);
+      const res = await detectNextVersion(opts.name, commits, opts);
       return Object.assign({}, result, res);
     }
     return result;
