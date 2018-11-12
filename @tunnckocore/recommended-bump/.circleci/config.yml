@@ -55,8 +55,8 @@ jobtest: &jobtest
         name: Installing project dependencies
         command: yarn install --prefer-offline || yarn install
     - run:
-        name: Testing your project
-        command: yarn tunnckocore-scripts test
+        name: Linting and testing your project
+        command: yarn global add nyc@latest && yarn run lint && yarn test
     - save_cache:
         key: recommended-bump-{{ checksum "yarn.lock" }}
         paths: node_modules
@@ -97,17 +97,17 @@ jobs:
   #   <<: *node10osx
   #   <<: *jobtest
 
-  release:
+  publish:
     <<: *node10linux
     steps:
       - checkout
       - *restore_modules_cache
       - run:
           name: Bundling your awesome project
-          command: yarn tunnckocore-scripts build || echo "No build step."
+          command: yarn run build || echo "No build step."
       - run:
           name: Releasing and publishing
-          command: yarn tunnckocore-scripts release
+          command: yarn run release || (yarn global add @tunnckocore/release-cli && yarn run release)
 
 workflows:
   version: 2
@@ -137,7 +137,7 @@ workflows:
 
       # Release and NPM publish
       # Executed only on master
-      - release:
+      - publish:
           requires:
             # - test-node8osx
             # - test-node10osx
@@ -146,4 +146,4 @@ workflows:
           filters:
             branches:
               only: master
-          context: org-secret
+          context: org-global

@@ -70,81 +70,66 @@ _Generated using [docks](http://npm.im/docks)._
 
 ### [src/index.js](/src/index.js)
 
-#### [recommendedBump](/src/index.js#L77)
-Calculates recommended bump (next version), based on given `commitMessages`.
+#### [recommendedBump](/src/index.js#L62)
+Calculates recommended bump (next version), based on given `commits`.
 It always returns an object. If no commits are given it is `{ increment: false }`.
 Otherwise it may contain `patch`, `minor`, or `major` properties which are
 of `Array<Commit>` type, based on [parse-commit-message][].
 
 ProTip: Use `result[result.increment]` to get most meanigful result.
 
+Each item passed as `commits` is validated against the Convetional Comits Specification
+and using [parse-commit-message][]. Commits can be string, array of commit message strings,
+array of objects (of [type Commit as defined](https://github.com/tunnckoCoreLabs/parse-commit-message#type-definitions)) or mix of previous
+posibilities.
+
 See the tests and examples for more clarity.
-It understands and follows [Conventional Commits Specification](https://www.conventionalcommits.org/).
 
 **Params**
-- `commitMessages` **{Array&lt;string&gt;}** commit messages: one of `string`, `Array<string>` or `Array<Commit>`
+- `commits` **{string||}** commit messages one of `string`, `Array<string>` or `Array<Commit>`
 - `[options]` **{object}** pass additional `options.plugins` to be passed to [parse-commit-message][]
 
 **Returns**
-- `object` result like `{ increment: boolean, patch?, minor?, major? }`
+- `object` result like `{ increment: boolean | string, patch?, minor?, major? }`
 
 **Examples**
-```ts
-type Commit = {
-  header: {
-    type: string,
-    scope: string,
-    subject: string,
-    toString: Function,
-  },
-  body: string | null,
-  footer: string | null
-}
-```
 ```javascript
 import recommendedBump from 'recommended-bump';
 
-async function main() {
-  const commits = [
-    'chore: foo bar baz',
-    `fix(cli): some bugfix msg here
+const commits = [
+  'chore: foo bar baz',
+  `fix(cli): some bugfix msg here
 
 Some awesome body.
 
 Great footer and GPG sign off, yeah!
-Signed-off-by: Awesome footer <foobar@gmail.com>
-`
+Signed-off-by: Awesome footer <foobar@gmail.com>`
   ];
 
-  const { increment, minor } = recommendedBump(commits);
+const { increment, isBreaking, patch } = recommendedBump(commits);
 
-  console.log(increment); // => 'minor'
-  console.log(minor);
-  // => [{ header: { type, scope, subject, toString() }, body, footer }]
-  console.log(minor[0].header.type); // => 'fix'
-  console.log(minor[0].header.scope); // => 'cli'
-  console.log(minor[0].header.subject); // => 'some bugfix msg here'
-  console.log(minor[0].header.toString()); // => 'fix(cli): some bugfix msg here'
-  console.log(minor[0].body); // => 'Some awesome body.'
-  console.log(minor[0].footer);
-  // => 'Great footer and GPG sign off, yeah!\nSigned-off-by: Awesome footer <foobar@gmail.com>'
-}
-
-main().catch(console.error);
+console.log(isBreaking); // => false
+console.log(increment); // => 'patch'
+console.log(patch);
+// => [{ header: { type, scope, subject }, body, footer }, { ... }]
+console.log(patch[0].header.type); // => 'fix'
+console.log(patch[0].header.scope); // => 'cli'
+console.log(patch[0].header.subject); // => 'some bugfix msg here'
+console.log(patch[0].body); // => 'Some awesome body.'
+console.log(patch[0].footer);
+// => 'Great footer and GPG sign off, yeah!\nSigned-off-by: Awesome footer <foobar@gmail.com>'
 ```
 ```javascript
-import { parse, plugins } from 'parse-commit-message';
+import { parse } from 'parse-commit-message';
 import recommendedBump from 'recommended-bump';
 
-async function main() {
-  const commitOne = parse('fix: foo bar', plugins);
-  const commitTwo = parse('feat: some feature subject', plugins);
+const commitOne = parse('fix: foo bar');
+const commitTwo = parse('feat: some feature subject');
 
-  const result = recommendedBump([commitOne, commitTwo]);
-  console.log(result.increment); // => 'minor'
-}
-
-main().catch(console.error);
+const result = recommendedBump([commitOne, commitTwo]);
+console.log(result.increment); // => 'minor'
+console.log(result.isBreaking); // => false
+console.log(result.minor); // => [{ ... }]
 ```
 
 <!-- docks-end -->
@@ -153,16 +138,17 @@ main().catch(console.error);
 
 ## See Also
 
-Some of these projects are used here or were inspiration for this one, others are just related. So, thanks for your
-existance!
+Some of these projects are used here or were inspiration for this one, others are just related. So, thanks for your existance!
+
 - [@tunnckocore/config](https://www.npmjs.com/package/@tunnckocore/config): All the configs for all the tools, in one place | [homepage](https://github.com/tunnckoCoreLabs/config "All the configs for all the tools, in one place")
-- [@tunnckocore/create-project](https://www.npmjs.com/package/@tunnckocore/create-project): Create and scaffold a new project, its GitHub repository and… [more](https://github.com/tunnckoCoreLabs/create-project) | [homepage](https://github.com/tunnckoCoreLabs/create-project "Create and scaffold a new project, its GitHub repository and contents")
-- [@tunnckocore/execa](https://www.npmjs.com/package/@tunnckocore/execa): Thin layer on top of [execa][] that allows executing multiple… [more](https://github.com/tunnckoCoreLabs/execa) | [homepage](https://github.com/tunnckoCoreLabs/execa "Thin layer on top of [execa][] that allows executing multiple commands in parallel or in sequence")
+- [@tunnckocore/create-project](https://www.npmjs.com/package/@tunnckocore/create-project): Create and scaffold a new project, its GitHub repository and contents | [homepage](https://github.com/tunnckoCoreLabs/create-project "Create and scaffold a new project, its GitHub repository and contents")
+- [@tunnckocore/execa](https://www.npmjs.com/package/@tunnckocore/execa): Thin layer on top of [execa][] that allows executing multiple commands… [more](https://github.com/tunnckoCoreLabs/execa) | [homepage](https://github.com/tunnckoCoreLabs/execa "Thin layer on top of [execa][] that allows executing multiple commands in parallel or in sequence")
+- [@tunnckocore/package-json](https://www.npmjs.com/package/@tunnckocore/package-json): Simple and fast getting of latest package.json metadata for a npm… [more](https://github.com/tunnckoCoreLabs/package-json) | [homepage](https://github.com/tunnckoCoreLabs/package-json "Simple and fast getting of latest package.json metadata for a npm module, using axios and unpkg as a source, because npm registry is basically slow")
 - [@tunnckocore/scripts](https://www.npmjs.com/package/@tunnckocore/scripts): Universal and minimalist scripts & tasks runner. | [homepage](https://github.com/tunnckoCoreLabs/scripts "Universal and minimalist scripts & tasks runner.")
-- [@tunnckocore/update](https://www.npmjs.com/package/@tunnckocore/update): Update a repository with latest templates from `charlike`. | [homepage](https://github.com/tunnckoCoreLabs/update "Update a repository with latest templates from `charlike`.")
-- [asia](https://www.npmjs.com/package/asia): Blazingly fast, magical and minimalist testing framework, for Today and… [more](https://github.com/olstenlarck/asia#readme) | [homepage](https://github.com/olstenlarck/asia#readme "Blazingly fast, magical and minimalist testing framework, for Today and Tomorrow")
-- [charlike](https://www.npmjs.com/package/charlike): Small & fast project scaffolder with sane defaults. Supports hundreds… [more](https://github.com/tunnckoCoreLabs/charlike) | [homepage](https://github.com/tunnckoCoreLabs/charlike "Small & fast project scaffolder with sane defaults. Supports hundreds of template engines through the @JSTransformers API or if you want custom `render` function passed through options")
-- [docks](https://www.npmjs.com/package/docks): Extensible system for parsing and generating documentation. It just freaking… [more](https://github.com/tunnckoCore/docks) | [homepage](https://github.com/tunnckoCore/docks "Extensible system for parsing and generating documentation. It just freaking works!")
+- [@tunnckocore/update](https://www.npmjs.com/package/@tunnckocore/update): Update to latest project files and templates, based on `charlike` scaffolder | [homepage](https://github.com/tunnckoCoreLabs/update "Update to latest project files and templates, based on `charlike` scaffolder")
+- [asia](https://www.npmjs.com/package/asia): Blazingly fast, magical and minimalist testing framework, for Today and Tomorrow | [homepage](https://github.com/olstenlarck/asia#readme "Blazingly fast, magical and minimalist testing framework, for Today and Tomorrow")
+- [charlike](https://www.npmjs.com/package/charlike): Small, fast and streaming project scaffolder with support for hundreds of… [more](https://github.com/tunnckoCoreLabs/charlike) | [homepage](https://github.com/tunnckoCoreLabs/charlike "Small, fast and streaming project scaffolder with support for hundreds of template engines and sane defaults")
+- [docks](https://www.npmjs.com/package/docks): Extensible system for parsing and generating documentation. It just freaking works! | [homepage](https://github.com/tunnckoCore/docks "Extensible system for parsing and generating documentation. It just freaking works!")
 - [gitcommit](https://www.npmjs.com/package/gitcommit): Lightweight and joyful `git commit` replacement. Conventional Commits compliant. | [homepage](https://github.com/tunnckoCore/gitcommit "Lightweight and joyful `git commit` replacement. Conventional Commits compliant.")
 
 **[back to top](#thetop)**
@@ -265,5 +251,4 @@ Released under the [Apache-2.0 License][license-url].
 
 [execa]: https://github.com/sindresorhus/execa
 [new-release]: https://github.com/tunnckoCore/new-release
-[parse-commit-message]: https://github.com/olstenlarck/parse-commit-message
-[semantic-release]: https://github.com/semantic-release/semantic-release
+[parse-commit-message]: https://github.com/tunnckoCoreLabs/parse-commit-message

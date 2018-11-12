@@ -4,24 +4,24 @@
   "license": "Apache-2.0",
   "licenseStart": "2018",
   "scripts": {
-    "start": "tunnckocore-scripts",
-    "extends": "@tunnckocore/config/scripts",
-    "docs": "tunnckocore-scripts docs",
-    "lint": "tunnckocore-scripts lint",
-    "test": "tunnckocore-scripts test",
-    "commit": "tunnckocore-scripts commit"
+    "docs": "docks --outfile .verb.md && verb",
+    "lint": "eslint '**/*.js' --cache --fix --quiet --format codeframe",
+    "test": "nyc asia",
+    "commit": "yarn lint && yarn test && yarn dry",
+    "dry": "git add -A && git status --porcelain && gitcommit -sS",
+    "release": "tunnckocore-release"
   },
   "engines": {
     "node": "^8.11.0 || >=10.13.0"
   },
   "dependencies": {
     "esm": "^3.0.84",
-    "parse-commit-message": "^2.1.4"
+    "parse-commit-message": "^3.2.0"
   },
   "devDependencies": {
-    "@tunnckocore/config": "^0.5.1",
-    "@tunnckocore/scripts": "^1.1.0",
-    "asia": "^0.19.7"
+    "@tunnckocore/config": "^1.0.2",
+    "asia": "^0.19.7",
+    "dedent": "^0.7.0"
   },
   "files": [
     "src",
@@ -30,7 +30,7 @@
   "main": "index.js",
   "module": "src/index.js",
   "typings": "src/index.d.ts",
-  "version": "0.1.1",
+  "version": "1.2.0",
   "repository": "tunnckoCoreLabs/recommended-bump",
   "homepage": "https://github.com/tunnckoCoreLabs/recommended-bump",
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",
@@ -71,7 +71,6 @@
     },
     "reflinks": [
       "new-release",
-      "semantic-release",
       "execa",
       "parse-commit-message"
     ]

@@ -1,83 +1,92 @@
 import test from 'asia';
-import { parse, plugins } from 'parse-commit-message';
+import dedent from 'dedent';
+import { parse, stringifyHeader } from 'parse-commit-message';
 import recommendedBump from '../src';
 
-test('should recommend major', (t) => {
-  const commits = [
-    'fix(bar): quxxxxxxxx',
-    'major: foo bar baz',
-    'feat: some awesome feature',
-    'fix: yeah great bugfix',
+test('should recommended patch bump', (t) => {
+  const allCommits = [
+    'chore: foo bar baz',
+    dedent`fix(cli): some bugfix msg here
+
+    Some awesome body.
+
+    Great footer and GPG sign off, yeah!
+    Signed-off-by: Awesome footer <foobar@gmail.com>`,
   ];
 
-  const result = recommendedBump(commits);
-  t.strictEqual(result.increment, 'major');
+  const { increment, isBreaking, patch, commits } = recommendedBump(allCommits);
 
-  t.ok(result.major);
-  t.ok(result.minor);
-  t.ok(result.patch);
-
-  t.ok(Array.isArray(result.major));
-  t.ok(Array.isArray(result.minor));
-  t.ok(Array.isArray(result.patch));
-
-  t.strictEqual(result.major.length, 1);
-  t.strictEqual(result.minor.length, 1);
-  t.strictEqual(result.patch.length, 2);
-
-  t.strictEqual(result.major[0].header.type, 'major');
-  t.strictEqual(result.major[0].header.scope, '');
-  t.strictEqual(result.major[0].header.subject, 'foo bar baz');
-  t.strictEqual(result.major[0].header.toString(), 'major: foo bar baz');
-});
-
-test('should recommend major when detect `BREAKING CHANGE:` somewhere', (t) => {
-  const commits = [
-    `fix: some awesome new major
-
-BREAKING CHANGE: this is breaking, watch out!
-
-Signed-off-by: Charlike Mike Reagent`,
-    'feat: wooh hooo',
-  ];
-  const { major, increment } = recommendedBump(commits);
-
-  t.strictEqual(increment, 'major');
-  t.strictEqual(major[0].header.toString(), 'fix: some awesome new major');
-  t.strictEqual(major[0].body, 'BREAKING CHANGE: this is breaking, watch out!');
-  t.strictEqual(major[0].footer, 'Signed-off-by: Charlike Mike Reagent');
-});
-
-test('should recommend minor', (t) => {
-  const { increment, minor } = recommendedBump([
-    'fix(cli): okkkk',
-    'feat(duh): yeapp',
-    'chore: some non src changes',
-  ]);
-
-  t.strictEqual(increment, 'minor');
-  t.strictEqual(minor[0].header.toString(), 'feat(duh): yeapp');
-});
-
-test('should recommend patch', (t) => {
-  const { increment, patch } = recommendedBump([
-    'chore(cli): okkkk',
-    'chore(duh): yeapp',
-    'fix: yeah some awesome bugfix',
-  ]);
-
+  t.strictEqual(Array.isArray(commits), true);
+  t.strictEqual(isBreaking, false);
   t.strictEqual(increment, 'patch');
-  t.strictEqual(patch[0].header.toString(), 'fix: yeah some awesome bugfix');
+  t.strictEqual(patch[0].header.type, 'fix');
+  t.strictEqual(patch[0].header.scope, 'cli');
+  t.strictEqual(patch[0].header.subject, 'some bugfix msg here');
+  t.strictEqual(
+    stringifyHeader(patch[0].header),
+    'fix(cli): some bugfix msg here',
+  );
+  t.strictEqual(patch[0].body, 'Some awesome body.');
+  t.strictEqual(
+    patch[0].footer,
+    'Great footer and GPG sign off, yeah!\nSigned-off-by: Awesome footer <foobar@gmail.com>',
+  );
 });
 
-test('should return {increment: false} when no commits', (t) => {
-  t.deepStrictEqual(recommendedBump(), { increment: false });
-});
-
-test('should be able to accept Array of Commit objects as commits', (t) => {
-  const commitOne = parse('fix: foo bar baz', plugins);
-  const commitTwo = parse('feat: quxie', plugins);
+test('should recommend minor bump', (t) => {
+  const commitOne = parse('fix: foo bar');
+  const commitTwo = parse('feat: some feature subject');
 
   const result = recommendedBump([commitOne, commitTwo]);
   t.strictEqual(result.increment, 'minor');
+  t.strictEqual(result.isBreaking, false);
+});
+
+test('should recommend major bump from `fix` type', (t) => {
+  const result = recommendedBump([
+    'feat: ho ho ho',
+    'fix: foo bar baz\n\nBREAKING CHANGE: ouch!',
+  ]);
+
+  t.strictEqual(Array.isArray(result.commits), true);
+  t.strictEqual(result.increment, 'major');
+  t.strictEqual(result.isBreaking, true);
+  t.strictEqual(result.major[0].header.type, 'fix');
+  t.strictEqual(result.major[0].header.subject, 'foo bar baz');
+  t.strictEqual(result.major[0].body, 'BREAKING CHANGE: ouch!');
+
+  t.deepStrictEqual(result.minor[0].header, {
+    type: 'feat',
+    scope: null,
+    subject: 'ho ho ho',
+  });
+});
+
+test('should return { increment: false, commits: Array<Commit> } when no need for bump', (t) => {
+  const result = recommendedBump([
+    'chore(ci): update ci config',
+    'test: ok okey boody man',
+    'refactor: some tweaks',
+  ]);
+
+  t.strictEqual(result.increment, false);
+  t.strictEqual(result.isBreaking, false);
+
+  t.strictEqual(Array.isArray(result.commits), true);
+  const [one, two, three] = result.commits;
+  t.deepStrictEqual(one.header, {
+    type: 'chore',
+    scope: 'ci',
+    subject: 'update ci config',
+  });
+  t.deepStrictEqual(two.header, {
+    type: 'test',
+    scope: null,
+    subject: 'ok okey boody man',
+  });
+  t.deepStrictEqual(three.header, {
+    type: 'refactor',
+    scope: null,
+    subject: 'some tweaks',
+  });
 });

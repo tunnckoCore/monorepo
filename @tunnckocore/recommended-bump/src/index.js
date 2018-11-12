@@ -1,95 +1,86 @@
-import { parse, plugins } from 'parse-commit-message';
+import { applyPlugins, plugins, parse, check } from 'parse-commit-message';
 
 /**
- * Calculates recommended bump (next version), based on given `commitMessages`.
+ * Calculates recommended bump (next version), based on given `commits`.
  * It always returns an object. If no commits are given it is `{ increment: false }`.
  * Otherwise it may contain `patch`, `minor`, or `major` properties which are
  * of `Array<Commit>` type, based on [parse-commit-message][].
  *
  * ProTip: Use `result[result.increment]` to get most meanigful result.
  *
- * See the tests and examples for more clarity.
- * It understands and follows [Conventional Commits Specification](https://www.conventionalcommits.org/).
+ * Each item passed as `commits` is validated against the Convetional Comits Specification
+ * and using [parse-commit-message][]. Commits can be string, array of commit message strings,
+ * array of objects (of [type Commit as defined](https://github.com/tunnckoCoreLabs/parse-commit-message#type-definitions)) or mix of previous
+ * posibilities.
  *
- * @example ts
- * type Commit = {
- *   header: {
- *     type: string,
- *     scope: string,
- *     subject: string,
- *     toString: Function,
- *   },
- *   body: string | null,
- *   footer: string | null
- * }
+ * See the tests and examples for more clarity.
  *
  * @example
  * import recommendedBump from 'recommended-bump';
  *
- * async function main() {
- *   const commits = [
- *     'chore: foo bar baz',
- *     `fix(cli): some bugfix msg here
+ * const commits = [
+ *   'chore: foo bar baz',
+ *   `fix(cli): some bugfix msg here
  *
  * Some awesome body.
  *
  * Great footer and GPG sign off, yeah!
- * Signed-off-by: Awesome footer <foobar@gmail.com>
- * `
+ * Signed-off-by: Awesome footer <foobar@gmail.com>`
  *   ];
  *
- *   const { increment, minor } = recommendedBump(commits);
+ * const { increment, isBreaking, patch } = recommendedBump(commits);
  *
- *   console.log(increment); // => 'minor'
- *   console.log(minor);
- *   // => [{ header: { type, scope, subject, toString() }, body, footer }]
- *   console.log(minor[0].header.type); // => 'fix'
- *   console.log(minor[0].header.scope); // => 'cli'
- *   console.log(minor[0].header.subject); // => 'some bugfix msg here'
- *   console.log(minor[0].header.toString()); // => 'fix(cli): some bugfix msg here'
- *   console.log(minor[0].body); // => 'Some awesome body.'
- *   console.log(minor[0].footer);
- *   // => 'Great footer and GPG sign off, yeah!\nSigned-off-by: Awesome footer <foobar@gmail.com>'
- * }
- *
- * main().catch(console.error);
+ * console.log(isBreaking); // => false
+ * console.log(increment); // => 'patch'
+ * console.log(patch);
+ * // => [{ header: { type, scope, subject }, body, footer }, { ... }]
+ * console.log(patch[0].header.type); // => 'fix'
+ * console.log(patch[0].header.scope); // => 'cli'
+ * console.log(patch[0].header.subject); // => 'some bugfix msg here'
+ * console.log(patch[0].body); // => 'Some awesome body.'
+ * console.log(patch[0].footer);
+ * // => 'Great footer and GPG sign off, yeah!\nSigned-off-by: Awesome footer <foobar@gmail.com>'
  *
  * @example
- * import { parse, plugins } from 'parse-commit-message';
+ * import { parse } from 'parse-commit-message';
  * import recommendedBump from 'recommended-bump';
  *
- * async function main() {
- *   const commitOne = parse('fix: foo bar', plugins);
- *   const commitTwo = parse('feat: some feature subject', plugins);
+ * const commitOne = parse('fix: foo bar');
+ * const commitTwo = parse('feat: some feature subject');
  *
- *   const result = recommendedBump([commitOne, commitTwo]);
- *   console.log(result.increment); // => 'minor'
- * }
- *
- * main().catch(console.error);
+ * const result = recommendedBump([commitOne, commitTwo]);
+ * console.log(result.increment); // => 'minor'
+ * console.log(result.isBreaking); // => false
+ * console.log(result.minor); // => [{ ... }]
  *
  * @name recommendedBump
- * @param {string[]} commitMessages commit messages: one of `string`, `Array<string>` or `Array<Commit>`
+ * @param {string|Array<string>|Array<object>} commits commit messages one of `string`, `Array<string>` or `Array<Commit>`
  * @param {object} [options] pass additional `options.plugins` to be passed to [parse-commit-message][]
- * @returns {object} result like `{ increment: boolean, patch?, minor?, major? }`
+ * @returns {object} result like `{ increment: boolean | string, patch?, minor?, major? }`
  * @public
  */
-export default function recommendedBump(commitMessages, options) {
+export default function recommendedBump(commits, options) {
   const opts = Object.assign({ plugins: [] }, options);
-  const commits = []
-    .concat(commitMessages)
+  const allCommits = []
+    .concat(commits)
     .filter(Boolean)
-    .map((cmt) => {
-      if (cmt && typeof cmt === 'object') {
-        return cmt;
-      }
-      return parse(cmt, plugins.concat(opts.plugins).filter(Boolean));
-    })
-    .filter((cmt) => /major|minor|patch/.test(cmt.increment));
+    .reduce(
+      (acc, cmt) =>
+        acc.concat(
+          applyPlugins(plugins.concat(opts.plugins), check(parse(cmt))),
+        ),
+      [],
+    );
 
-  if (commits.length === 0) return { increment: false };
+  const cmts = allCommits.filter((cmt) =>
+    /major|minor|patch/.test(cmt.increment),
+  );
 
-  const categorized = commits.reduce((acc, cmt) => {
+  if (cmts.length === 0) {
+    return createReturn(false, null, allCommits);
+  }
+
+  const categorized = cmts.reduce((acc, cmt) => {
     acc[cmt.increment] = acc[cmt.increment] || [];
     acc[cmt.increment].push(cmt);
 
@@ -97,12 +88,19 @@ export default function recommendedBump(commitMessages, options) {
   }, {});
 
   if (categorized.major) {
-    return { increment: 'major', ...categorized };
+    return createReturn('major', categorized, allCommits);
   }
   if (categorized.minor) {
-    return { increment: 'minor', ...categorized };
+    return createReturn('minor', categorized, allCommits);
   }
 
-  // then it is `categorized.patch`
-  return { increment: 'patch', ...categorized };
+  return createReturn('patch', categorized, allCommits);
+}
+
+function createReturn(type, categorized, commits) {
+  return Object.assign({}, categorized, {
+    isBreaking: type === 'major',
+    increment: type,
+    commits,
+  });
 }
