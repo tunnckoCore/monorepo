@@ -125,7 +125,7 @@ to do fun stuff on per each project basis. Such as parsing each rawCommit or wha
 import gitCommitsSince from 'git-commits-since';
 
 async function main() {
-  const result = await gitCommits({ cwd: 'path/to/git/repository' });
+  const result = await gitCommitsSince({ cwd: 'path/to/git/repository' });
 
   console.log(result);
   // the @ means HEAD or the latest commit
@@ -166,17 +166,17 @@ main().catch(console.error);
 
 Some of these projects are used here or were inspiration for this one, others are just related. So, thanks for your existance!
 
-- [@tunnckocore/config](https://www.npmjs.com/package/@tunnckocore/config): All the configs for all the tools, in one place | [homepage](https://github.com/tunnckoCoreLabs/config "All the configs for all the tools, in one place")
-- [@tunnckocore/create-project](https://www.npmjs.com/package/@tunnckocore/create-project): Create and scaffold a new project, its GitHub repository and contents | [homepage](https://github.com/tunnckoCoreLabs/create-project "Create and scaffold a new project, its GitHub repository and contents")
-- [@tunnckocore/package-json](https://www.npmjs.com/package/@tunnckocore/package-json): Simple and fast getting of latest package.json metadata for a npm… [more](https://github.com/tunnckoCoreLabs/package-json) | [homepage](https://github.com/tunnckoCoreLabs/package-json "Simple and fast getting of latest package.json metadata for a npm module, using axios and unpkg as a source, because npm registry is basically slow")
+- [@tunnckocore/config](https://www.npmjs.com/package/@tunnckocore/config): All the configs for all the tools, in one… [more](https://github.com/tunnckoCoreLabs/config) | [homepage](https://github.com/tunnckoCoreLabs/config "All the configs for all the tools, in one place")
+- [@tunnckocore/create-project](https://www.npmjs.com/package/@tunnckocore/create-project): Create and scaffold a new project, its GitHub repository… [more](https://github.com/tunnckoCoreLabs/create-project) | [homepage](https://github.com/tunnckoCoreLabs/create-project "Create and scaffold a new project, its GitHub repository and contents")
+- [@tunnckocore/package-json](https://www.npmjs.com/package/@tunnckocore/package-json): Simple and fast getting of latest package.json metadata for… [more](https://github.com/tunnckoCoreLabs/package-json) | [homepage](https://github.com/tunnckoCoreLabs/package-json "Simple and fast getting of latest package.json metadata for a npm module, using axios and unpkg as a source, because npm registry is basically slow")
 - [@tunnckocore/scripts](https://www.npmjs.com/package/@tunnckocore/scripts): Universal and minimalist scripts & tasks runner. | [homepage](https://github.com/tunnckoCoreLabs/scripts "Universal and minimalist scripts & tasks runner.")
-- [@tunnckocore/update](https://www.npmjs.com/package/@tunnckocore/update): Update to latest project files and templates, based on `charlike` scaffolder | [homepage](https://github.com/tunnckoCoreLabs/update "Update to latest project files and templates, based on `charlike` scaffolder")
-- [asia](https://www.npmjs.com/package/asia): Blazingly fast, magical and minimalist testing framework, for Today and Tomorrow | [homepage](https://github.com/olstenlarck/asia#readme "Blazingly fast, magical and minimalist testing framework, for Today and Tomorrow")
-- [charlike](https://www.npmjs.com/package/charlike): Small, fast and streaming project scaffolder with support for hundreds of… [more](https://github.com/tunnckoCoreLabs/charlike) | [homepage](https://github.com/tunnckoCoreLabs/charlike "Small, fast and streaming project scaffolder with support for hundreds of template engines and sane defaults")
-- [detect-next-version](https://www.npmjs.com/package/detect-next-version): Calculates next version, based on given commit message and following Conventional… [more](https://github.com/tunnckoCoreLabs/detect-next-version) | [homepage](https://github.com/tunnckoCoreLabs/detect-next-version "Calculates next version, based on given commit message and following Conventional Commits")
-- [docks](https://www.npmjs.com/package/docks): Extensible system for parsing and generating documentation. It just freaking works! | [homepage](https://github.com/tunnckoCore/docks "Extensible system for parsing and generating documentation. It just freaking works!")
+- [@tunnckocore/update](https://www.npmjs.com/package/@tunnckocore/update): Update to latest project files and templates, based on… [more](https://github.com/tunnckoCoreLabs/update) | [homepage](https://github.com/tunnckoCoreLabs/update "Update to latest project files and templates, based on `charlike` scaffolder")
+- [asia](https://www.npmjs.com/package/asia): Blazingly fast, magical and minimalist testing framework, for Today… [more](https://github.com/olstenlarck/asia#readme) | [homepage](https://github.com/olstenlarck/asia#readme "Blazingly fast, magical and minimalist testing framework, for Today and Tomorrow")
+- [charlike](https://www.npmjs.com/package/charlike): Small, fast and streaming project scaffolder with support for… [more](https://github.com/tunnckoCoreLabs/charlike) | [homepage](https://github.com/tunnckoCoreLabs/charlike "Small, fast and streaming project scaffolder with support for hundreds of template engines and sane defaults")
+- [detect-next-version](https://www.npmjs.com/package/detect-next-version): Calculates next version, based on given commit message and… [more](https://github.com/tunnckoCoreLabs/detect-next-version) | [homepage](https://github.com/tunnckoCoreLabs/detect-next-version "Calculates next version, based on given commit message and following Conventional Commits")
+- [docks](https://www.npmjs.com/package/docks): Extensible system for parsing and generating documentation. It just… [more](https://github.com/tunnckoCore/docks) | [homepage](https://github.com/tunnckoCore/docks "Extensible system for parsing and generating documentation. It just freaking works!")
 - [gitcommit](https://www.npmjs.com/package/gitcommit): Lightweight and joyful `git commit` replacement. Conventional Commits compliant. | [homepage](https://github.com/tunnckoCore/gitcommit "Lightweight and joyful `git commit` replacement. Conventional Commits compliant.")
-- [parse-commit-message](https://www.npmjs.com/package/parse-commit-message): An extensible parser for commit message that follows Conventional Commits v1… [more](https://github.com/olstenlarck/parse-commit-message) | [homepage](https://github.com/olstenlarck/parse-commit-message "An extensible parser for commit message that follows Conventional Commits v1 spec")
+- [parse-commit-message](https://www.npmjs.com/package/parse-commit-message): Extensible parser for git commit messages following Conventional Commits… [more](https://github.com/tunnckoCoreLabs/parse-commit-message) | [homepage](https://github.com/tunnckoCoreLabs/parse-commit-message "Extensible parser for git commit messages following Conventional Commits Specification")
 
 **[back to top](#thetop)**
 
@@ -281,6 +281,6 @@ Released under the [Apache-2.0 License][license-url].
 [git-raw-commits]: https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/git-raw-commits
 [git-semver-tags]: https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/git-semver-tags
 [new-release]: https://github.com/tunnckoCore/new-release
-[parse-commit-message]: https://github.com/olstenlarck/parse-commit-message
+[parse-commit-message]: https://github.com/tunnckoCoreLabs/parse-commit-message
 [recommended-bump]: https://github.com/tunnckoCoreLabs/recommended-bump
 [semantic-release]: https://github.com/semantic-release/semantic-release

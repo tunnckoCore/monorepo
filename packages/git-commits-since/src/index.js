@@ -13,7 +13,7 @@ import getAllTags from '@tunnckocore/git-semver-tags';
  * import gitCommitsSince from 'git-commits-since';
  *
  * async function main() {
- *   const result = await gitCommits({ cwd: 'path/to/git/repository' });
+ *   const result = await gitCommitsSince({ cwd: 'path/to/git/repository' });
  *
  *   console.log(result);
  *   // the @ means HEAD or the latest commit
