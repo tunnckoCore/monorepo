@@ -1,34 +1,30 @@
 {
   "name": "git-commits-since",
-  "description": "Get all commits since given period of time or by default from latest git semver tag. Also detects and calculates next needed / recommended bump for your package. Based on [recommended-bump][], [parse-commit-message][], [detect-next-version][], [git-semver-tags][] and [git-raw-commits][]. Follows Conventional Commits specification.",
+  "description": "Get all commits since given period of time or by default from latest git semver tag. Understands and follows both SemVer and the Conventional Commits specification.",
   "license": "Apache-2.0",
   "licenseStart": "2018",
   "scripts": {
-    "start": "tunnckocore-scripts",
-    "extends": "@tunnckocore/config/scripts",
-    "docs": "tunnckocore-scripts docs",
-    "lint": "tunnckocore-scripts lint",
-    "test": "tunnckocore-scripts test",
-    "commit": "tunnckocore-scripts commit"
+    "docs": "docks --outfile .verb.md && verb",
+    "lint": "eslint '**/*.js' --cache --fix --quiet --format codeframe",
+    "test": "nyc asia",
+    "commit": "yarn lint && yarn test && yarn dry",
+    "dry": "git add -A && git status --porcelain && gitcommit -sS",
+    "release": "tunnckocore-release"
   },
   "engines": {
     "node": "^8.11.0 || >=10.13.0"
   },
   "dependencies": {
-    "@tunnckocore/execa": "^2.1.2",
     "@tunnckocore/git-semver-tags": "^0.2.0",
-    "detect-next-version": "^3.0.1",
     "esm": "^3.0.84",
-    "git-raw-commits": "^2.0.0",
-    "parse-commit-message": "^2.1.4"
+    "git-raw-commits": "^2.0.0"
   },
   "devDependencies": {
-    "@tunnckocore/config": "^0.5.1",
-    "@tunnckocore/scripts": "^1.1.0",
+    "@tunnckocore/config": "^1.0.2",
     "asia": "^0.19.7",
-    "charlike": "^3.1.9",
     "dedent": "^0.7.0",
     "fs-extra": "^7.0.0",
+    "parse-commit-message": "^3.2.0",
     "simple-git": "^1.107.0"
   },
   "files": [
@@ -38,7 +34,7 @@
   "main": "index.js",
   "module": "src/index.js",
   "typings": "src/index.d.ts",
-  "version": "0.0.0",
+  "version": "1.0.2",
   "repository": "tunnckoCoreLabs/git-commits-since",
   "homepage": "https://github.com/tunnckoCoreLabs/git-commits-since",
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",
@@ -66,7 +62,8 @@
         "charlike",
         "docks",
         "gitcommit",
-        "@tunnckocore/execa",
+        "parse-commit-message",
+        "detect-next-version",
         "@tunnckocore/package-json",
         "@tunnckocore/create-project",
         "@tunnckocore/update",
