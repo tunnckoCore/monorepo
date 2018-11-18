@@ -4,15 +4,17 @@
   "license": "Apache-2.0",
   "licenseStart": "2018",
   "scripts": {
-    "start": "tunnckocore-scripts",
-    "extends": "@tunnckocore/config/scripts",
-    "docs": "tunnckocore-scripts docs",
-    "lint": "tunnckocore-scripts lint",
-    "test": "tunnckocore-scripts test",
-    "commit": "tunnckocore-scripts commit"
+    "docs": "docks --outfile .verb.md && verb",
+    "lint": "eslint '**/*.js' --cache --fix --quiet --format codeframe",
+    "test-only": "asia -r esm",
+    "test": "nyc asia",
+    "precommit": "yarn run lint && yarn run test-only",
+    "commit": "yarn dry",
+    "dry": "git add -A && git status --porcelain && gitcommit",
+    "release": "tunnckocore-release"
   },
   "engines": {
-    "node": "^8.11.0 || >=10.13.0"
+    "node": "^8.10.0 || >=10.13.0"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -20,7 +22,7 @@
     "parse-package-name": "^0.1.0"
   },
   "devDependencies": {
-    "@tunnckocore/config": "^0.5.1",
+    "@tunnckocore/config": "^1.0.2",
     "@tunnckocore/scripts": "^1.1.0",
     "asia": "^0.19.7"
   },
@@ -31,7 +33,7 @@
   "main": "index.js",
   "module": "src/index.js",
   "typings": "src/index.d.ts",
-  "version": "0.3.3",
+  "version": "1.0.1",
   "repository": "tunnckoCoreLabs/package-json",
   "homepage": "https://github.com/tunnckoCoreLabs/package-json",
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",
@@ -56,15 +58,11 @@
     "related": {
       "list": [
         "asia",
-        "charlike",
         "docks",
         "gitcommit",
-        "@tunnckocore/execa",
-        "@tunnckocore/package-json",
+        "git-commits-since",
         "@tunnckocore/create-project",
-        "@tunnckocore/update",
-        "@tunnckocore/config",
-        "@tunnckocore/scripts"
+        "@tunnckocore/config"
       ]
     },
     "lint": {
