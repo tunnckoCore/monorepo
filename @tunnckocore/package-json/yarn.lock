@@ -125,24 +125,6 @@
     gitcommit "^1.0.13"
     prettier "^1.14.0"
 
-"@tunnckocore/execa@^2.0.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@tunnckocore/execa/-/execa-2.1.2.tgz#c60dcc49ffbe8edb06211db966dda05eb2318186"
-  integrity sha512-uV3ocBiZurQajYx8mIqlg8mTDaoOH2Wp2HDqUUHMLEn2AArXK99BF1Cac6FYpj7m7IVXOP94mOWvjK5c8Aa+Bg==
-  dependencies:
-    esm "^3.0.84"
-    execa "^1.0.0"
-    p-map-series "^1.0.0"
-    split-cmd "^1.0.0"
-
-"@tunnckocore/scripts@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@tunnckocore/scripts/-/scripts-1.1.0.tgz#52fa83dcbb6ebff1880569186421c2851b976ed9"
-  integrity sha512-1b2YmmzwmC86ad5mfNWJFZQnuSeEeKiw6cq4joCx5F4sAKuIVUsvafS9ehIWVtxln1BkUArEyAC6iWYAgG4lSg==
-  dependencies:
-    "@tunnckocore/execa" "^2.0.2"
-    esm "^3.0.84"
-
 acorn-jsx@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.0.0.tgz#958584ddb60990c02c97c1bd9d521fce433bb101"
@@ -2321,11 +2303,6 @@ spdx-license-ids@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.2.tgz#a59efc09784c2a5bada13cfeaf5c75dd214044d2"
   integrity sha512-qky9CVt0lVIECkEsYbNILVnPvycuEBkXoMFLRWsREkomQLevYhtRKC+R91a5TOAQ3bCMjikRwhyaRqj1VYatYg==
-
-split-cmd@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/split-cmd/-/split-cmd-1.0.0.tgz#9a5eabce3e580b22e599295b994d93e0739b6c6f"
-  integrity sha512-swsF1ILoo7nnuua37fZXLfh5tk3FsIVhu7Temvg4qefMqgsi8OJsdyv15pMJ2gN04fT6WK8+XdU6fDIiFFezLg==
 
 split-string@^3.0.1, split-string@^3.0.2:
   version "3.1.0"
