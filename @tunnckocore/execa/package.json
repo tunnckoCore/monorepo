@@ -6,7 +6,7 @@
   "scripts": {
     "docs": "scripts docks --outfile .verb.md && scripts verb",
     "lint": "scripts eslint '**/*.js' --cache --fix --quiet --format codeframe",
-    "test-only": "node -r esm test",
+    "test-only": "node -r esm test/index.js",
     "test": "scripts nyc node test/index.js",
     "precommit": "scripts lint && scripts test-only",
     "commit": "scripts dry",

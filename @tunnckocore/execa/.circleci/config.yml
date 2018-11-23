@@ -1,7 +1,7 @@
 version: 2
 
 workdir: &workdir
-  working_directory: ~/execa
+  working_directory: ~/repo
 
 # node8osx: &node8osx
 #   <<: *workdir
@@ -26,9 +26,9 @@ node10linux: &node10linux
 restore_modules_cache: &restore_modules_cache
   restore_cache:
     keys:
-      - execa-{{ checksum "yarn.lock" }}
+      - repo-{{ checksum "yarn.lock" }}
       # fallback to using the latest cache if no exact match is found
-      - execa-
+      - repo-
 
 # jobinstall: &jobinstall
 #   steps:
@@ -41,7 +41,7 @@ restore_modules_cache: &restore_modules_cache
 #         name: Installing project dependencies
 #         command: pnpm run inst
 #     - save_cache:
-#         key: execa-{{ checksum "yarn.lock" }}
+#         key: repo-{{ checksum "yarn.lock" }}
 #         paths: node_modules
 #     - run:
 #         name: Remove node_modules to cleanup workspace
@@ -64,7 +64,7 @@ jobtest: &jobtest
         name: Testing your project
         command: yarn global add nyc && yarn scripts test
     - save_cache:
-        key: execa-{{ checksum "yarn.lock" }}
+        key: repo-{{ checksum "yarn.lock" }}
         paths: node_modules
     - run:
         name: Sending test coverage to CodeCov
@@ -113,7 +113,9 @@ jobs:
           command: yarn scripts build || echo "No build step."
       - run:
           name: Releasing and publishing
-          command: yarn global add @tunnckocore/release-cli && yarn scripts release
+          command: |-
+            yarn global add @tunnckocore/release-cli &&
+            yarn scripts release
 
 workflows:
   version: 2
