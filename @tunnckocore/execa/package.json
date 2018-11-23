@@ -4,15 +4,16 @@
   "license": "Apache-2.0",
   "licenseStart": "2017",
   "scripts": {
-    "start": "tunnckocore-scripts",
-    "extends": "@tunnckocore/config/scripts",
-    "docs": "tunnckocore-scripts docs",
-    "lint": "tunnckocore-scripts lint",
-    "test": "tunnckocore-scripts test",
-    "commit": "tunnckocore-scripts commit"
+    "docs": "scripts docks --outfile .verb.md && scripts verb",
+    "lint": "scripts eslint '**/*.js' --cache --fix --quiet --format codeframe",
+    "test-only": "node -r esm test",
+    "test": "scripts nyc node test/index.js",
+    "precommit": "scripts lint && scripts test-only",
+    "commit": "scripts dry",
+    "dry": "git add -A && git status --porcelain && scripts gitcommit"
   },
   "engines": {
-    "node": "^8.11.0 || >=10.13.0"
+    "node": "^8.10.0 || >=10.13.0"
   },
   "dependencies": {
     "esm": "^3.0.84",
@@ -21,9 +22,8 @@
     "split-cmd": "^1.0.0"
   },
   "devDependencies": {
-    "@tunnckocore/config": "^0.5.1",
-    "@tunnckocore/scripts": "^1.1.0",
-    "asia": "^0.19.7"
+    "@tunnckocore/scripts": "^1.2.0",
+    "asia": "^1.0.0-rc.7"
   },
   "files": [
     "src",
@@ -43,6 +43,9 @@
   "renovate": {
     "extends": "tunnckocore"
   },
+  "eslintConfig": {
+    "extends": "../../node_modules/@tunnckocore/config/eslint.js"
+  },
   "verb": {
     "run": true,
     "toc": {
@@ -59,6 +62,7 @@
         "asia",
         "charlike",
         "docks",
+        "@tunnckocore/scripts",
         "execa"
       ]
     },

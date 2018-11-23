@@ -55,8 +55,14 @@ jobtest: &jobtest
         name: Installing project dependencies
         command: yarn install --prefer-offline || yarn install
     - run:
+        name: Prepare for checking
+        command: yarn add --dev eslint-config-tunnckocore@next eslint prettier
+    - run:
+        name: Checking and linting
+        command: yarn scripts lint && yarn remove eslint-config-tunnckocore@next eslint prettier
+    - run:
         name: Testing your project
-        command: yarn tunnckocore-scripts test
+        command: yarn global add nyc && yarn scripts test
     - save_cache:
         key: execa-{{ checksum "yarn.lock" }}
         paths: node_modules
@@ -97,17 +103,17 @@ jobs:
   #   <<: *node10osx
   #   <<: *jobtest
 
-  release:
+  publish:
     <<: *node10linux
     steps:
       - checkout
       - *restore_modules_cache
       - run:
           name: Bundling your awesome project
-          command: yarn tunnckocore-scripts build || echo "No build step."
+          command: yarn scripts build || echo "No build step."
       - run:
           name: Releasing and publishing
-          command: yarn tunnckocore-scripts release
+          command: yarn global add @tunnckocore/release-cli && yarn scripts release
 
 workflows:
   version: 2
@@ -137,7 +143,7 @@ workflows:
 
       # Release and NPM publish
       # Executed only on master
-      - release:
+      - publish:
           requires:
             # - test-node8osx
             # - test-node10osx
@@ -146,4 +152,4 @@ workflows:
           filters:
             branches:
               only: master
-          context: org-secret
+          context: org-global
