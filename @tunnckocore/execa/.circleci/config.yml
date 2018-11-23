@@ -59,7 +59,7 @@ jobtest: &jobtest
         command: |-
            yarn add --dev eslint-config-tunnckocore@next eslint prettier &&
            yarn scripts lint &&
-           yarn remove eslint-config-tunnckocore@next eslint prettier
+           yarn remove eslint-config-tunnckocore eslint prettier
     - run:
         name: Testing your project
         command: yarn global add nyc && yarn scripts test
