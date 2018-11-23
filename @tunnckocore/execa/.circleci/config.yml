@@ -55,11 +55,11 @@ jobtest: &jobtest
         name: Installing project dependencies
         command: yarn install --prefer-offline || yarn install
     - run:
-        name: Prepare for checking
-        command: yarn add --dev eslint-config-tunnckocore@next eslint prettier
-    - run:
         name: Checking and linting
-        command: yarn scripts lint && yarn remove eslint-config-tunnckocore@next eslint prettier
+        command: |-
+           yarn add --dev eslint-config-tunnckocore@next eslint prettier &&
+           yarn scripts lint &&
+           yarn remove eslint-config-tunnckocore@next eslint prettier
     - run:
         name: Testing your project
         command: yarn global add nyc && yarn scripts test
