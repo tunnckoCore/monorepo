@@ -44,7 +44,7 @@
     "extends": "tunnckocore"
   },
   "eslintConfig": {
-    "extends": "../../node_modules/@tunnckocore/config/eslint.js"
+    "extends": "tunnckocore"
   },
   "verb": {
     "run": true,
