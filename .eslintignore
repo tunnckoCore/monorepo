@@ -2,6 +2,7 @@ node_modules
 coverage
 dist
 
+**/*.d.ts
 *.log
 *~
 package-lock.json

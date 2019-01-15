@@ -1,13 +1,14 @@
 {
   /* Only type-checking */
   "include": ["@tunnckocore/*/src", "@tunnckocore/*/test"],
-  "exclude": ["**/*.d.ts"],
+  // "exclude": ["**/*.d.ts"],
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "removeComments": true,
+    "noImplicitAny": false,
     "skipLibCheck": true,
     "sourceMap": false,
     "strict": true,

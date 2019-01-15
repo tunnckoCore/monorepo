@@ -23,9 +23,13 @@ import axios from 'axios';
  * @returns {object} package metadata object
  * @public
  */
-export default async function packageJson(packageName, endpoint) {
+export default async function packageJson(
+  packageName: string,
+  endpoint?: (name: string, tag: string) => string,
+) {
   const { name, version } = parse(packageName);
   const tag = version === '' ? 'latest' : version;
+
   const url =
     typeof endpoint === 'function'
       ? endpoint(name, tag)
