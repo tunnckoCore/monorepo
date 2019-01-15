@@ -3,7 +3,9 @@
   "name": "tunnckocore-monorepo",
   "license": "Apache-2.0",
   "scripts": {
-    "foo": "zzzzzzz"
+    "fresh": "yarn install && lerna bootstrap",
+    "import": "lerna import -y",
+    "postimport": "rm -f packages/*/{.*,*.md,LICENSE,*.js}"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"
