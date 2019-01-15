@@ -14,14 +14,7 @@ module.exports = (api) => {
     ],
     env: {
       build: {
-        ignore: [
-          '**/*.test.tsx',
-          '**/*.test.ts',
-          '**/*.story.tsx',
-          '__snapshots__',
-          '__tests__',
-          '__stories__',
-        ],
+        ignore: ['**/__tests__/**', '**/test/**', '**/snapshots/**'],
       },
     },
     ignore: ['node_modules'],
