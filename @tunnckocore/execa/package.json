@@ -16,18 +16,12 @@
     "node": "^8.10.0 || >=10.13.0"
   },
   "dependencies": {
-    "esm": "^3.0.84",
     "execa": "^1.0.0",
     "p-map-series": "^1.0.0",
     "split-cmd": "^1.0.0"
   },
-  "devDependencies": {
-    "@tunnckocore/scripts": "^1.2.0",
-    "asia": "^1.0.0-rc.7"
-  },
   "files": [
-    "src",
-    "index.js"
+    "src"
   ],
   "main": "index.js",
   "module": "src/index.js",

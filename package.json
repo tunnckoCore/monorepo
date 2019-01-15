@@ -1,8 +1,19 @@
 {
   "private": true,
   "name": "tunnckocore-monorepo",
-  "license": "MIT",
-  "devDependencies": {
-    "lerna": "^3.10.5"
+  "license": "Apache-2.0",
+  "scripts": {
+    "foo": "zzzzzzz"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "jest": "^23.6.0"
+  },
+  "eslintConfig": {
+    "extends": "tunnckocore"
   }
 }

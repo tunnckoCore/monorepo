@@ -17,17 +17,12 @@
     "node": "^8.10.0 || >=10.13.0"
   },
   "dependencies": {
+    "@babel/core": "^7.2.2",
     "axios": "^0.18.0",
-    "esm": "^3.0.84",
     "parse-package-name": "^0.1.0"
   },
-  "devDependencies": {
-    "@tunnckocore/config": "^1.0.2",
-    "asia": "^0.19.7"
-  },
   "files": [
-    "src",
-    "index.js"
+    "src"
   ],
   "main": "index.js",
   "module": "src/index.js",

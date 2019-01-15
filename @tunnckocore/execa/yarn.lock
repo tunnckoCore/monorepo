@@ -2,38 +2,6 @@
 # yarn lockfile v1
 
 
-"@tunnckocore/execa@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@tunnckocore/execa/-/execa-2.0.2.tgz#dcb320b58105db87af8d965f4f6cf3e7378b5435"
-  integrity sha512-5BBQ0voJcUvxlTd1CJKFaP6WSqdXsirNG3CIIOkwwRIbDuXmszjRz7iir1JnuQAF6VtgK+opULYVo0U81AcAvg==
-  dependencies:
-    esm "^3.0.84"
-    execa "1.0.0"
-    p-map-series "1.0.0"
-    split-cmd "^1.0.0"
-
-"@tunnckocore/scripts@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@tunnckocore/scripts/-/scripts-1.2.0.tgz#083eb853cc998538de8304be78e665845e2b31f6"
-  integrity sha512-4mXNb3YVkooaDnZ2NvZ/TV9dQsJnMljZJoheeWADFRF8eDcjPGX+dBHIvN8pMgs6zGW1sRWTTMoY0MiNRA1DVg==
-  dependencies:
-    "@tunnckocore/execa" "^2.0.2"
-    all-module-paths "^0.5.0"
-    esm "^3.0.84"
-
-all-module-paths@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/all-module-paths/-/all-module-paths-0.5.0.tgz#49bdc5e5dabdc8857db5c29bf96ed873092a0869"
-  integrity sha512-SoBtMg68ze4/Z2KACbZEqgAdb9D+WztnmDmrOtgdmSAtpM6B9ZW8osEdDmXfrD6DIeZ7mfjwZKyLKuaJAar/Wg==
-  dependencies:
-    esm "^3.0.84"
-    global-dirs "^0.1.1"
-
-asia@^1.0.0-rc.7:
-  version "1.0.0-rc.7"
-  resolved "https://registry.yarnpkg.com/asia/-/asia-1.0.0-rc.7.tgz#9db33fbdaddcbeb16c31c74bbe6099362224698a"
-  integrity sha512-wAkH4jTVl1t5j80AD3KrS6usK+NrKbMCesp/REQVT90Umf/VvuL8M1Xvs1qSphRLZpsgDlRcJEoi6wts36qLJQ==
-
 cross-spawn@^6.0.0:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
@@ -52,12 +20,7 @@ end-of-stream@^1.1.0:
   dependencies:
     once "^1.4.0"
 
-esm@^3.0.84:
-  version "3.0.84"
-  resolved "https://registry.yarnpkg.com/esm/-/esm-3.0.84.tgz#bb108989f4673b32d4f62406869c28eed3815a63"
-  integrity sha512-SzSGoZc17S7P+12R9cg21Bdb7eybX25RnIeRZ80xZs+VZ3kdQKzqTp2k4hZJjR7p9l0186TTXSgrxzlMDBktlw==
-
-execa@1.0.0, execa@^1.0.0:
+execa@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/execa/-/execa-1.0.0.tgz#c6236a5bb4df6d6f15e88e7f017798216749ddd8"
   integrity sha512-adbxcyWV46qiHyvSp50TKt05tB4tK3HcmF7/nxfAdhnox83seTDbwnaqKO4sXRy7roHAIFqJP/Rw/AuEbX61LA==
@@ -76,18 +39,6 @@ get-stream@^4.0.0:
   integrity sha512-GMat4EJ5161kIy2HevLlr4luNjBgvmj413KaQA7jt4V8B4RDsfpHk7WQ9GVqfYyyx8OS/L66Kox+rJRNklLK7w==
   dependencies:
     pump "^3.0.0"
-
-global-dirs@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/global-dirs/-/global-dirs-0.1.1.tgz#b319c0dd4607f353f3be9cca4c72fc148c49f445"
-  integrity sha1-sxnA3UYH81PzvpzKTHL8FIxJ9EU=
-  dependencies:
-    ini "^1.3.4"
-
-ini@^1.3.4:
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
-  integrity sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw==
 
 is-stream@^1.1.0:
   version "1.1.0"
@@ -123,7 +74,7 @@ p-finally@^1.0.0:
   resolved "https://registry.yarnpkg.com/p-finally/-/p-finally-1.0.0.tgz#3fbcfb15b899a44123b34b6dcc18b724336a2cae"
   integrity sha1-P7z7FbiZpEEjs0ttzBi3JDNqLK4=
 
-p-map-series@1.0.0, p-map-series@^1.0.0:
+p-map-series@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-map-series/-/p-map-series-1.0.0.tgz#bf98fe575705658a9e1351befb85ae4c1f07bdca"
   integrity sha1-v5j+V1cFZYqeE1G++4WuTB8Hvco=

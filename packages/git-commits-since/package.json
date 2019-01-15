@@ -18,20 +18,16 @@
   },
   "dependencies": {
     "@tunnckocore/git-semver-tags": "^0.2.0",
-    "esm": "^3.0.84",
     "git-raw-commits": "^2.0.0"
   },
   "devDependencies": {
-    "@tunnckocore/config": "^1.0.2",
-    "asia": "^0.19.7",
     "dedent": "^0.7.0",
     "fs-extra": "^7.0.0",
     "parse-commit-message": "^3.2.0",
     "simple-git": "^1.107.0"
   },
   "files": [
-    "src",
-    "index.js"
+    "src"
   ],
   "main": "index.js",
   "module": "src/index.js",
