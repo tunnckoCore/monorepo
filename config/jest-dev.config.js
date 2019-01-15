@@ -8,23 +8,12 @@ const path = require('path');
 module.exports = {
   rootDir: path.dirname(__dirname),
   displayName: 'test',
-  transform: { '^.+\\.js$': 'babel-jest' },
-  testMatch: ['**/__tests__/**/*.js?(x)', '**/?(*.)+(spec|test).js?(x)'],
   testEnvironment: 'node',
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
-
-  // collectCoverage: true,
-  // coverageThreshold: {
-  //   global: {
-  //     statements: 100,
-  //     branches: 100,
-  //     functions: 100,
-  //     lines: 100,
-  //   },
-  // },
-  // collectCoverageFrom: [
-  //   '**/src/**/*.{ts,tsx,js,jsx}',
-  //   '!**/*.{js,jsx,ts,tsx}',
-  //   '!**/test/**',
-  // ],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'mjs'],
+  roots: ['<rootDir>packages', '<rootDir>@tunnckocore'],
+  testMatch: ['**/test/**/*'],
+  // testMatch: ['**/__tests__/*.+(ts|tsx|js)', '**/*.test.+(ts|tsx|js)'],
+  transform: {
+    '^.+\\.(ts|tsx|js|jsx|mjs)$': 'babel-jest',
+  },
 };

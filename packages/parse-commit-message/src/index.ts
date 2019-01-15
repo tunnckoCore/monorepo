@@ -1,7 +1,10 @@
+// TODO: fix the .d.ts files and third party modules resolving
+// @ts-ignore
 import mixinDeep from 'mixin-deep';
 
-import { mentions, increment } from './plugins';
-import { parse, stringify, validate, check } from './main';
+import mentions from './plugins/mentions';
+import increment from './plugins/increment';
+import { parse, stringify, validate, check, PossibleCommit } from './main';
 
 import {
   parseHeader,
@@ -11,11 +14,15 @@ import {
 } from './header';
 
 import {
+  Commit,
   parseCommit,
   stringifyCommit,
   validateCommit,
   checkCommit,
 } from './commit';
+
+export type Plugin = (commit: Commit) => any | {} | Commit;
+export type Plugins = Array<Plugin>;
 
 /**
  * Apply a set of `plugins` over all of the given `commits`.
@@ -84,17 +91,25 @@ import {
  * @returns {Array<Commit>} plus the modified or added properties from each function in `plugins`
  * @public
  */
-export function applyPlugins(plugins, commits) {
+export function applyPlugins(plugins: Plugins, commits: PossibleCommit) {
+  // TODO: doh, array...
+  // @ts-ignore
   const plgs = [].concat(plugins).filter(Boolean);
 
-  return [].concat(commits).reduce((result, commit) => {
-    const cmt = plgs.reduce((acc, fn) => {
-      const res = fn(acc);
-      return mixinDeep(acc, res);
-    }, commit);
+  const modifiedItems: Array<Commit> = []
+    // TODO: doh, array...
+    // @ts-ignore
+    .concat(commits)
+    .reduce((result: any, commit: PossibleCommit) => {
+      const cmt = plgs.reduce((acc: any, fn: Plugin) => {
+        const res = fn(acc);
+        return mixinDeep(acc, res);
+      }, commit);
 
-    return result.concat(cmt);
-  }, []);
+      return result.concat(cmt);
+    }, []);
+
+  return modifiedItems;
 }
 
 /**
@@ -152,7 +167,7 @@ export function applyPlugins(plugins, commits) {
  * @name .plugins
  * @public
  */
-export const plugins = [mentions, increment];
+export const plugins: Plugins = [mentions, increment];
 
 /**
  * An object (named set) which includes `mentions` and `increment` built-in plugins.
@@ -186,6 +201,7 @@ export const plugins = [mentions, increment];
  * @public
  */
 export const mappers = { mentions, increment };
+export type Mappers = typeof mappers;
 
 export {
   // main

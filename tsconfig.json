@@ -1,6 +1,15 @@
 {
   /* Only type-checking */
-  "include": ["@tunnckocore/*/src", "@tunnckocore/*/test"],
+  "include": [
+    "@tunnckocore/*/src",
+    // "@tunnckocore/*/src/**/*.d.ts",
+    "@tunnckocore/*/test",
+    // "@tunnckocore/*/test/**/*.d.ts",
+    "packages/*/src",
+    // "packages/*/src/**/*.d.ts",
+    "packages/*/test"
+    // "packages/*/test/**/*.d.ts"
+  ],
   // "exclude": ["**/*.d.ts"],
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,

@@ -21,20 +21,17 @@
   "dependencies": {
     "collect-mentions": "^1.0.2",
     "dedent": "^0.7.0",
-    "esm": "^3.0.84",
     "mixin-deep": "^2.0.0"
   },
   "devDependencies": {
-    "@tunnckocore/config": "^1.0.0",
-    "asia": "^0.19.7"
+    "@types/dedent": "^0.7.0"
   },
   "files": [
-    "src",
-    "index.js"
+    "dist"
   ],
-  "main": "index.js",
-  "module": "src/index.js",
-  "typings": "src/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "version": "3.0.0",
   "repository": "tunnckoCoreLabs/parse-commit-message",
   "homepage": "https://github.com/tunnckoCoreLabs/parse-commit-message",

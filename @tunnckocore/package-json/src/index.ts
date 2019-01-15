@@ -1,5 +1,7 @@
-import parse from 'parse-package-name';
 import axios from 'axios';
+
+// @ts-ignore
+import parse from 'parse-package-name';
 
 /**
  * Get package metadata from the Unpkg instead of NPM registry.

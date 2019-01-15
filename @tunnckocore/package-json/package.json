@@ -17,7 +17,6 @@
     "node": "^8.10.0 || >=10.13.0"
   },
   "dependencies": {
-    "@babel/core": "^7.2.2",
     "axios": "^0.18.0",
     "parse-package-name": "^0.1.0"
   },

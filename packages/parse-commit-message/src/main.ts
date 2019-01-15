@@ -1,5 +1,7 @@
-import { tryCatch, isObject } from './utils';
-import { parseCommit, stringifyCommit, checkCommit } from './commit';
+import { tryCatch, isObject, Result } from './utils';
+import { parseCommit, stringifyCommit, checkCommit, Commit } from './commit';
+
+export type PossibleCommit = string | Commit | Array<Commit>;
 
 /**
  * Receives and parses a single or multiple commit message(s) in form of string,
@@ -48,18 +50,27 @@ import { parseCommit, stringifyCommit, checkCommit } from './commit';
  * @returns {Array<Commit>} if `flat: true`, returns a `Commit`
  * @public
  */
-export function parse(commits, flat = false) {
-  const result = []
+export function parse(
+  commits: PossibleCommit,
+  flat = false,
+): Commit | Array<Commit> {
+  // ! definitely should be fixed
+  // TODO: marker
+  const result: Array<Commit> = []
+    // @ts-ignore
     .concat(commits)
     .filter(Boolean)
-    .reduce((acc, val) => {
+    .reduce((acc: [], val: string | Commit) => {
       if (typeof val === 'string') {
+        // @ts-ignore
         return acc.concat(parseCommit(val));
       }
       if (isObject(val)) {
+        // @ts-ignore
         return acc.concat(val);
       }
 
+      // @ts-ignore
       return acc.concat(parse(val));
     }, []);
 
@@ -98,12 +109,20 @@ export function parse(commits, flat = false) {
  *                     if `flat: true`, returns a `string`
  * @public
  */
-export function stringify(commits, flat = false) {
-  const result = []
+export function stringify(
+  commits: PossibleCommit,
+  flat = false,
+): string | Array<string> {
+  const result: Array<string> = []
+    // TODO: heere!!
+    // @ts-ignore
     .concat(commits)
     .filter(Boolean)
     .reduce(
-      (acc, val) => acc.concat(check(val).map((x) => stringifyCommit(x))),
+      (acc: [], val: PossibleCommit) =>
+        // TODO: heere!!
+        // @ts-ignore
+        acc.concat(check(val).map((x) => stringifyCommit(x))),
       [],
     );
 
@@ -171,7 +190,12 @@ export function stringify(commits, flat = false) {
  *                          where `value` is `Commit|Array<Commit>` and `error` a standard `Error`
  * @public
  */
-export function validate(commits, ret = false) {
+export function validate(
+  commits: PossibleCommit,
+  ret = false,
+): boolean | Result {
+  // TODO: heere!!
+  // @ts-ignore
   return tryCatch(() => check(commits), ret);
 }
 
@@ -208,14 +232,21 @@ export function validate(commits, ret = false) {
  *                     if `flat: true`, returns a `Commit`
  * @public
  */
-export function check(commits, flat) {
-  const result = []
+export function check(
+  commits: PossibleCommit,
+  flat: boolean,
+): Commit | Array<Commit> {
+  const result: Array<Commit> = []
+    // TODO: heere!!
+    // @ts-ignore
     .concat(commits)
-    .filter((x) => x !== null || x !== undefined)
-    .reduce((acc, commit) => {
+    .filter((x: any) => x !== null || x !== undefined)
+    .reduce((acc: [], commit: string | Commit) => {
       if (typeof commit === 'string') {
         commit = parseCommit(commit); // eslint-disable-line no-param-reassign
       }
+      // TODO: heere!!
+      // @ts-ignore
       return acc.concat(checkCommit(commit));
     }, []);
 

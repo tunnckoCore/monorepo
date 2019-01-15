@@ -1,3 +1,4 @@
+import { Commit } from '../commit';
 /**
  * A plugin that adds `increment` and `isBreaking` properties
  * to the `commit`. It is already included in the `plugins` named export,
@@ -10,9 +11,9 @@
  * @returns {Commit} plus `{ increment: string, isBreaking: boolean }`
  * @public
  */
-export default function increment(commit) {
+export default function increment(commit: Commit): any | Commit {
   let isBreaking = isBreakingChange(commit);
-  let commitIncrement = false;
+  let commitIncrement = '';
 
   if (/fix|bugfix|patch/i.test(commit.header.type)) {
     commitIncrement = 'patch';
@@ -30,7 +31,7 @@ export default function increment(commit) {
 
 /* eslint-disable no-param-reassign */
 
-function isBreakingChange({ header, body, footer }) {
+function isBreakingChange({ header, body, footer }: Commit): boolean {
   const re = /^BREAKING\s+CHANGES?:\s+/;
   return (
     re.test(header.subject) || re.test(body || '') || re.test(footer || '')

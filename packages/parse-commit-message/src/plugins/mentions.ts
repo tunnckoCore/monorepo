@@ -1,4 +1,8 @@
+// TODO: fix the .d.ts files and third party modules resolving
+// @ts-ignore
 import getMentions from 'collect-mentions';
+
+import { Commit } from '../commit';
 
 /**
  * A plugin that adds `mentions` array property to the `commit`.
@@ -14,7 +18,7 @@ import getMentions from 'collect-mentions';
  * @returns {Commit} plus `{ mentions: Array<Mention> }`
  * @public
  */
-export default function mentions(commit) {
+export default function mentions(commit: Commit): any | Commit {
   const commitMentions = []
     .concat(getMentions(commit.header.subject))
     .concat(getMentions(commit.body))

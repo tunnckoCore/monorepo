@@ -1,5 +1,11 @@
 import { EOL } from 'os';
-import { tryCatch, isValidString, isObject, errorMsg } from './utils';
+import { tryCatch, isValidString, isObject, errorMsg, Result } from './utils';
+
+export type Header = {
+  type: string;
+  scope?: string; // TODO: update
+  subject: string;
+};
 
 /**
  * Parses given `header` string into an header object.
@@ -26,7 +32,7 @@ import { tryCatch, isValidString, isObject, errorMsg } from './utils';
  * @returns {Header} a `Header` object like `{ type, scope?, subject }`
  * @public
  */
-export function parseHeader(header) {
+export function parseHeader(header: string): Header {
   if (!isValidString(header)) {
     throw new TypeError('expect `header` to be non empty string');
   }
@@ -41,8 +47,13 @@ export function parseHeader(header) {
   if (!regex.test(header)) {
     throw new TypeError(errorMsg);
   }
+
+  // TODO: update
+  // @ts-ignore
   const [type, scope = null, subject] = regex.exec(header).slice(1);
 
+  // TODO: update
+  // @ts-ignore
   return { type, scope, subject };
 }
 
@@ -63,8 +74,10 @@ export function parseHeader(header) {
  * @returns {string} a header stirng like `'fix(foo): bar baz'`
  * @public
  */
-export function stringifyHeader(header) {
-  const result = validateHeader(header, true);
+export function stringifyHeader(header: Header): string {
+  // TODO(update): why that fails?!
+  // @ts-ignore
+  const result: Result = validateHeader(header, true);
 
   if (result.error) {
     throw result.error;
@@ -111,7 +124,7 @@ export function stringifyHeader(header) {
  *                          where `value` is `Header` and `error` a standard `Error`
  * @public
  */
-export function validateHeader(header, ret = false) {
+export function validateHeader(header: Header, ret = false): boolean | Result {
   return tryCatch(() => checkHeader(header), ret);
 }
 
@@ -141,9 +154,10 @@ export function validateHeader(header, ret = false) {
  * @returns {Header} returns the same as given if no problems, otherwise it will throw.
  * @public
  */
-export function checkHeader(header) {
-  // eslint-disable-next-line no-param-reassign
-  header = (header && header.header) || header;
+export function checkHeader(header: Header): Header {
+  // TODO(update): how we handle such cases with types :?
+  // @ts-ignore
+  header = (header && header.header) || header; // eslint-disable-line no-param-reassign
 
   if (!isObject(header)) {
     const msg = `{ type: string, scope?: string, subject: scope }`;
@@ -156,6 +170,7 @@ export function checkHeader(header) {
     throw new TypeError('header.subject should be non empty string');
   }
 
+  // TODO: update
   const isValidScope =
     'scope' in header && header.scope !== null
       ? isValidString(header.scope)

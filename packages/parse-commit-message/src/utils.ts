@@ -1,7 +1,12 @@
 import dedent from 'dedent';
 
-export function tryCatch(fn, ret) {
-  const result = {};
+export type Result = {
+  error?: Error;
+  value?: any;
+};
+
+export function tryCatch(fn: Function, ret: any) {
+  const result: Result = {};
   try {
     result.value = fn();
   } catch (err) {
@@ -18,10 +23,10 @@ export const errorMsg = dedent`parse-commit-message: expect \`commit\` to follow
 
 [optional footer]`;
 
-export function isObject(val) {
+export function isObject(val: any) {
   return val && typeof val === 'object' && !Array.isArray(val);
 }
 
-export function isValidString(x) {
-  return Boolean(typeof x === 'string' && x.length > 0);
+export function isValidString(x?: string) {
+  return Boolean(x && typeof x === 'string' && x.length > 0);
 }

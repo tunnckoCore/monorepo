@@ -5,7 +5,7 @@
   "scripts": {
     "fresh": "yarn install && lerna bootstrap",
     "import": "lerna import -y",
-    "postimport": "rm -f packages/*/{.*,*.md,LICENSE,*.js}"
+    "postimport": "rm -f packages/*/{.{git,es,ed,all-,pret,nyc}*,*.md,LICENSE,*.js}"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"
@@ -23,6 +23,7 @@
     "eslint": "^5.12.0",
     "eslint-config-tunnckocore": "^2.0.0-rc.12",
     "jest": "^23.6.0",
+    "jest-runner-tsc": "^1.3.2",
     "prettier": "^1.15.3",
     "typescript": "^3.2.2"
   },
