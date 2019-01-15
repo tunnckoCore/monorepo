@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "name": "tunnckocore-monorepo",
+  "license": "MIT",
+  "devDependencies": {
+    "lerna": "^3.10.5"
+  }
+}

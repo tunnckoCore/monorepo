@@ -1,0 +1,4 @@
+{
+  "packages": ["@tunnckocore/*", "packages/*"],
+  "version": "independent"
+}
