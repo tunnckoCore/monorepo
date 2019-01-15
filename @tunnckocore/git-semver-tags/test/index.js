@@ -1,6 +1,6 @@
-import test from 'asia';
 import mod from '../src';
 
-test('todo', (t) => {
-  t.strictEqual(typeof mod, 'function');
+/* eslint-disable jest/expect-expect */
+test('todo', () => {
+  expect(typeof mod).toStrictEqual('function');
 });

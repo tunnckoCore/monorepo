@@ -19,11 +19,11 @@
     "semver": "^5.6.0"
   },
   "files": [
-    "src"
+    "dist"
   ],
-  "main": "index.js",
-  "module": "src/index.js",
-  "typings": "src/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "version": "0.0.0",
   "repository": "tunnckoCoreLabs/git-semver-tags",
   "homepage": "https://github.com/tunnckoCoreLabs/git-semver-tags",

@@ -27,11 +27,11 @@
     "simple-git": "^1.107.0"
   },
   "files": [
-    "src"
+    "dist"
   ],
-  "main": "index.js",
-  "module": "src/index.js",
-  "typings": "src/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "version": "1.0.2",
   "repository": "tunnckoCoreLabs/git-commits-since",
   "homepage": "https://github.com/tunnckoCoreLabs/git-commits-since",

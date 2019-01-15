@@ -1,9 +1,8 @@
-import test from 'asia';
 import dedent from 'dedent';
 import { parse, stringifyHeader } from 'parse-commit-message';
 import recommendedBump from '../src';
 
-test('should recommended patch bump', (t) => {
+test('should recommended patch bump', () => {
   const allCommits = [
     'chore: foo bar baz',
     dedent`fix(cli): some bugfix msg here
@@ -16,75 +15,73 @@ test('should recommended patch bump', (t) => {
 
   const { increment, isBreaking, patch, commits } = recommendedBump(allCommits);
 
-  t.strictEqual(Array.isArray(commits), true);
-  t.strictEqual(isBreaking, false);
-  t.strictEqual(increment, 'patch');
-  t.strictEqual(patch[0].header.type, 'fix');
-  t.strictEqual(patch[0].header.scope, 'cli');
-  t.strictEqual(patch[0].header.subject, 'some bugfix msg here');
-  t.strictEqual(
-    stringifyHeader(patch[0].header),
+  expect(Array.isArray(commits)).toStrictEqual(true);
+  expect(isBreaking).toStrictEqual(false);
+  expect(increment).toStrictEqual('patch');
+  expect(patch[0].header.type).toStrictEqual('fix');
+  expect(patch[0].header.scope).toStrictEqual('cli');
+  expect(patch[0].header.subject).toStrictEqual('some bugfix msg here');
+  expect(stringifyHeader(patch[0].header)).toStrictEqual(
     'fix(cli): some bugfix msg here',
   );
-  t.strictEqual(patch[0].body, 'Some awesome body.');
-  t.strictEqual(
-    patch[0].footer,
+  expect(patch[0].body).toStrictEqual('Some awesome body.');
+  expect(patch[0].footer).toStrictEqual(
     'Great footer and GPG sign off, yeah!\nSigned-off-by: Awesome footer <foobar@gmail.com>',
   );
 });
 
-test('should recommend minor bump', (t) => {
+test('should recommend minor bump', () => {
   const commitOne = parse('fix: foo bar');
   const commitTwo = parse('feat: some feature subject');
 
   const result = recommendedBump([commitOne, commitTwo]);
-  t.strictEqual(result.increment, 'minor');
-  t.strictEqual(result.isBreaking, false);
+  expect(result.increment).toStrictEqual('minor');
+  expect(result.isBreaking).toStrictEqual(false);
 });
 
-test('should recommend major bump from `fix` type', (t) => {
+test('should recommend major bump from `fix` type', () => {
   const result = recommendedBump([
     'feat: ho ho ho',
     'fix: foo bar baz\n\nBREAKING CHANGE: ouch!',
   ]);
 
-  t.strictEqual(Array.isArray(result.commits), true);
-  t.strictEqual(result.increment, 'major');
-  t.strictEqual(result.isBreaking, true);
-  t.strictEqual(result.major[0].header.type, 'fix');
-  t.strictEqual(result.major[0].header.subject, 'foo bar baz');
-  t.strictEqual(result.major[0].body, 'BREAKING CHANGE: ouch!');
+  expect(Array.isArray(result.commits)).toStrictEqual(true);
+  expect(result.increment).toStrictEqual('major');
+  expect(result.isBreaking).toStrictEqual(true);
+  expect(result.major[0].header.type).toStrictEqual('fix');
+  expect(result.major[0].header.subject).toStrictEqual('foo bar baz');
+  expect(result.major[0].body).toStrictEqual('BREAKING CHANGE: ouch!');
 
-  t.deepStrictEqual(result.minor[0].header, {
+  expect(result.minor[0].header).toMatchObject({
     type: 'feat',
     scope: null,
     subject: 'ho ho ho',
   });
 });
 
-test('should return { increment: false, commits: Array<Commit> } when no need for bump', (t) => {
+test('should return { increment: false, commits: Array<Commit> } when no need for bump', () => {
   const result = recommendedBump([
     'chore(ci): update ci config',
     'test: ok okey boody man',
     'refactor: some tweaks',
   ]);
 
-  t.strictEqual(result.increment, false);
-  t.strictEqual(result.isBreaking, false);
+  expect(result.increment).toStrictEqual(false);
+  expect(result.isBreaking).toStrictEqual(false);
 
-  t.strictEqual(Array.isArray(result.commits), true);
+  expect(Array.isArray(result.commits)).toStrictEqual(true);
   const [one, two, three] = result.commits;
-  t.deepStrictEqual(one.header, {
+  expect(one.header).toMatchObject({
     type: 'chore',
     scope: 'ci',
     subject: 'update ci config',
   });
-  t.deepStrictEqual(two.header, {
+  expect(two.header).toMatchObject({
     type: 'test',
     scope: null,
     subject: 'ok okey boody man',
   });
-  t.deepStrictEqual(three.header, {
+  expect(three.header).toMatchObject({
     type: 'refactor',
     scope: null,
     subject: 'some tweaks',
