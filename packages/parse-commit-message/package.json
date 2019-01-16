@@ -30,7 +30,7 @@
     "dist"
   ],
   "main": "dist/index.js",
-  "version": "3.0.0",
+  "version": "3.2.3",
   "repository": "tunnckoCoreLabs/parse-commit-message",
   "homepage": "https://github.com/tunnckoCoreLabs/parse-commit-message",
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",

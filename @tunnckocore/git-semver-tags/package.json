@@ -24,7 +24,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
-  "version": "0.0.0",
+  "version": "0.2.0",
   "repository": "tunnckoCoreLabs/git-semver-tags",
   "homepage": "https://github.com/tunnckoCoreLabs/git-semver-tags",
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",

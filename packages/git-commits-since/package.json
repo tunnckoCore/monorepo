@@ -32,7 +32,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
-  "version": "1.0.2",
+  "version": "2.0.3",
   "repository": "tunnckoCoreLabs/git-commits-since",
   "homepage": "https://github.com/tunnckoCoreLabs/git-commits-since",
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",

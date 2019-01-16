@@ -28,7 +28,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
-  "version": "1.2.0",
+  "version": "1.3.1",
   "repository": "tunnckoCoreLabs/recommended-bump",
   "homepage": "https://github.com/tunnckoCoreLabs/recommended-bump",
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",
