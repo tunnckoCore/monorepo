@@ -33,6 +33,7 @@
   "homepage": "https://github.com/tunnckoCoreLabs/recommended-bump",
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",
   "publishConfig": {
+    "registry": "http://localhost:4873",
     "access": "public",
     "tag": "latest"
   },

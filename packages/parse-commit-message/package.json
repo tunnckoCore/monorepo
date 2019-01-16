@@ -35,6 +35,7 @@
   "homepage": "https://github.com/tunnckoCoreLabs/parse-commit-message",
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",
   "publishConfig": {
+    "registry": "http://localhost:4873",
     "access": "public",
     "tag": "latest"
   },

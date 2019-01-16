@@ -28,8 +28,8 @@
     "typescript": "^3.2.2"
   },
   "workspaces": [
-    "@tunnckocore/*",
-    "packages/*"
+    "packages/*",
+    "@tunnckocore/*"
   ],
   "browserslist": [
     "node 8",
