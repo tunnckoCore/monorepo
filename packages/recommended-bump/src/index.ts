@@ -1,4 +1,22 @@
-import { applyPlugins, plugins, parse, check } from 'parse-commit-message';
+// WHy tha heck does not recognizes the types?
+import {
+  applyPlugins,
+  plugins,
+  parse,
+  check,
+  Commit,
+  Plugins,
+} from 'parse-commit-message';
+
+export type Commits = string | Array<string> | Array<Commit>;
+export type BumpResult = {
+  commits: Array<Commit>;
+  increment: string | boolean;
+  isBreaking: boolean;
+  patch?: boolean;
+  major?: boolean;
+  minor?: boolean;
+};
 
 /**
  * Calculates recommended bump (next version), based on given `commits`.
@@ -59,33 +77,43 @@ import { applyPlugins, plugins, parse, check } from 'parse-commit-message';
  * @returns {object} result like `{ increment: boolean | string, patch?, minor?, major? }`
  * @public
  */
-export default function recommendedBump(commits, options) {
+export default function recommendedBump(
+  commits: Commits,
+  options?: { plugins: Plugins },
+): BumpResult {
   const opts = Object.assign({ plugins: [] }, options);
   const allCommits = []
+    // TODO: marker
+    // @ts-ignore
     .concat(commits)
     .filter(Boolean)
     .reduce(
-      (acc, cmt) =>
+      (acc: any, cmt: any) =>
         acc.concat(
           applyPlugins(plugins.concat(opts.plugins), check(parse(cmt))),
         ),
       [],
     );
 
-  const cmts = allCommits.filter((cmt) =>
+  const cmts: Array<Commit> = allCommits.filter((cmt: Commit) =>
     /major|minor|patch/.test(cmt.increment),
   );
 
   if (cmts.length === 0) {
-    return createReturn(false, null, allCommits);
+    return { increment: false, commits: allCommits, isBreaking: false };
   }
 
-  const categorized = cmts.reduce((acc, cmt) => {
-    acc[cmt.increment] = acc[cmt.increment] || [];
-    acc[cmt.increment].push(cmt);
+  const categorized: BumpResult = cmts.reduce(
+    (acc: BumpResult, cmt: Commit) => {
+      // @ts-ignore
+      acc[cmt.increment] = acc[cmt.increment] || [];
+      // @ts-ignore
+      acc[cmt.increment].push(cmt);
 
-    return acc;
-  }, {});
+      return acc;
+    },
+    {},
+  );
 
   if (categorized.major) {
     return createReturn('major', categorized, allCommits);
@@ -97,7 +125,11 @@ export default function recommendedBump(commits, options) {
   return createReturn('patch', categorized, allCommits);
 }
 
-function createReturn(type, categorized, commits) {
+function createReturn(
+  type: boolean | string,
+  categorized: BumpResult,
+  commits: Commits,
+): BumpResult {
   return Object.assign({}, categorized, {
     isBreaking: type === 'major',
     increment: type,
