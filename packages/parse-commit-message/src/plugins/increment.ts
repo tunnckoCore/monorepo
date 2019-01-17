@@ -1,4 +1,5 @@
-import { Commit } from '../commit';
+import { Commit } from '../types.d';
+import { normalizeCommit, getValue } from '../utils';
 /**
  * A plugin that adds `increment` and `isBreaking` properties
  * to the `commit`. It is already included in the `plugins` named export,
@@ -11,17 +12,21 @@ import { Commit } from '../commit';
  * @returns {Commit} plus `{ increment: string, isBreaking: boolean }`
  * @public
  */
-export default function increment(commit: Commit): any | Commit {
-  let isBreaking = isBreakingChange(commit);
+export default function increment(commit: Commit) {
+  const cmt: Commit = normalizeCommit(commit);
+  let isBreaking = isBreakingChange(cmt);
   let commitIncrement = '';
 
-  if (/fix|bugfix|patch/i.test(commit.header.type)) {
+  // complete non-sense but because TypeScript
+  const type = getValue(cmt.header, 'type');
+
+  if (/fix|bugfix|patch/i.test(type)) {
     commitIncrement = 'patch';
   }
-  if (/feat|feature|minor/i.test(commit.header.type)) {
+  if (/feat|feature|minor/i.test(type)) {
     commitIncrement = 'minor';
   }
-  if (/break|breaking|major/i.test(commit.header.type) || isBreaking) {
+  if (/break|breaking|major/i.test(type) || isBreaking) {
     commitIncrement = 'major';
   }
   isBreaking = isBreaking || commitIncrement === 'major';
@@ -31,9 +36,12 @@ export default function increment(commit: Commit): any | Commit {
 
 /* eslint-disable no-param-reassign */
 
-function isBreakingChange({ header, body, footer }: Commit): boolean {
+function isBreakingChange(commit: Commit): boolean {
   const re = /^BREAKING\s+CHANGES?:\s+/;
+
   return (
-    re.test(header.subject) || re.test(body || '') || re.test(footer || '')
+    re.test(getValue(commit.header, 'subject')) ||
+    re.test(commit.body || '') ||
+    re.test(commit.footer || '')
   );
 }

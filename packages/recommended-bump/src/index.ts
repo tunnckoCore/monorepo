@@ -1,22 +1,18 @@
-// WHy tha heck does not recognizes the types?
 import {
   applyPlugins,
   plugins,
   parse,
   check,
   Commit,
-  Plugins,
 } from 'parse-commit-message';
 
-export type Commits = string | Array<string> | Array<Commit>;
-export type BumpResult = {
-  commits: Array<Commit>;
-  increment: string | boolean;
-  isBreaking: boolean;
-  patch?: boolean;
-  major?: boolean;
-  minor?: boolean;
-};
+import {
+  Commits,
+  RecommendedBumpResult,
+  RecommendedBumpOptions,
+} from './types.d';
+
+export * from './types.d';
 
 /**
  * Calculates recommended bump (next version), based on given `commits`.
@@ -72,43 +68,50 @@ export type BumpResult = {
  * console.log(result.minor); // => [{ ... }]
  *
  * @name recommendedBump
- * @param {string|Array<string>|Array<object>} commits commit messages one of `string`, `Array<string>` or `Array<Commit>`
+ * @param {string|Commit|Array<Commit>|Array<string>} commits commit messages one of `string`, `Commit`, `Array<string>` or `Array<Commit>`
  * @param {object} [options] pass additional `options.plugins` to be passed to [parse-commit-message][]
- * @returns {object} result like `{ increment: boolean | string, patch?, minor?, major? }`
+ * @returns {object} result like `{ increment: boolean | string, patch?, minor?, major? }` of type `BumpResult`
  * @public
  */
 export default function recommendedBump(
   commits: Commits,
-  options?: { plugins: Plugins },
-): BumpResult {
+  options?: RecommendedBumpOptions,
+): RecommendedBumpResult {
   const opts = Object.assign({ plugins: [] }, options);
-  const allCommits = []
-    // TODO: marker
-    // @ts-ignore
+
+  // weird problems today with typescript and eslint
+  // some non logical problems with the arrayify/toArray
+  // so this is the workaround
+  const arr: Array<any> = [];
+
+  const allCommits = arr
     .concat(commits)
     .filter(Boolean)
     .reduce(
-      (acc: any, cmt: any) =>
+      (acc: any, cmt: string | Commit) =>
         acc.concat(
           applyPlugins(plugins.concat(opts.plugins), check(parse(cmt))),
         ),
       [],
     );
 
-  const cmts: Array<Commit> = allCommits.filter((cmt: Commit) =>
-    /major|minor|patch/.test(cmt.increment),
-  );
+  const cmts: Array<Commit> = allCommits.filter((cmt: Commit) => {
+    if (typeof cmt.increment === 'string') {
+      return /major|minor|patch/.test(cmt.increment);
+    }
+    return false;
+  });
 
   if (cmts.length === 0) {
     return { increment: false, commits: allCommits, isBreaking: false };
   }
 
-  const categorized: BumpResult = cmts.reduce(
-    (acc: BumpResult, cmt: Commit) => {
-      // @ts-ignore
-      acc[cmt.increment] = acc[cmt.increment] || [];
-      // @ts-ignore
-      acc[cmt.increment].push(cmt);
+  const categorized: RecommendedBumpResult = cmts.reduce(
+    (acc: RecommendedBumpResult | any, cmt: Commit) => {
+      if (cmt.increment && typeof cmt.increment !== 'boolean') {
+        acc[cmt.increment] = acc[cmt.increment] || [];
+        acc[cmt.increment].push(cmt);
+      }
 
       return acc;
     },
@@ -127,9 +130,9 @@ export default function recommendedBump(
 
 function createReturn(
   type: boolean | string,
-  categorized: BumpResult,
-  commits: Commits,
-): BumpResult {
+  categorized: RecommendedBumpResult,
+  commits: Array<Commit>,
+): RecommendedBumpResult {
   return Object.assign({}, categorized, {
     isBreaking: type === 'major',
     increment: type,

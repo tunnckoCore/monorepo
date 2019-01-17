@@ -1,5 +1,8 @@
+// @ts-ignore
 import execa from 'execa';
+// @ts-ignore
 import pMap from 'p-map-series';
+// @ts-ignore
 import { splitToObject } from 'split-cmd';
 
 /**

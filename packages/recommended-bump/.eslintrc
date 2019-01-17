@@ -1,0 +1,6 @@
+# DO NOT MODIFY HERE!
+# USE THE LOCAL ONE `./eslint.config.js`
+# OR THE GLOBAL ONE `config/eslint.config.js`
+# AT THE ROOT DIRECTORY
+
+extends: ./eslint.config.js

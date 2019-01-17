@@ -1,83 +1,42 @@
 {
-  "name": "parse-commit-message",
-  "description": "Extensible parser for git commit messages following Conventional Commits Specification",
-  "license": "Apache-2.0",
-  "licenseStart": "2017",
   "scripts": {
-    "docs": "docks --outfile .verb.md && verb",
-    "lint": "eslint '**/*.js' --cache --fix --quiet --format codeframe",
-    "test-only": "asia -r esm",
-    "test": "nyc asia",
-    "precommit": "yarn run lint && yarn run test-only",
-    "commit": "yarn dry",
-    "dry": "git add -A && git status --porcelain && gitcommit",
-    "release": "tunnckocore-release",
-    "clean": "rm -rf node_modules",
-    "clean:cache": "rm -rf node_modules/.cache"
+    "type:check": "tsc -p ./tsconfig.check.json",
+    "build": "babel src -d dist -x .js,.ts,.tsx --delete-dir-on-start"
+  },
+  "module": "dist/index.js",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "typings": "src/index.ts",
+  "repository": "tunnckoCore/monorepo",
+  "author": "Charlike Mike Reagent (https://tunnckocore.com)",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
   },
   "engines": {
     "node": "^8.10.0 || >=10.13.0"
   },
+  "browserslist": [
+    "node 8",
+    "node 10"
+  ],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "license": "Apache-2.0",
+  "licenseStart": "2017",
+  "version": "3.2.3",
+  "name": "parse-commit-message",
+  "description": "Extensible parser for git commit messages following Conventional Commits Specification",
+  "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/packages/parse-commit-message",
   "dependencies": {
     "collect-mentions": "^1.0.2",
     "dedent": "^0.7.0",
+    "esm": "^3.1.0",
     "mixin-deep": "^2.0.0"
   },
   "devDependencies": {
     "@types/dedent": "^0.7.0"
-  },
-  "files": [
-    "dist"
-  ],
-  "main": "dist/index.js",
-  "version": "3.2.3",
-  "repository": "tunnckoCoreLabs/parse-commit-message",
-  "homepage": "https://github.com/tunnckoCoreLabs/parse-commit-message",
-  "author": "Charlike Mike Reagent (https://tunnckocore.com)",
-  "publishConfig": {
-    "registry": "http://localhost:4873",
-    "access": "public",
-    "tag": "latest"
-  },
-  "renovate": {
-    "extends": "tunnckocore"
-  },
-  "verb": {
-    "run": true,
-    "toc": {
-      "render": true,
-      "method": "preWrite",
-      "maxdepth": 4
-    },
-    "layout": "empty",
-    "tasks": [
-      "readme"
-    ],
-    "related": {
-      "list": [
-        "asia",
-        "charlike",
-        "docks",
-        "gitcommit",
-        "git-commits-since",
-        "@tunnckocore/execa",
-        "@tunnckocore/create-project",
-        "@tunnckocore/update",
-        "@tunnckocore/config",
-        "@tunnckocore/scripts"
-      ]
-    },
-    "lint": {
-      "reflinks": true
-    },
-    "reflinks": [
-      "collect-mentions",
-      "execa",
-      "new-release",
-      "semantic-release",
-      "detect-next-version",
-      "parse-commit-message",
-      "recommended-bump"
-    ]
   }
 }

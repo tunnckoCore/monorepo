@@ -1,0 +1,45 @@
+// {
+//   "extends": "../../tsconfig.gentypes.json",
+//   "compilerOptions": {
+//     // "paths": {
+//     //   "@tunnckocore/*": ["@tunnckocore/*/src"],
+//     //   "*": ["node_modules/*", "packages/*/src"]
+//     // },
+//     "skipLibCheck": true, // DO NOT TYPECHECK on type generation (must be true)
+//     "skipDefaultLibCheck": true, // DO NOT TYPECHECK on type generation (must be true)
+//     "declarationDir": "./dist",
+//     // "rootDir": "./src",
+//     "rootDirs": ["../"],
+//     "baseUrl": "../../"
+//   },
+//   "include": ["src"],
+//   "exclude": ["node_modules", "src/__tests__"]
+// }
+
+{
+  "extends": "../../foo.config.json",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "removeComments": true,
+    "skipLibCheck": true, // DO the typechecking on build
+    "sourceMap": false,
+    "strict": true,
+    "jsx": "react",
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["dom", "esnext", "es2015", "es2016", "es2017", "es2018"],
+    "rootDir": "./src",
+    "rootDirs": ["../../packages", "../../@tunnckocore"],
+    "baseUrl": "./",
+    "noEmit": false,
+    "declaration": true,
+    "declarationDir": "./dist",
+    // "outFile": "./dist/index.d.ts",
+    "emitDeclarationOnly": true
+  },
+  "include": ["src", "src/types.d.ts"],
+  "exclude": ["src/__tests__", "node_modules"]
+}

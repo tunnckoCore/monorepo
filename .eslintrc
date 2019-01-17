@@ -1,0 +1,4 @@
+# DO NOT MODIFY HERE!
+# OR THE GLOBAL ONE `./config/eslint.config.js`
+
+extends: ./config/eslint.config.js

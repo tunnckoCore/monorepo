@@ -1,72 +1,38 @@
 {
-  "name": "@tunnckocore/git-semver-tags",
-  "description": "Get all semver valid flags for a git repository. Temporary fork of original git-semver-tags, promised api - async/await friendly, plus option for cwd",
-  "license": "Apache-2.0",
-  "licenseStart": "2018",
   "scripts": {
-    "start": "tunnckocore-scripts",
-    "extends": "@tunnckocore/config/scripts",
-    "docs": "tunnckocore-scripts docs",
-    "lint": "tunnckocore-scripts lint",
-    "test": "tunnckocore-scripts test",
-    "commit": "tunnckocore-scripts commit"
+    "type:check": "echo 'tsc -p ./tsconfig.check.json'",
+    "build": "babel src -d dist -x .js,.ts,.tsx --delete-dir-on-start"
   },
-  "engines": {
-    "node": "^8.11.0 || >=10.13.0"
-  },
-  "dependencies": {
-    "@tunnckocore/execa": "^2.1.2",
-    "semver": "^5.6.0"
-  },
-  "files": [
-    "dist"
-  ],
+  "module": "dist/index.js",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "typings": "dist/index.d.ts",
-  "version": "0.2.0",
-  "repository": "tunnckoCoreLabs/git-semver-tags",
-  "homepage": "https://github.com/tunnckoCoreLabs/git-semver-tags",
+  "types": "src/index.ts",
+  "typings": "src/index.ts",
+  "repository": "tunnckoCore/monorepo",
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",
   "publishConfig": {
-    "registry": "http://localhost:4873",
     "access": "public",
     "tag": "latest"
   },
-  "renovate": {
-    "extends": "tunnckocore"
+  "engines": {
+    "node": "^8.10.0 || >=10.13.0"
   },
-  "verb": {
-    "run": true,
-    "toc": {
-      "render": true,
-      "method": "preWrite",
-      "maxdepth": 4
-    },
-    "layout": "empty",
-    "tasks": [
-      "readme"
-    ],
-    "related": {
-      "list": [
-        "asia",
-        "charlike",
-        "docks",
-        "gitcommit",
-        "@tunnckocore/execa",
-        "@tunnckocore/package-json",
-        "@tunnckocore/create-project",
-        "@tunnckocore/update",
-        "@tunnckocore/config",
-        "@tunnckocore/scripts"
-      ]
-    },
-    "lint": {
-      "reflinks": true
-    },
-    "reflinks": [
-      "new-release",
-      "semantic-release"
-    ]
+  "browserslist": [
+    "node 8",
+    "node 10"
+  ],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "license": "Apache-2.0",
+  "licenseStart": "2018",
+  "version": "0.2.0",
+  "name": "@tunnckocore/git-semver-tags",
+  "description": "Get all semver valid flags for a git repository. Temporary fork of original git-semver-tags, promised api - async/await friendly, plus option for cwd",
+  "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/@tunnckocore/git-semver-tags",
+  "dependencies": {
+    "@tunnckocore/execa": "^2.1.2",
+    "esm": "^3.1.0",
+    "semver": "^5.6.0"
   }
 }

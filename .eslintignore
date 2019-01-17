@@ -6,4 +6,4 @@ dist
 *.log
 *~
 package-lock.json
-shrinkwrap.json
+xtest

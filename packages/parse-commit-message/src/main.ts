@@ -1,7 +1,6 @@
-import { tryCatch, isObject, Result } from './utils';
-import { parseCommit, stringifyCommit, checkCommit, Commit } from './commit';
-
-export type PossibleCommit = string | Commit | Array<Commit>;
+import { parseCommit, stringifyCommit, checkCommit } from './commit';
+import { Commit, CommitResult, PossibleCommit } from './types.d';
+import { toArray } from './utils';
 
 /**
  * Receives and parses a single or multiple commit message(s) in form of string,
@@ -45,36 +44,25 @@ export type PossibleCommit = string | Commit | Array<Commit>;
  * // }
  *
  * @name  .parse
- * @param {string|object|array} commits a value to be parsed into an object like `Commit` type
- * @param {boolean} [flat] if the returned result length is 1, then returns the first item
- * @returns {Array<Commit>} if `flat: true`, returns a `Commit`
+ * @param {string|Commit|array} commits a value to be parsed into an object like `Commit` type
+ * @returns {Array<Commit>} if array of commit objects
  * @public
  */
-export function parse(
-  commits: PossibleCommit,
-  flat = false,
-): Commit | Array<Commit> {
-  // ! definitely should be fixed
-  // TODO: marker
-  const result: Array<Commit> = []
-    // @ts-ignore
-    .concat(commits)
+export function parse(commits: PossibleCommit): Array<Commit> {
+  const result: Array<Commit> = toArray(commits)
     .filter(Boolean)
-    .reduce((acc: [], val: string | Commit) => {
+    .reduce((acc: Array<Commit>, val: string | Commit) => {
       if (typeof val === 'string') {
-        // @ts-ignore
         return acc.concat(parseCommit(val));
       }
-      if (isObject(val)) {
-        // @ts-ignore
+      if (typeof val === 'object' && !Array.isArray(val)) {
         return acc.concat(val);
       }
 
-      // @ts-ignore
       return acc.concat(parse(val));
     }, []);
 
-  return flat === true && result.length === 1 ? result[0] : result;
+  return result;
 }
 
 /**
@@ -103,30 +91,24 @@ export function parse(
  * console.log(str === commitMessage);
  *
  * @name  .stringify
- * @param {string|object|array} commits a `Commit` object, or anything that can be passed to `check`
- * @param {boolean} [flat] if the returned result length is 1, then returns the first item
- * @returns {Array<string>} an array of commit strings like `'fix(foo): bar baz'`,
- *                     if `flat: true`, returns a `string`
+ * @param {string|Commit|Array<Commit>} commits a `Commit` object, or anything that can be passed to `check`
+ * @returns {Array<string>} an array of commit strings like `'fix(foo): bar baz'`
  * @public
  */
-export function stringify(
-  commits: PossibleCommit,
-  flat = false,
-): string | Array<string> {
-  const result: Array<string> = []
-    // TODO: heere!!
-    // @ts-ignore
-    .concat(commits)
+export function stringify(commits: PossibleCommit): Array<string> {
+  const result: Array<string> = toArray(commits)
     .filter(Boolean)
     .reduce(
-      (acc: [], val: PossibleCommit) =>
-        // TODO: heere!!
-        // @ts-ignore
-        acc.concat(check(val).map((x) => stringifyCommit(x))),
+      (acc: Array<string>, val: PossibleCommit) =>
+        acc.concat(
+          toArray(
+            check(typeof val === 'string' ? { header: { value: val } } : val),
+          ).map((x: any) => stringifyCommit(x)),
+        ),
       [],
     );
 
-  return flat === true && result.length === 1 ? result[0] : result;
+  return result;
 }
 
 /**
@@ -184,19 +166,20 @@ export function stringify(
  * // => TypeError: header.scope should be non empty string when given
  *
  * @name  .validate
- * @param {string|object|array} commits a value to be parsed & validated into an object like `Commit` type
- * @param {boolean} [ret] to return result instead of throwing, default `false`
- * @returns {boolean|object} if `ret` is `true` then returns `{ value, error }` object,
- *                          where `value` is `Commit|Array<Commit>` and `error` a standard `Error`
+ * @param {string|Commit|Array<Commit>} commits a value to be parsed & validated into an object like `Commit` type
+ * @returns {CommitResult} an object like `{ value: Array<Commit>, error: Error }`
  * @public
  */
-export function validate(
-  commits: PossibleCommit,
-  ret = false,
-): boolean | Result {
-  // TODO: heere!!
-  // @ts-ignore
-  return tryCatch(() => check(commits), ret);
+export function validate(commits: PossibleCommit): CommitResult {
+  const result: CommitResult = {};
+
+  try {
+    result.value = check(commits);
+  } catch (err) {
+    return { error: err };
+  }
+
+  return result;
 }
 
 /**
@@ -226,29 +209,19 @@ export function validate(
  * }
  *
  * @name  .check
- * @param {string|object|array} commits a value to be parsed & validated into an object like `Commit` type
- * @param {boolean} [flat] if the returned result length is 1, then returns the first item
+ * @param {string|Commit|Array<Commit>} commits a value to be parsed & validated into an object like `Commit` type
  * @returns {Array<Commit>} returns the same as given if no problems, otherwise it will throw;
- *                     if `flat: true`, returns a `Commit`
  * @public
  */
-export function check(
-  commits: PossibleCommit,
-  flat: boolean,
-): Commit | Array<Commit> {
-  const result: Array<Commit> = []
-    // TODO: heere!!
-    // @ts-ignore
-    .concat(commits)
-    .filter((x: any) => x !== null || x !== undefined)
-    .reduce((acc: [], commit: string | Commit) => {
+export function check(commits: PossibleCommit): Array<Commit> {
+  const result: Array<Commit> = toArray(commits)
+    .filter((x: PossibleCommit) => x !== null || x !== undefined)
+    .reduce((acc: Array<Commit>, commit: string | Commit) => {
       if (typeof commit === 'string') {
         commit = parseCommit(commit); // eslint-disable-line no-param-reassign
       }
-      // TODO: heere!!
-      // @ts-ignore
       return acc.concat(checkCommit(commit));
     }, []);
 
-  return flat === true && result.length === 1 ? result[0] : result;
+  return result;
 }

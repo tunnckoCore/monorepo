@@ -1,0 +1,19 @@
+/**
+ * Only generating type (`.d.ts`) files
+ */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "skipDefaultLibCheck": true,
+
+    "paths": {
+      "@tunnckocore/*": ["@tunnckocore/*/src"],
+      "*": ["node_modules/*", "packages/*/src"]
+    }
+  },
+  "include": ["packages", "@tunnckocore"],
+  "exclude": ["**/node_modules/**"]
+}

@@ -1,10 +1,10 @@
-// TODO: fix the .d.ts files and third party modules resolving
 // @ts-ignore
 import mixinDeep from 'mixin-deep';
 
 import mentions from './plugins/mentions';
 import increment from './plugins/increment';
-import { parse, stringify, validate, check, PossibleCommit } from './main';
+
+import { parse, stringify, validate, check } from './main';
 
 import {
   parseHeader,
@@ -14,15 +14,20 @@ import {
 } from './header';
 
 import {
-  Commit,
   parseCommit,
   stringifyCommit,
   validateCommit,
   checkCommit,
 } from './commit';
 
-export type Plugin = (commit: Commit) => any | {} | Commit;
-export type Plugins = Array<Plugin>;
+import { Commit, Plugin, Plugins, PossibleCommit } from './types.d';
+
+export * from './types.d';
+
+// 'chore(some): foo bar baz' -> { type: 'chore', scope: 'some', subject: 'foo bar baz' }
+// for some freaking reason it does NOT report `toArray` as unused
+// both typescript and eslint are playing some weird games today
+export { stringToHeader, toArray } from './utils';
 
 /**
  * Apply a set of `plugins` over all of the given `commits`.
@@ -87,29 +92,39 @@ export type Plugins = Array<Plugin>;
  *
  * @name  .applyPlugins
  * @param {Array<Function>} plugins a simple function like `(commit) => {}`
- * @param {string|object|array} commits a value which should already be gone through `parse`
+ * @param {string|Commit|Array<Commit>|Array<string>} commits a value which should already be gone through `parse`
  * @returns {Array<Commit>} plus the modified or added properties from each function in `plugins`
  * @public
  */
-export function applyPlugins(plugins: Plugins, commits: PossibleCommit) {
-  // TODO: doh, array...
-  // @ts-ignore
-  const plgs = [].concat(plugins).filter(Boolean);
+export function applyPlugins(
+  plugins: Plugins,
+  commits: PossibleCommit,
+): Array<Commit> {
+  // because some freaking weird things is happening
+  // and it does report `toArray` as "cannot find name" by typescript
+  // and as "no undef" by eslint.
+  const arr: Array<any> = [];
+  const cmts: Array<any> = [];
+  const plgs = arr.concat(plugins).filter(Boolean);
 
-  const modifiedItems: Array<Commit> = []
-    // TODO: doh, array...
-    // @ts-ignore
+  return cmts
     .concat(commits)
-    .reduce((result: any, commit: PossibleCommit) => {
-      const cmt = plgs.reduce((acc: any, fn: Plugin) => {
+    .filter(Boolean)
+    .reduce((result: Array<Commit>, commit: PossibleCommit) => {
+      let commitObject = {};
+
+      if (typeof commit === 'string') {
+        commitObject = { header: { value: commit } };
+      } else if (typeof commit === 'object' && !Array.isArray(commit)) {
+        commitObject = commit;
+      }
+      const cmt = plgs.reduce((acc: Commit, fn: Plugin) => {
         const res = fn(acc);
         return mixinDeep(acc, res);
-      }, commit);
+      }, commitObject);
 
       return result.concat(cmt);
     }, []);
-
-  return modifiedItems;
 }
 
 /**
@@ -167,7 +182,7 @@ export function applyPlugins(plugins: Plugins, commits: PossibleCommit) {
  * @name .plugins
  * @public
  */
-export const plugins: Plugins = [mentions, increment];
+export const plugins: Array<Plugin> = [mentions, increment];
 
 /**
  * An object (named set) which includes `mentions` and `increment` built-in plugins.

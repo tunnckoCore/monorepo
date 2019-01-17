@@ -1,21 +1,8 @@
 import { EOL } from 'os';
-import { tryCatch, isValidString, isObject, Result } from './utils';
-import { parseHeader, stringifyHeader, validateHeader, Header } from './header';
+import { isValidString } from './utils';
+import { parseHeader, stringifyHeader, validateHeader } from './header';
 
-export type Mention = {
-  handle: string;
-  mention: string;
-  index: number;
-};
-
-export type Commit = {
-  header: Header;
-  body?: string | null;
-  footer?: string | null;
-  increment?: string | boolean;
-  isBreaking?: boolean;
-  mentions?: Array<Mention>;
-};
+import { Commit, CommitResult } from './types.d';
 
 /**
  * Receives a full commit message `string` and parses it into an `Commit` object
@@ -75,9 +62,7 @@ export function parseCommit(commit: string): Commit {
  * @public
  */
 export function stringifyCommit(commit: Commit): string {
-  // TODO: update, why this is happening?
-  // @ts-ignore
-  const result: Result = validateCommit(commit, true);
+  const result: CommitResult = validateCommit(commit);
 
   if (result.error) {
     throw result.error;
@@ -94,8 +79,7 @@ export function stringifyCommit(commit: Commit): string {
 }
 
 /**
- * Validates given `Commit` object and returns `boolean`.
- * You may want to set `ret` to `true` return an object instead of throwing.
+ * Validates given `Commit` object and returns `CommitResult`.
  * Basically the same as [.validate](#validate), except that
  * it only can accept single `Commit` object.
  *
@@ -120,12 +104,19 @@ export function stringifyCommit(commit: Commit): string {
  *
  * @name  .validateCommit
  * @param {Commit} commit a `Commit` like `{ header: Header, body?, footer? }`
- * @param {boolean} [ret] to return result instead of throwing, default `false`
- * @returns {boolean|Result} if `ret` is `true` then returns `{ value, error }` object, where `value` is `Commit` and `error` a standard `Error`
+ * @returns {CommitResult} an object like `{ value: Array<Commit>, error: Error }`
  * @public
  */
-export function validateCommit(commit: Commit, ret = false): boolean | Result {
-  return tryCatch(() => checkCommit(commit), ret);
+export function validateCommit(commit: Commit): CommitResult {
+  const result: CommitResult = {};
+
+  try {
+    result.value = checkCommit(commit);
+  } catch (err) {
+    return { error: err };
+  }
+
+  return result;
 }
 
 /**
@@ -154,14 +145,7 @@ export function validateCommit(commit: Commit, ret = false): boolean | Result {
  * @public
  */
 export function checkCommit(commit: Commit): Commit {
-  if (!isObject(commit)) {
-    const msg = `{ header: Header, body?, footer? }`;
-    throw new TypeError(`expect \`commit\` to be an object: ${msg}`);
-  }
-
-  // TODO: all comes from the tryCatch, rethink all the things
-  // @ts-ignore
-  const { error, value: header } = validateHeader(commit.header, true);
+  const { error, value: headerObj } = validateHeader(commit.header);
   if (error) {
     throw error;
   }
@@ -184,5 +168,7 @@ export function checkCommit(commit: Commit): Commit {
     throw new TypeError('commit.footer should be string when given');
   }
 
-  return Object.assign({ body: null, footer: null }, commit, { header });
+  return Object.assign({ body: null, footer: null }, commit, {
+    header: headerObj,
+  });
 }

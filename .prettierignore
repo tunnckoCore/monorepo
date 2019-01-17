@@ -4,7 +4,6 @@ dist
 
 *.log
 *.lock
-*.md
 *~
 .*
 package-lock.json
@@ -12,3 +11,4 @@ shrinkwrap.json
 
 LICENSE
 !.prettierrc.js
+xtest

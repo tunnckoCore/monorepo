@@ -2,6 +2,9 @@
 
 module.exports = {
   projects: ['./config/jest-check.config.js', './config/jest-dev.config.js'],
+  moduleNameMapper: {
+    '@tunnckocore/(.+)$': '<rootDir>@tunnckocore/$1/src',
+  },
   // displayName: 'test',
   // testEnvironment: 'node',
   // moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'mjs'],

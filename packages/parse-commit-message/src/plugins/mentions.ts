@@ -1,8 +1,8 @@
-// TODO: fix the .d.ts files and third party modules resolving
 // @ts-ignore
 import getMentions from 'collect-mentions';
 
-import { Commit } from '../commit';
+import { normalizeCommit, getValue } from '../utils';
+import { Commit } from '../types.d';
 
 /**
  * A plugin that adds `mentions` array property to the `commit`.
@@ -18,11 +18,13 @@ import { Commit } from '../commit';
  * @returns {Commit} plus `{ mentions: Array<Mention> }`
  * @public
  */
-export default function mentions(commit: Commit): any | Commit {
+export default function mentions(commit: Commit) {
+  const cmt = normalizeCommit(commit);
+
   const commitMentions = []
-    .concat(getMentions(commit.header.subject))
-    .concat(getMentions(commit.body))
-    .concat(getMentions(commit.footer));
+    .concat(getMentions(getValue(cmt.header, 'subject')))
+    .concat(getMentions(cmt.body))
+    .concat(getMentions(cmt.footer));
 
   return { mentions: commitMentions };
 }

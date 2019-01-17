@@ -1,11 +1,6 @@
-import { EOL } from 'os';
-import { tryCatch, isValidString, isObject, errorMsg, Result } from './utils';
+import { isValidString, stringToHeader } from './utils';
 
-export type Header = {
-  type: string;
-  scope?: string; // TODO: update
-  subject: string;
-};
+import { Header, CommitResult } from './types.d';
 
 /**
  * Parses given `header` string into an header object.
@@ -37,24 +32,7 @@ export function parseHeader(header: string): Header {
     throw new TypeError('expect `header` to be non empty string');
   }
 
-  const parts = header.split(EOL);
-  // eslint-disable-next-line no-param-reassign
-  header = parts.length > 1 ? parts[0] : header;
-
-  // because the last question mark, which we totally need
-  // eslint-disable-next-line unicorn/no-unsafe-regex
-  const regex = /^(\w+)(?:\((.+)\))?: (.+)$/i;
-  if (!regex.test(header)) {
-    throw new TypeError(errorMsg);
-  }
-
-  // TODO: update
-  // @ts-ignore
-  const [type, scope = null, subject] = regex.exec(header).slice(1);
-
-  // TODO: update
-  // @ts-ignore
-  return { type, scope, subject };
+  return stringToHeader(header.trim());
 }
 
 /**
@@ -75,15 +53,18 @@ export function parseHeader(header: string): Header {
  * @public
  */
 export function stringifyHeader(header: Header): string {
-  // TODO(update): why that fails?!
-  // @ts-ignore
-  const result: Result = validateHeader(header, true);
+  const res: CommitResult = validateHeader(header);
 
-  if (result.error) {
-    throw result.error;
+  if (res.error) {
+    throw res.error;
   }
 
-  const { type, scope, subject } = result.value;
+  // if SimpleHeader (res.value is like { value: 'chore: foobar' })
+  if ('value' in res.value) {
+    return res.value.value;
+  }
+
+  const { type, scope, subject } = res.value;
 
   return `${type}${scope ? `(${scope})` : ''}: ${subject}`.trim();
 }
@@ -119,13 +100,19 @@ export function stringifyHeader(header: Header): string {
  *
  * @name  .validateHeader
  * @param {Header} header a `Header` object like `{ type, scope?, subject }`
- * @param {boolean} [ret] to return result instead of throwing, default `false`
- * @returns {boolean|object} if `ret` is `true` then returns `{ value, error }` object,
- *                          where `value` is `Header` and `error` a standard `Error`
+ * @returns {CommitResult} an object like `{ value: Array<Commit>, error: Error }`
  * @public
  */
-export function validateHeader(header: Header, ret = false): boolean | Result {
-  return tryCatch(() => checkHeader(header), ret);
+export function validateHeader(header: Header): CommitResult {
+  const result: CommitResult = {};
+
+  try {
+    result.value = checkHeader(header);
+  } catch (err) {
+    return { error: err };
+  }
+
+  return result;
 }
 
 /**
@@ -154,15 +141,16 @@ export function validateHeader(header: Header, ret = false): boolean | Result {
  * @returns {Header} returns the same as given if no problems, otherwise it will throw.
  * @public
  */
-export function checkHeader(header: Header): Header {
-  // TODO(update): how we handle such cases with types :?
-  // @ts-ignore
-  header = (header && header.header) || header; // eslint-disable-line no-param-reassign
+export function checkHeader(header: Header, caseSensitive?: boolean): Header {
+  const sensitive = caseSensitive || false;
 
-  if (!isObject(header)) {
-    const msg = `{ type: string, scope?: string, subject: scope }`;
-    throw new TypeError(`expect \`header\` to be an object: ${msg}`);
+  // handy trick to suppress/mute typescript
+  if ('value' in header) {
+    const { value } = header;
+    return stringToHeader(value, sensitive);
   }
+  // else: we have Header
+
   if (!isValidString(header.type)) {
     throw new TypeError('header.type should be non empty string');
   }
@@ -170,7 +158,6 @@ export function checkHeader(header: Header): Header {
     throw new TypeError('header.subject should be non empty string');
   }
 
-  // TODO: update
   const isValidScope =
     'scope' in header && header.scope !== null
       ? isValidString(header.scope)

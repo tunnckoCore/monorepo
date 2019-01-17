@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@tunnckocore/*": ["@tunnckocore/*/src"],
+      "*": ["packages/*/src"]
+    }
+  },
+  "include": ["packages", "@tunnckocore"],
+  "exclude": ["node_modules"]
+}
