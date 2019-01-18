@@ -60,7 +60,9 @@ export function stringifyHeader(header: Header): string {
   }
 
   // if SimpleHeader (res.value is like { value: 'chore: foobar' })
-  if ('value' in res.value) {
+  // TODO(@tunnckoCore): not sure...
+  /* istanbul ignore next */
+  if (res.value && typeof res.value === 'object' && 'value' in res.value) {
     return res.value.value;
   }
 
@@ -145,7 +147,7 @@ export function checkHeader(header: Header, caseSensitive?: boolean): Header {
   const sensitive = caseSensitive || false;
 
   // handy trick to suppress/mute typescript
-  if ('value' in header) {
+  if (header && typeof header === 'object' && 'value' in header) {
     const { value } = header;
     return stringToHeader(value, sensitive);
   }

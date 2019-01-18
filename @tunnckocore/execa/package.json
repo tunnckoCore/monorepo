@@ -1,9 +1,8 @@
 {
   "scripts": {
     "type:check": "echo 'tsc -p ./tsconfig.check.json'",
-    "build": "babel src -d dist -x .js,.ts,.tsx --delete-dir-on-start"
+    "build": "babel src -d dist -x .js,.jsx,.ts,.tsx,.mjs --delete-dir-on-start"
   },
-  "module": "dist/index.js",
   "main": "dist/index.js",
   "types": "src/index.ts",
   "typings": "src/index.ts",
@@ -31,7 +30,6 @@
   "description": "Thin layer on top of [execa][] that allows executing multiple commands in parallel or in sequence",
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/@tunnckocore/execa",
   "dependencies": {
-    "esm": "^3.1.0",
     "execa": "^1.0.0",
     "p-map-series": "^1.0.0",
     "split-cmd": "^1.0.0"

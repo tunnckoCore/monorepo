@@ -1,9 +1,9 @@
 {
   "scripts": {
     "type:check": "tsc -p ./tsconfig.check.json",
-    "build": "babel src -d dist -x .js,.ts,.tsx --delete-dir-on-start"
+    "build": "babel src -d dist -x .js,.jsx,.ts,.tsx,.mjs --delete-dir-on-start",
+    "test": "ava"
   },
-  "module": "dist/index.js",
   "main": "dist/index.js",
   "types": "src/index.ts",
   "typings": "src/index.ts",
@@ -31,7 +31,6 @@
   "description": "Calculates recommended bump (next semver version) based on given array of commit messages following Conventional Commits specification",
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/packages/recommended-bump",
   "dependencies": {
-    "esm": "^3.1.0",
     "parse-commit-message": "^3.2.3"
   },
   "devDependencies": {

@@ -4,7 +4,7 @@ import {
   parse,
   check,
   Commit,
-} from 'parse-commit-message';
+} from 'packages/parse-commit-message';
 
 import {
   Commits,

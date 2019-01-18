@@ -1,14 +1,6 @@
 {
-  "npmClient": "yarn",
   "packages": ["packages/*", "@tunnckocore/*"],
   "version": "independent",
-  "useWorkspaces": true,
-  "command": {
-    "publish": {
-      "registry": "http://localhost:4873",
-      "conventionalCommits": true,
-      "access": "public",
-      "allowBranch": ["master", "feature/*"]
-    }
-  }
+  "npmClient": "yarn",
+  "useWorkspaces": true
 }

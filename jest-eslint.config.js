@@ -2,14 +2,13 @@
 
 module.exports = {
   rootDir: __dirname,
-  displayName: 'test',
+  displayName: 'lint',
+  runner: 'jest-runner-eslint',
   testEnvironment: 'node',
-  testMatch: ['**/__tests__/**/*'],
+  testMatch: ['**/src/**/*'],
+  testPathIgnorePatterns: ['.+\\.d\\.ts$'],
   moduleNameMapper: {
     '^packages/(.+)': '<rootDir>/packages/$1/src',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'mjs', 'json'],
-  transform: {
-    '^.+\\.(ts|tsx|js|jsx)$': 'babel-jest',
-  },
 };

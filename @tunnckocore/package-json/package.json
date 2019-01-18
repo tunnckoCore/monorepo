@@ -1,9 +1,8 @@
 {
   "scripts": {
     "type:check": "tsc -p ./tsconfig.check.json",
-    "build": "babel src -d dist -x .js,.ts,.tsx --delete-dir-on-start"
+    "build": "babel src -d dist -x .js,.jsx,.ts,.tsx,.mjs --delete-dir-on-start"
   },
-  "module": "dist/index.js",
   "main": "dist/index.js",
   "types": "src/index.ts",
   "typings": "src/index.ts",

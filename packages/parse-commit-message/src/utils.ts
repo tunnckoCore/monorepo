@@ -16,8 +16,8 @@ export function stringToHeader(val: string, caseSensitive?: boolean): Header {
   const sensitive = caseSensitive || false;
   /* eslint-disable unicorn/no-unsafe-regex */
   const regex = sensitive
-    ? /^(\w+)(?:\((.+)\))?: (.+)$/
-    : /^(\w+)(?:\((.+)\))?: (.+)$/i;
+    ? /^(\w+)(?:\((.+)\))?: (.+)/
+    : /^(\w+)(?:\((.+)\))?: (.+)/i;
 
   if (!regex.test(val)) {
     throw new TypeError(errorMsg);
@@ -41,7 +41,7 @@ export function stringToHeader(val: string, caseSensitive?: boolean): Header {
 
 export function normalizeCommit(commit: Commit) {
   const { header } = commit;
-  if ('value' in header) {
+  if (header && typeof header === 'object' && 'value' in header) {
     return Object.assign({}, commit, { header: stringToHeader(header.value) });
   }
   return commit;
