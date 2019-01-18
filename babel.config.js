@@ -1,10 +1,11 @@
 'use strict';
 
 const path = require('path');
+const pkg = require('./package.json');
 
 const ROOT = __dirname;
-const WORKSPACES = ['packages', '@tunnckocore'];
-const EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx'];
+const WORKSPACES = pkg.workspaces.map((x) => x.slice(0, -2));
+const EXTENSIONS = pkg.extensions.map((x) => `.${x}`);
 
 module.exports = {
   ignore: process.env.BABEL_ENV === 'build' ? ['**/__tests__/**'] : [],

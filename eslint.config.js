@@ -1,10 +1,11 @@
 'use strict';
 
 const path = require('path');
+const pkg = require('./package.json');
 
-const ROOT = path.dirname(__dirname);
-const WORKSPACES = ['packages'];
-const EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx'];
+const ROOT = __dirname;
+const WORKSPACES = pkg.workspaces.map((x) => x.slice(0, -2));
+const EXTENSIONS = pkg.extensions.map((x) => `.${x}`);
 
 module.exports = {
   extends: 'tunnckocore',
@@ -25,7 +26,6 @@ module.exports = {
   },
 
   rules: {
-    'jest/expect-expect': 'off',
     'import/no-extraneous-dependencies': 'off',
     // 'import/no-unresolved': 'off',
   },

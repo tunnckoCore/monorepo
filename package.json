@@ -40,5 +40,12 @@
   "workspaces": [
     "packages/*",
     "@tunnckocore/*"
+  ],
+  "extensions": [
+    "ts",
+    "tsx",
+    "js",
+    "jsx",
+    "mjs"
   ]
 }
