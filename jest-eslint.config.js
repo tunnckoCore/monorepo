@@ -2,7 +2,7 @@
 
 const pkg = require('./package.json');
 
-const EXTENSIONS = pkg.extensions.map((x) => x.slice(1));
+const EXTENSIONS = pkg.extensions;
 const WORKSPACES = pkg.workspaces.map((x) => x.slice(0, -2));
 
 module.exports = {
@@ -21,4 +21,5 @@ module.exports = {
   }, {}),
 
   runner: 'jest-runner-eslint',
+  watchPlugins: ['jest-runner-eslint/watch-fix'],
 };

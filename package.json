@@ -30,13 +30,19 @@
     "eslint": "^5.12.0",
     "eslint-config-tunnckocore": "^2.0.0-rc.14",
     "eslint-import-resolver-babel-module": "^5.0.0-beta.1",
-    "esm": "^3.1.0",
     "jest": "^23.6.0",
     "jest-runner-eslint": "^0.7.1",
     "jest-runner-tsc": "^1.3.2",
     "lerna": "^3.10.5",
     "prettier": "^1.15.3",
     "typescript": "^3.2.2"
+  },
+  "jest-runner-eslint": {
+    "cliOptions": {
+      "format": "codeframe",
+      "cache": true,
+      "fix": true
+    }
   },
   "workspaces": [
     "packages/*",
