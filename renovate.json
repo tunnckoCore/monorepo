@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "config:base",
+    ":automergeAll",
+    ":rebaseStalePrs",
+    ":preserveSemverRanges",
+    ":maintainLockFilesWeekly",
+    ":semanticPrefixFixDepsChoreOthers"
+  ]
+}
