@@ -6,4 +6,3 @@ dist
 *.log
 *~
 package-lock.json
-xtest

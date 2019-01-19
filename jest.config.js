@@ -6,8 +6,6 @@ const EXTENSIONS = pkg.extensions;
 const WORKSPACES = pkg.workspaces.map((x) => x.slice(0, -2));
 
 module.exports = {
-  rootDir: __dirname,
-
   displayName: 'test',
 
   testEnvironment: 'node',
@@ -22,4 +20,12 @@ module.exports = {
   transform: {
     '^.+\\.(ts|tsx|js|jsx)$': 'babel-jest',
   },
+
+  collectCoverage: false,
+  collectCoverageFrom: [
+    `**/src/**/*.{${EXTENSIONS.join(',')}}`,
+    '!**/node_modules/**',
+    '!**/__tests__/**',
+    '!**/dist/**',
+  ],
 };
