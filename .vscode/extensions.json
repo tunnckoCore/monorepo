@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "formulahendry.auto-close-tag",
+    "aaron-bond.better-comments",
+    "CoenraadS.bracket-pair-colorizer-2",
+    "naumovs.color-highlight",
+    "flydreame.docblocker",
+    "EditorConfig.EditorConfig",
+    "oderwat.indent-rainbow",
+    "esbenp.prettier-vscode",
+    "jprestidge.theme-material-theme",
+    "dbaeumer.vscode-eslint",
+    "wayou.vscode-todo-highlight",
+    "VisualStudioExptTeam.vscodeintellicode"
+  ]
+}
