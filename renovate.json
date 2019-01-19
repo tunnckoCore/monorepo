@@ -1,10 +1,15 @@
 {
   "extends": [
     "config:base",
+    ":onlyNpm",
+    ":gitSignOff",
+    ":automergePr",
     ":automergeAll",
+    ":respectLatest",
     ":rebaseStalePrs",
+    ":semanticCommits",
+    ":disableRateLimiting",
     ":preserveSemverRanges",
     ":maintainLockFilesWeekly",
-    ":semanticPrefixFixDepsChoreOthers"
   ]
 }
