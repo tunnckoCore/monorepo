@@ -20,23 +20,17 @@ references:
     docker:
       - image: circleci/node:10
   #
-  # Cache
+  # Caches
   #
-  # restore_modules: &restore_modules
-  #   restore_cache:
-  #     keys:
-  #       - v1-repo-{{ .Branch }}-{{ checksum "yarn.lock" }}
-  #       - v1-repo-{{ .Branch }}
-  #       - v1-repo-
-  # cache_modules: &cache_modules
-  #   save_cache:
-  #     key: v1-repo-{{ .Branch }}-{{ checksum "yarn.lock" }}
-  #     paths:
-  #       - node_modules
-  #       - ./
-  save_repo: &save_repo
-    persist_to_workspace:
-      root: /tmp/tunnckocore-monorepo
+  restore_repo_cache: &restore_repo_cache
+    restore_cache:
+      keys:
+        - v1-repo-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        - v1-repo-{{ .Branch }}
+        - v1-repo-
+  save_repo_cache: &save_repo_cache
+    save_cache:
+      key: v1-repo-{{ .Branch }}-{{ checksum "yarn.lock" }}
       paths:
         - node_modules
         - ./
@@ -56,38 +50,46 @@ references:
       - run:
           name: Bootstrap packages
           command: yarn run bootstrap
-      - *save_repo
+      - persist_to_workspace:
+          root: /tmp/tunnckocore-monorepo
+          paths:
+            - node_modules
+            - ./
   lint: &lint
     steps:
       - *restore_repo
+      - *restore_repo_cache
       - run: # TODO: remove the --all flag when everything is ready
           name: Linting packages
           command: yarn run lint --all
-      - *save_repo
+      - *save_repo_cache
   test: &test
     steps:
       - *restore_repo
+      - *restore_repo_cache
       - run: # TODO: remove the --all flag when everything is ready
           name: Run tests
           command: yarn run test --coverage --all
       - run:
           name: Send test coverage to CodeCov
           command: bash <(curl -s https://codecov.io/bash)
-      - *save_repo
+      - *save_repo_cache
   typecheck: &typecheck
     steps:
       - *restore_repo
+      - *restore_repo_cache
       - run:
           name: Type checking with TypeScript
           command: yarn run tscheck
-      - *save_repo
+      - *save_repo_cache
   build: &build
     steps:
       - *restore_repo
+      - *restore_repo_cache
       - run: # TODO: use jest-runner-babel soon, instead of lerna exec --parallel
           name: Building production files
           command: yarn run build
-      - *save_repo
+      - *save_repo_cache
 
 jobs:
   test-node-8:
@@ -115,6 +117,7 @@ jobs:
     <<: *node-10
     steps:
       - *restore_repo
+      - *restore_repo_cache
       - add-ssh-keys: # User machine's key fingerprint (CircleCI User Key)
           fingerprints:
             - "d1:7e:2a:2d:2f:07:8f:d9:b5:f6:41:57:77:03:e1:f0"
@@ -130,7 +133,7 @@ jobs:
       - run:
           name: Publish to npm and GitHub
           command: yarn run release --yes
-      - *save_repo
+      - *save_repo_cache
 
 workflows:
   version: 2
