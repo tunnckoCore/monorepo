@@ -1,9 +1,7 @@
 'use strict';
 
 const pkg = require('./package.json');
-
-const EXTENSIONS = pkg.extensions;
-const WORKSPACES = pkg.workspaces.map((x) => x.slice(0, -2));
+const { exts, alias } = require('./support')(pkg);
 
 module.exports = {
   rootDir: __dirname,
@@ -13,11 +11,8 @@ module.exports = {
   testEnvironment: 'node',
   testMatch: ['**/src/**/*'],
 
-  moduleFileExtensions: ['ts', 'tsx'].concat('json'),
-  moduleNameMapper: WORKSPACES.reduce((acc, x) => {
-    acc[`^${x}/(.+)`] = `<rootDir>/${x}/$1/src`;
-    return acc;
-  }, {}),
+  moduleFileExtensions: exts.concat('json'),
+  moduleNameMapper: alias,
 
   runner: 'jest-runner-tsc',
 };

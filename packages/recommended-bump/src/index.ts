@@ -4,15 +4,15 @@ import {
   parse,
   check,
   Commit,
-} from 'packages/parse-commit-message';
+} from 'parse-commit-message';
 
 import {
   Commits,
   RecommendedBumpResult,
   RecommendedBumpOptions,
-} from './types.d';
+} from './types';
 
-export * from './types.d';
+export * from './types';
 
 /**
  * Calculates recommended bump (next version), based on given `commits`.

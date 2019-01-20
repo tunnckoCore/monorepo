@@ -2,7 +2,7 @@ import { EOL } from 'os';
 import { isValidString } from './utils';
 import { parseHeader, stringifyHeader, validateHeader } from './header';
 
-import { Commit, CommitResult } from './types.d';
+import { Commit, CommitResult } from './types';
 
 /**
  * Receives a full commit message `string` and parses it into an `Commit` object

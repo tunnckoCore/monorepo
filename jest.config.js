@@ -1,9 +1,7 @@
 'use strict';
 
 const pkg = require('./package.json');
-
-const EXTENSIONS = pkg.extensions;
-const WORKSPACES = pkg.workspaces.map((x) => x.slice(0, -2));
+const { exts, alias } = require('./support')(pkg);
 
 module.exports = {
   displayName: 'test',
@@ -11,11 +9,8 @@ module.exports = {
   testEnvironment: 'node',
   testMatch: ['**/__tests__/**/*'],
 
-  moduleFileExtensions: EXTENSIONS.concat('json'),
-  moduleNameMapper: WORKSPACES.reduce((acc, x) => {
-    acc[`^${x}/(.+)`] = `<rootDir>/${x}/$1/src`;
-    return acc;
-  }, {}),
+  moduleFileExtensions: exts.concat('json'),
+  moduleNameMapper: alias,
 
   transform: {
     '^.+\\.(ts|tsx|js|jsx)$': 'babel-jest',
@@ -23,7 +18,7 @@ module.exports = {
 
   collectCoverage: false,
   collectCoverageFrom: [
-    `**/src/**/*.{${EXTENSIONS.join(',')}}`,
+    `**/src/**/*.{${exts.join(',')}}`,
     '!**/node_modules/**',
     '!**/__tests__/**',
     '!**/dist/**',

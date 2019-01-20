@@ -1,5 +1,5 @@
 import dedent from 'dedent';
-import { parse, stringifyHeader } from 'packages/parse-commit-message';
+import { parse, stringifyHeader } from 'parse-commit-message';
 
 import recommendedBump from '../index';
 

@@ -2,12 +2,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import dedent from 'dedent';
 import simpleGit from 'simple-git/promise';
-import {
-  applyPlugins,
-  plugins,
-  parse,
-  check,
-} from 'packages/parse-commit-message';
+import { applyPlugins, plugins, parse, check } from 'parse-commit-message';
 
 import gitCommitsSince from '..';
 

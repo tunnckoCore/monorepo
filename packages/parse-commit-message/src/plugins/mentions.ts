@@ -2,7 +2,7 @@
 import getMentions from 'collect-mentions';
 
 import { normalizeCommit, getValue } from '../utils';
-import { Commit } from '../types.d';
+import { Commit } from '../types';
 
 /**
  * A plugin that adds `mentions` array property to the `commit`.

@@ -20,9 +20,9 @@ import {
   checkCommit,
 } from './commit';
 
-import { Commit, Plugin, Plugins, PossibleCommit } from './types.d';
+import { Commit, Plugin, Plugins, PossibleCommit } from './types';
 
-export * from './types.d';
+export * from './types';
 
 // 'chore(some): foo bar baz' -> { type: 'chore', scope: 'some', subject: 'foo bar baz' }
 // for some freaking reason it does NOT report `toArray` as unused

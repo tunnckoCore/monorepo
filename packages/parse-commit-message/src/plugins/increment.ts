@@ -1,4 +1,4 @@
-import { Commit } from '../types.d';
+import { Commit } from '../types';
 import { normalizeCommit, getValue } from '../utils';
 /**
  * A plugin that adds `increment` and `isBreaking` properties

@@ -1,6 +1,6 @@
 import { isValidString, stringToHeader } from './utils';
 
-import { Header, CommitResult } from './types.d';
+import { Header, CommitResult } from './types';
 
 /**
  * Parses given `header` string into an header object.

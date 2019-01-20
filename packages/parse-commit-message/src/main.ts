@@ -1,5 +1,5 @@
 import { parseCommit, stringifyCommit, checkCommit } from './commit';
-import { Commit, CommitResult, PossibleCommit } from './types.d';
+import { Commit, CommitResult, PossibleCommit } from './types';
 import { toArray } from './utils';
 
 /**
