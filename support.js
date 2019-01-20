@@ -3,6 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const cwd = __dirname;
+
 /**
  * Create explicit alias key/value pair from the current
  * packages inside each workspace, because
@@ -13,7 +15,6 @@ const path = require('path');
  * We just don't use regex, we precompute them.
  */
 function createAliases(pkg) {
-  const cwd = __dirname;
   const exts = pkg.extensions.map((x) => `.${x}`);
 
   const alias = pkg.workspaces
