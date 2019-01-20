@@ -1,13 +1,13 @@
 'use strict';
 
 const pkg = require('./package.json');
-const support = require('./support');
+const { createAliases } = require('./support');
 
 module.exports = {
   extends: 'tunnckocore',
   settings: {
     'import/resolver': {
-      'babel-module': support(pkg),
+      'babel-module': createAliases(pkg),
     },
   },
 

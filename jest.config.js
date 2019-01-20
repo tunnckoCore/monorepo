@@ -1,7 +1,9 @@
 'use strict';
 
 const pkg = require('./package.json');
-const { exts, alias } = require('./support')(pkg);
+const { createAliases } = require('./support');
+
+const { exts, alias } = createAliases(pkg);
 
 module.exports = {
   displayName: 'test',

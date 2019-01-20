@@ -12,8 +12,6 @@ import {
   RecommendedBumpOptions,
 } from './types';
 
-export * from './types';
-
 /**
  * Calculates recommended bump (next version), based on given `commits`.
  * It always returns an object. If no commits are given it is `{ increment: false }`.

@@ -1,7 +1,7 @@
 'use strict';
 
 // const pkg = require('./package.json');
-// const support = require('./support');
+// const { createAliases } = require('./support');
 
 module.exports = {
   ignore:
@@ -17,5 +17,5 @@ module.exports = {
     '@babel/preset-typescript',
   ],
   comments: false,
-  // plugins: [['module-resolver', support(pkg)]],
+  // plugins: [['module-resolver', createAliases(pkg)]],
 };

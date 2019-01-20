@@ -10,8 +10,9 @@ const path = require('path');
  * '^(.+)': '/path/to/package/src'
  *
  * can be very big mistake ;]
+ * We just don't use regex, we precompute them.
  */
-module.exports = (pkg) => {
+function createAliases(pkg) {
   const cwd = __dirname;
   const exts = pkg.extensions.map((x) => `.${x}`);
 
@@ -42,4 +43,6 @@ module.exports = (pkg) => {
     }, {});
 
   return { cwd, extensions: exts, exts: pkg.extensions, alias };
-};
+}
+
+module.exports = { createAliases };
