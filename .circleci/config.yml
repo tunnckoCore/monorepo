@@ -22,63 +22,72 @@ references:
   #
   # Cache
   #
-  restore_modules: &restore_modules
-    restore_cache:
-      keys:
-        - v1-repo-{{ .Branch }}-{{ checksum "yarn.lock" }}
-        - v1-repo-{{ .Branch }}
-        - v1-repo-
-  cache_modules: &cache_modules
-    save_cache:
-      key: v1-repo-{{ .Branch }}-{{ checksum "yarn.lock" }}
+  # restore_modules: &restore_modules
+  #   restore_cache:
+  #     keys:
+  #       - v1-repo-{{ .Branch }}-{{ checksum "yarn.lock" }}
+  #       - v1-repo-{{ .Branch }}
+  #       - v1-repo-
+  # cache_modules: &cache_modules
+  #   save_cache:
+  #     key: v1-repo-{{ .Branch }}-{{ checksum "yarn.lock" }}
+  #     paths:
+  #       - node_modules
+  #       - ./
+  save_repo: &save_repo
+    persist_to_workspace:
+      root: /tmp/tunnckocore-monorepo
       paths:
         - node_modules
         - ./
+  restore_repo: &restore_repo
+    attach_workspace:
+      at: /tmp/tunnckocore-monorepo
   #
   # Jobs
   #
   install: &install
     steps:
       - checkout
-      - *restore_modules
+      - *restore_repo
       - run:
           name: Installing dependencies
           command: yarn install --prefer-offline || yarn install
       - run:
           name: Bootstrap packages
           command: yarn run bootstrap
-      - *cache_modules
+      - *save_repo
   lint: &lint
     steps:
-      - *restore_modules
+      - *restore_repo
       - run: # TODO: remove the --all flag when everything is ready
           name: Linting packages
           command: yarn run lint --all
-      - *cache_modules
+      - *save_repo
   test: &test
     steps:
-      - *restore_modules
+      - *restore_repo
       - run: # TODO: remove the --all flag when everything is ready
           name: Run tests
           command: yarn run test --coverage --all
       - run:
           name: Send test coverage to CodeCov
           command: bash <(curl -s https://codecov.io/bash)
-      - *cache_modules
+      - *save_repo
   typecheck: &typecheck
     steps:
-      - *restore_modules
+      - *restore_repo
       - run:
           name: Type checking with TypeScript
           command: yarn run tscheck
-      - *cache_modules
+      - *save_repo
   build: &build
     steps:
-      - *restore_modules
+      - *restore_repo
       - run: # TODO: use jest-runner-babel soon, instead of lerna exec --parallel
           name: Building production files
           command: yarn run build
-      - *cache_modules
+      - *save_repo
 
 jobs:
   test-node-8:
@@ -105,7 +114,7 @@ jobs:
   deploy:
     <<: *node-10
     steps:
-      - *restore_modules
+      - *restore_repo
       - add-ssh-keys: # User machine's key fingerprint (CircleCI User Key)
           fingerprints:
             - "d1:7e:2a:2d:2f:07:8f:d9:b5:f6:41:57:77:03:e1:f0"
@@ -121,7 +130,7 @@ jobs:
       - run:
           name: Publish to npm and GitHub
           command: yarn run release --yes
-      - *cache_modules
+      - *save_repo
 
 workflows:
   version: 2
