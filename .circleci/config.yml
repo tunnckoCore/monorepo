@@ -78,11 +78,9 @@ references:
 jobs:
   test-node-8:
     <<: *node-8
-    <<: *install
     <<: *test
   test-node-10:
     <<: *node-10
-    <<: *install
     <<: *test
   #
   # Linting, type-checking, building and releasing
@@ -95,15 +93,12 @@ jobs:
     <<: *lint
   typecheck:
     <<: *node-10
-    <<: *install
     <<: *typecheck
   build:
     <<: *node-10
-    <<: *install
     <<: *build
   deploy:
     <<: *node-10
-    <<: *install
     steps:
       - *restore_modules
       - add-ssh-keys: # User machine's key fingerprint (CircleCI User Key)
