@@ -5,6 +5,7 @@
     "build": "babel src -d dist -x .js,.jsx,.ts,.tsx,.mjs --delete-dir-on-start",
     "test": "jest"
   },
+  "module": "index.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
@@ -22,7 +23,8 @@
     "node 10"
   ],
   "files": [
-    "dist"
+    "dist",
+    "index.js"
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
@@ -33,6 +35,7 @@
   "dependencies": {
     "collect-mentions": "^1.0.2",
     "dedent": "^0.7.0",
+    "esm": "^3.1.1",
     "mixin-deep": "^2.0.0"
   },
   "devDependencies": {

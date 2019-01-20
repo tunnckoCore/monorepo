@@ -5,6 +5,7 @@
     "build": "babel src -d dist -x .js,.jsx,.ts,.tsx,.mjs --delete-dir-on-start",
     "test": "jest"
   },
+  "module": "index.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
@@ -22,7 +23,8 @@
     "node 10"
   ],
   "files": [
-    "dist"
+    "dist",
+    "index.js"
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
@@ -32,6 +34,7 @@
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/packages/git-commits-since",
   "dependencies": {
     "@tunnckocore/git-semver-tags": "^0.2.0",
+    "esm": "^3.1.1",
     "git-raw-commits": "^2.0.0"
   },
   "devDependencies": {

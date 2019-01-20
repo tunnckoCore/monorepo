@@ -3037,7 +3037,7 @@ eslint@^5.12.0, eslint@^5.6.0:
     table "^5.0.2"
     text-table "^0.2.0"
 
-esm@^3.0.84:
+esm@^3.0.84, esm@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/esm/-/esm-3.1.1.tgz#810d1144522547801a58a8ea01d6566d61578223"
   integrity sha512-Md2pR4IbR37UqubbgbA4+wiBorOEFB05Oo+g4WJW7W2ajiOhUfjZt77NzzCoQdrCb40GdKcflitm+XHDF053OQ==
