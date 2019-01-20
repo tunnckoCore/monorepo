@@ -1,12 +1,13 @@
 {
   "scripts": {
+    "type:gen": "echo 'tsc -p ./tsconfig.gentypes.json'",
     "type:check": "echo 'tsc -p ./tsconfig.check.json'",
     "build": "babel src -d dist -x .js,.jsx,.ts,.tsx,.mjs --delete-dir-on-start",
     "test": "jest"
   },
   "main": "dist/index.js",
-  "types": "src/index.ts",
-  "typings": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "repository": "tunnckoCore/monorepo",
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",
   "publishConfig": {
@@ -21,8 +22,7 @@
     "node 10"
   ],
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "license": "Apache-2.0",
   "licenseStart": "2017",

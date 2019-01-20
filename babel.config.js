@@ -1,7 +1,7 @@
 'use strict';
 
-const pkg = require('./package.json');
-const support = require('./support');
+// const pkg = require('./package.json');
+// const support = require('./support');
 
 module.exports = {
   ignore:
@@ -9,9 +9,13 @@ module.exports = {
       ? ['**/__tests__/**', '**/types.ts', '**/*.d.ts']
       : [],
   presets: [
-    '@babel/preset-env',
+    [
+      '@babel/preset-env',
+      { modules: process.env.BABEL_ENV === 'build' ? false : 'commonjs' },
+    ],
     '@babel/preset-react',
     '@babel/preset-typescript',
   ],
-  plugins: [['module-resolver', support(pkg)]],
+  comments: false,
+  // plugins: [['module-resolver', support(pkg)]],
 };
