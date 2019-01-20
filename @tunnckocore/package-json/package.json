@@ -32,7 +32,6 @@
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/@tunnckocore/package-json",
   "dependencies": {
     "axios": "^0.18.0",
-    "esm": "^3.1.0",
     "parse-package-name": "^0.1.0"
   }
 }

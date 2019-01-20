@@ -1,0 +1,184 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+
+# Re-usable blocks to reduce boilerplate in job definitions.
+references:
+  workdir: &workdir
+    working_directory: /tmp/tunnckocore-monorepo
+  #
+  # Node.js Versions
+  #
+  node-8: &node-8
+    <<: *workdir
+    docker:
+      - image: circleci/node:8-alpine
+  node-10: &node-10
+    <<: *workdir
+    docker:
+      - image: circleci/node:10-alpine
+  #
+  # Cache
+  #
+  restore_modules: &restore_modules
+    restore_cache:
+      keys:
+        - v1-repo-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        - v1-repo-{{ .Branch }}
+        - v1-repo-
+  cache_modules: &cache_modules
+    save_cache:
+      key: v1-repo-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      paths:
+        - node_modules
+  #
+  # Jobs
+  #
+  install: &install
+    steps:
+      - checkout
+      - *restore_modules
+      - run:
+          name: Installing dependencies
+          command: yarn install --prefer-offline || yarn install
+      - run:
+          name: Bootstrap packages
+          command: yarn run bootstrap
+      - *cache_modules
+  lint: &lint
+    steps:
+      - *restore_modules
+      - run: # TODO: remove the --all flag when everything is ready
+          name: Linting packages
+          command: yarn run lint --all
+  test: &test
+    steps:
+      - *restore_modules
+      - run: # TODO: remove the --all flag when everything is ready
+          name: Run tests
+          command: yarn run test --coverage --all
+      - run:
+          name: Send test coverage to CodeCov
+          command: bash <(curl -s https://codecov.io/bash)
+  typecheck: &typecheck
+    steps:
+      - *restore_modules
+      - run:
+          name: Type checking with TypeScript
+          command: yarn run tscheck
+  build: &build
+    steps:
+      - *restore_modules
+      - run: # TODO: use jest-runner-babel soon, instead of lerna exec --parallel
+          name: Building production files
+          command: yarn run build
+
+jobs:
+  test-node-8:
+    <<: *node-8
+    <<: *install
+    <<: *test
+  test-node-10:
+    <<: *node-10
+    <<: *install
+    <<: *test
+  #
+  # Linting, type-checking, building and releasing
+  # is only done inside Node.js v10+ environment.
+  # It doesn't make much sense to run them on both.
+  #
+  lint:
+    <<: *node-10
+    <<: *lint
+  typecheck:
+    <<: *node-10
+    <<: *typecheck
+  build:
+    <<: *node-10
+    <<: *build
+  deploy:
+    <<: *node-10
+    steps:
+      - *restore_modules
+      - checkout
+      - add-ssh-keys: # User machine's key fingerprint (CircleCI User Key)
+          fingerprints:
+            - "d1:7e:2a:2d:2f:07:8f:d9:b5:f6:41:57:77:03:e1:f0"
+      - run:
+          name: Configure git settings
+          command: |-
+            git config --global user.email "mameto2011@gmail.com" &&
+            git config --global user.name "Charlike Mike Reagent"
+      - run:
+          name: Configure npm settings
+          command: |-
+            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ./.npmrc
+      - run:
+          name: Publish to npm and GitHub
+          command: yarn run release --yes
+
+workflows:
+  version: 2
+  automation:
+    jobs:
+      #         typecheck
+      # lint -> test node 8  -> build -> deploy (only on master)
+      #         test node 10
+      - lint
+      - typecheck:
+          requires:
+            - lint
+      - test-node-8:
+          requires:
+            - lint
+      - test-node-10:
+          requires:
+            - lint
+      - build:
+          requires:
+            - lint
+            - typecheck
+            - test-node-8
+            - test-node-10
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+
+# jobs:
+#   build:
+#     docker:
+#       # specify the version you desire here
+#       - image: circleci/node:8
+
+#       # Specify service dependencies here if necessary
+#       # CircleCI maintains a library of pre-built images
+#       # documented at https://circleci.com/docs/2.0/circleci-images/
+#       # - image: circleci/mongo:3.4.4
+
+#     working_directory: ~/repo
+
+#     steps:
+#       - checkout
+
+#       # Download and cache dependencies
+#       - restore_cache:
+#           keys:
+#           - v1-dependencies-{{ checksum "package.json" }}
+#           # fallback to using the latest cache if no exact match is found
+#           - v1-dependencies-
+
+#       - run: yarn install
+
+#       - save_cache:
+#           paths:
+#             - node_modules
+#           key: v1-dependencies-{{ checksum "package.json" }}
+
+#       # run tests!
+#       - run: yarn test
+

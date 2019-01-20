@@ -32,7 +32,6 @@
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/@tunnckocore/git-semver-tags",
   "dependencies": {
     "@tunnckocore/execa": "^2.1.2",
-    "esm": "^3.1.0",
     "semver": "^5.6.0"
   }
 }
