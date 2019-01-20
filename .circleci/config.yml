@@ -91,18 +91,21 @@ jobs:
   #
   lint:
     <<: *node-10
+    <<: *install
     <<: *lint
   typecheck:
     <<: *node-10
+    <<: *install
     <<: *typecheck
   build:
     <<: *node-10
+    <<: *install
     <<: *build
   deploy:
     <<: *node-10
+    <<: *install
     steps:
       - *restore_modules
-      - checkout
       - add-ssh-keys: # User machine's key fingerprint (CircleCI User Key)
           fingerprints:
             - "d1:7e:2a:2d:2f:07:8f:d9:b5:f6:41:57:77:03:e1:f0"
