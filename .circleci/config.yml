@@ -33,6 +33,7 @@ references:
       key: v1-repo-{{ .Branch }}-{{ checksum "yarn.lock" }}
       paths:
         - node_modules
+        - ./
   #
   # Jobs
   #
@@ -53,6 +54,7 @@ references:
       - run: # TODO: remove the --all flag when everything is ready
           name: Linting packages
           command: yarn run lint --all
+      - *cache_modules
   test: &test
     steps:
       - *restore_modules
@@ -62,18 +64,21 @@ references:
       - run:
           name: Send test coverage to CodeCov
           command: bash <(curl -s https://codecov.io/bash)
+      - *cache_modules
   typecheck: &typecheck
     steps:
       - *restore_modules
       - run:
           name: Type checking with TypeScript
           command: yarn run tscheck
+      - *cache_modules
   build: &build
     steps:
       - *restore_modules
       - run: # TODO: use jest-runner-babel soon, instead of lerna exec --parallel
           name: Building production files
           command: yarn run build
+      - *cache_modules
 
 jobs:
   test-node-8:
@@ -116,6 +121,7 @@ jobs:
       - run:
           name: Publish to npm and GitHub
           command: yarn run release --yes
+      - *cache_modules
 
 workflows:
   version: 2
