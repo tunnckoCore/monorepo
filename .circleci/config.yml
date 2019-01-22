@@ -85,7 +85,7 @@ jobs:
   typecheck:
     <<: *node-10
     steps:
-      - *&attach-ws
+      - attach_workspace: *attach-ws
       - run:
           name: Type checking with TypeScript
           command: yarn run tscheck
