@@ -4,127 +4,100 @@
 #
 version: 2
 
-# Re-usable blocks to reduce boilerplate in job definitions.
-references:
-  workdir: &workdir
-    working_directory: /tmp/tunnckocore-monorepo
-  #
-  # Node.js Versions
-  #
-  node-8: &node-8
-    <<: *workdir
+aliases:
+  - &node-8
+    working_directory: ~/tunnckocore-monorepo
     docker:
       - image: circleci/node:8
-  node-10: &node-10
-    <<: *workdir
+  - &node-10
+    working_directory: ~/tunnckocore-monorepo
     docker:
       - image: circleci/node:10
-  #
-  # Caches
-  #
-  restore_repo_cache: &restore_repo_cache
-    restore_cache:
+  - &restore-cache
       keys:
-        - v1-repo-{{ .Branch }}-{{ checksum "yarn.lock" }}
-        - v1-repo-{{ .Branch }}
-        - v1-repo-
-  save_repo_cache: &save_repo_cache
-    save_cache:
-      key: v1-repo-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      paths:
-        - node_modules
-        - ./
-  restore_repo: &restore_repo
+        - v1-monorepo-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+        - v1-monorepo-{{ checksum "yarn.lock" }}
+        - v1-monorepo-
+  - &save-cache
+    key: v1-monorepo-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+    paths:
+      - ~/.cache/yarn
+      - node_modules
+  - &attach-ws
     attach_workspace:
-      at: /tmp/tunnckocore-monorepo
-  #
-  # Jobs
-  #
-  install: &install
+      at: ~/tunnckocore-monorepo
+  - &yarn
+    name: Install Dependencies
+    command: yarn install --prefer-offline || yarn install
+  - &lerna
+    name: Bootstrap Packages
+    command: yarn run bootstrap
+  - &test
+    # TODO: remove the `--all` flag
+    name: Run Tests
+    command: yarn run test --coverage --all
+  - &lint
+    # TODO: remove the `--all` flag
+    name: Lint Packages
+    command: yarn run lint --all
+
+jobs:
+  install:
+    <<: *node-8
     steps:
       - checkout
-      - *restore_repo
-      - run:
-          name: Installing dependencies
-          command: yarn install --prefer-offline || yarn install
-      - run:
-          name: Bootstrap packages
-          command: yarn run bootstrap
+      - restore_cache: *restore-cache
+      - run: date
+      - run: *yarn
+      - run: *lerna
+      - save_cache: *save-cache
       - persist_to_workspace:
-          root: /tmp/tunnckocore-monorepo
+          root: .
           paths:
-            - node_modules
-            - ./
-  lint: &lint
+            - .
+  test-node-8:
+    <<: *node-8
     steps:
-      - *restore_repo
-      - *restore_repo_cache
-      - run: # TODO: remove the --all flag when everything is ready
-          name: Linting packages
-          command: yarn run lint --all
-      - *save_repo_cache
-  test: &test
+      - *&attach-ws
+      - run: *test
+  test-node-10:
+    <<: *node-10
     steps:
-      - *restore_repo
-      - *restore_repo_cache
-      - run: # TODO: remove the --all flag when everything is ready
-          name: Run tests
-          command: yarn run test --coverage --all
+      - *&attach-ws
+      - run: *test
       - run:
-          name: Send test coverage to CodeCov
+          name: Send CodeCov Results
           command: bash <(curl -s https://codecov.io/bash)
-      - *save_repo_cache
-  typecheck: &typecheck
+  lint:
+    <<: *node-10
     steps:
-      - *restore_repo
-      - *restore_repo_cache
+      - *&attach-ws
+      - run: *lint
+  typecheck:
+    <<: *node-10
+    steps:
+      - *&attach-ws
       - run:
           name: Type checking with TypeScript
           command: yarn run tscheck
-      - *save_repo_cache
-  build: &build
-    steps:
-      - *restore_repo
-      - *restore_repo_cache
-      - run: # TODO: use jest-runner-babel soon, instead of lerna exec --parallel
-          name: Building production files
-          command: yarn run build
-      - *save_repo_cache
-
-jobs:
-  test-node-8:
-    <<: *node-8
-    <<: *test
-  test-node-10:
-    <<: *node-10
-    <<: *test
-  #
-  # Linting, type-checking, building and releasing
-  # is only done inside Node.js v10+ environment.
-  # It doesn't make much sense to run them on both.
-  #
-  lint:
-    <<: *node-10
-    <<: *install
-    <<: *lint
-  typecheck:
-    <<: *node-10
-    <<: *typecheck
   build:
     <<: *node-10
-    <<: *build
+    steps:
+      - *&attach-ws
+      - run: # TODO: use jest-runner-babel soon, instead of lerna exec --parallel
+          name: Build production files
+          command: yarn run build
   deploy:
     <<: *node-10
     steps:
-      - *restore_repo
-      - *restore_repo_cache
+      - *&attach-ws
       - add-ssh-keys: # User machine's key fingerprint (CircleCI User Key)
           fingerprints:
             - "d1:7e:2a:2d:2f:07:8f:d9:b5:f6:41:57:77:03:e1:f0"
       - run:
           name: Configure git settings
           command: |-
-            git config --global user.email "mameto2011@gmail.com" &&
+            git config --global user.email "mameto2011@gmail.com"
             git config --global user.name "Charlike Mike Reagent"
       - run:
           name: Configure npm settings
@@ -133,16 +106,19 @@ jobs:
       - run:
           name: Publish to npm and GitHub
           command: yarn run release --yes
-      - *save_repo_cache
+
 
 workflows:
   version: 2
   automation:
     jobs:
-      #         typecheck
-      # lint -> test node 8  -> build -> deploy (only on master)
-      #         test node 10
-      - lint
+      #                    typecheck
+      # install -> lint -> test node 8  -> build -> deploy (only on master)
+      #                    test node 10
+      - install
+      - lint:
+          requires:
+            - install
       - typecheck:
           requires:
             - lint
@@ -154,7 +130,6 @@ workflows:
             - lint
       - build:
           requires:
-            - lint
             - typecheck
             - test-node-8
             - test-node-10
@@ -164,37 +139,3 @@ workflows:
           filters:
             branches:
               only: master
-
-# jobs:
-#   build:
-#     docker:
-#       # specify the version you desire here
-#       - image: circleci/node:8
-
-#       # Specify service dependencies here if necessary
-#       # CircleCI maintains a library of pre-built images
-#       # documented at https://circleci.com/docs/2.0/circleci-images/
-#       # - image: circleci/mongo:3.4.4
-
-#     working_directory: ~/repo
-
-#     steps:
-#       - checkout
-
-#       # Download and cache dependencies
-#       - restore_cache:
-#           keys:
-#           - v1-dependencies-{{ checksum "package.json" }}
-#           # fallback to using the latest cache if no exact match is found
-#           - v1-dependencies-
-
-#       - run: yarn install
-
-#       - save_cache:
-#           paths:
-#             - node_modules
-#           key: v1-dependencies-{{ checksum "package.json" }}
-
-#       # run tests!
-#       - run: yarn test
-
