@@ -99,7 +99,7 @@ jobs:
     <<: *node-10
     steps:
       - attach_workspace: *attach-ws
-      - add-ssh-keys: # User machine's key fingerprint (CircleCI User Key)
+      - add_ssh_keys: # User machine's key fingerprint (CircleCI User Key)
           fingerprints:
             - "d1:7e:2a:2d:2f:07:8f:d9:b5:f6:41:57:77:03:e1:f0"
       - run: *git
