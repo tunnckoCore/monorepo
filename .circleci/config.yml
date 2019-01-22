@@ -22,6 +22,7 @@ references:
     key: v1-monorepo-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
     paths:
       - ~/.cache/yarn
+      - ~/.cache/yarn-packages-cache
       - node_modules
   attach-ws: &attach-ws
     at: ~/tunnckocore-monorepo
