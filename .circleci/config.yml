@@ -24,8 +24,7 @@ references:
       - ~/.cache/yarn
       - node_modules
   attach-ws: &attach-ws
-    attach_workspace:
-      at: ~/tunnckocore-monorepo
+    at: ~/tunnckocore-monorepo
   yarn: &yarn
     name: Install Dependencies
     command: yarn install --prefer-offline || yarn install
