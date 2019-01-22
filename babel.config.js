@@ -4,10 +4,7 @@
 // const { createAliases } = require('./support');
 
 module.exports = {
-  ignore:
-    process.env.BABEL_ENV === 'build'
-      ? ['**/__tests__/**', '**/types.ts', '**/*.d.ts']
-      : [],
+  ignore: process.env.BABEL_ENV === 'build' ? ['**/__tests__/**'] : [],
   presets: [
     [
       '@babel/preset-env',

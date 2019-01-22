@@ -2,11 +2,11 @@
   "scripts": {
     "type:gen": "tsc -p ./tsconfig.gentypes.json",
     "type:check": "tsc -p ./tsconfig.check.json",
-    "build": "babel src -d dist -x .js,.jsx,.ts,.tsx,.mjs --delete-dir-on-start",
+    "build": "babel src -d build -x .js,.jsx,.ts,.tsx,.mjs --delete-dir-on-start",
+    "postbuild": "ncc build build/index.js -o dist && rm -rf build",
     "test": "jest"
   },
-  "module": "dist/index.js",
-  "main": "index.js",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
   "repository": "tunnckoCore/monorepo",
@@ -32,11 +32,8 @@
   "name": "recommended-bump",
   "description": "Calculates recommended bump (next semver version) based on given array of commit messages following Conventional Commits specification",
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/packages/recommended-bump",
-  "dependencies": {
-    "esm": "^3.1.1",
-    "parse-commit-message": "^3.2.3"
-  },
   "devDependencies": {
+    "parse-commit-message": "^3.2.3",
     "@types/dedent": "^0.7.0",
     "dedent": "^0.7.0"
   }

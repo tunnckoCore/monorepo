@@ -1,4 +1,3 @@
-import proc from 'process';
 import { exec } from '@tunnckocore/execa';
 import semver from 'semver';
 
@@ -16,7 +15,7 @@ function lernaTag(tag, pkg) {
 
 /* eslint-disable no-param-reassign */
 export default async function gitSemverTags(options) {
-  const opts = Object.assign({ cwd: proc.cwd() }, options);
+  const opts = Object.assign({ cwd: process.cwd() }, options);
 
   if (opts.package && !opts.lernaTags) {
     throw new Error(

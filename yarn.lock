@@ -1323,6 +1323,11 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
+"@zeit/ncc@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@zeit/ncc/-/ncc-0.11.0.tgz#17807a4e486e4e7a232add1edfeb8b861dc08cad"
+  integrity sha512-J6wlJ9PlBqH3+Em+tnQSt/YXmKDQUJykRc2M5LxuJiDyUHAdVLvVjNrRTpRLn7JEDfgMYECPMGZS195N32Pn9Q==
+
 JSONStream@^1.0.4, JSONStream@^1.3.4:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/JSONStream/-/JSONStream-1.3.5.tgz#3208c1f08d3a4d99261ab64f92302bc15e111ca0"

@@ -2,11 +2,11 @@
   "scripts": {
     "type:gen": "echo 'tsc -p ./tsconfig.gentypes.json'",
     "type:check": "echo 'tsc -p ./tsconfig.check.json'",
-    "build": "babel src -d dist -x .js,.jsx,.ts,.tsx,.mjs --delete-dir-on-start",
+    "build": "babel src -d build -x .js,.jsx,.ts,.tsx,.mjs --delete-dir-on-start",
+    "postbuild": "ncc build build/index.js -o dist && rm -rf build",
     "test": "jest"
   },
-  "module": "dist/index.js",
-  "main": "index.js",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
   "repository": "tunnckoCore/monorepo",
@@ -32,9 +32,8 @@
   "name": "@tunnckocore/git-semver-tags",
   "description": "Get all semver valid flags for a git repository. Temporary fork of original git-semver-tags, promised api - async/await friendly, plus option for cwd",
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/@tunnckocore/git-semver-tags",
-  "dependencies": {
+  "devDependencies": {
     "@tunnckocore/execa": "^2.1.2",
-    "esm": "^3.1.1",
     "semver": "^5.6.0"
   }
 }

@@ -1,10 +1,6 @@
 'use strict';
 
-const path = require('path');
-const esmLoader = require('esm');
-const pkg = require('./package.json');
-
-const esmRequire = esmLoader(module);
+const mod = require('./dist');
 
 function interop(x) {
   if (Object.keys(x).length === 1 && x.default) {
@@ -12,7 +8,5 @@ function interop(x) {
   }
   return x;
 }
-
-const mod = esmRequire(path.join(__dirname, pkg.module));
 
 module.exports = interop(mod);
