@@ -22,6 +22,8 @@ import {
 
 import { Commit, Plugin, Plugins, PossibleCommit } from './types';
 
+export * from './types';
+
 // 'chore(some): foo bar baz' -> { type: 'chore', scope: 'some', subject: 'foo bar baz' }
 // for some freaking reason it does NOT report `toArray` as unused
 // both typescript and eslint are playing some weird games today

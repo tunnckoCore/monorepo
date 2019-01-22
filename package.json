@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "bootstrap": "lerna bootstrap",
+    "postinstall": "lerna bootstrap",
     "test": "jest --onlyChanged",
     "test:ci": "yarn test --runInBand",
     "test:all": "lerna run test --parallel --since",
@@ -65,5 +65,9 @@
     "js",
     "jsx",
     "mjs"
-  ]
+  ],
+  "devDependencies": {
+    "@types/dedent": "^0.7.0",
+    "@types/react": "^16.7.20"
+  }
 }

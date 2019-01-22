@@ -52,8 +52,6 @@ wercker.yml
 
 # misc
 *.md
-*.ts
-!*.d.ts
 *.jst
 *.coffee
 *.tgz

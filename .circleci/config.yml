@@ -29,9 +29,6 @@ references:
   yarn: &yarn
     name: Install Dependencies
     command: yarn install --prefer-offline || yarn install
-  lerna: &lerna
-    name: Bootstrap Packages
-    command: yarn run bootstrap
   test: &test
     # TODO: remove the `--all` flag
     name: Run Tests
@@ -56,9 +53,7 @@ jobs:
     steps:
       - checkout
       - restore_cache: *restore-cache
-      - run: date
       - run: *yarn
-      - run: *lerna
       - save_cache: *save-cache
       - persist_to_workspace:
           root: .
