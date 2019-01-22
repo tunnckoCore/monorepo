@@ -2,44 +2,53 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-version: 2
+version: 2.1
 
-aliases:
-  - &node-8
+references:
+  node-8: &node-8
     working_directory: ~/tunnckocore-monorepo
     docker:
       - image: circleci/node:8
-  - &node-10
+  node-10: &node-10
     working_directory: ~/tunnckocore-monorepo
     docker:
       - image: circleci/node:10
-  - &restore-cache
+  restore-cache: &restore-cache
       keys:
         - v1-monorepo-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
         - v1-monorepo-{{ checksum "yarn.lock" }}
         - v1-monorepo-
-  - &save-cache
+  save-cache: &save-cache
     key: v1-monorepo-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
     paths:
       - ~/.cache/yarn
       - node_modules
-  - &attach-ws
+  attach-ws: &attach-ws
     attach_workspace:
       at: ~/tunnckocore-monorepo
-  - &yarn
+  yarn: &yarn
     name: Install Dependencies
     command: yarn install --prefer-offline || yarn install
-  - &lerna
+  lerna: &lerna
     name: Bootstrap Packages
     command: yarn run bootstrap
-  - &test
+  test: &test
     # TODO: remove the `--all` flag
     name: Run Tests
     command: yarn run test --coverage --all
-  - &lint
+  lint: &lint
     # TODO: remove the `--all` flag
     name: Lint Packages
     command: yarn run lint --all
+  git: &git
+    name: Configure git settings
+    command: |-
+      git config --global user.email "mameto2011@gmail.com"
+      git config --global user.name "Charlike Mike Reagent"
+  npm: &npm
+    name: Configure npm settings
+    command: |-
+      echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ./.npmrc
 
 jobs:
   install:
@@ -58,12 +67,12 @@ jobs:
   test-node-8:
     <<: *node-8
     steps:
-      - *&attach-ws
+      - attach_workspace: *attach-ws
       - run: *test
   test-node-10:
     <<: *node-10
     steps:
-      - *&attach-ws
+      - attach_workspace: *attach-ws
       - run: *test
       - run:
           name: Send CodeCov Results
@@ -71,7 +80,7 @@ jobs:
   lint:
     <<: *node-10
     steps:
-      - *&attach-ws
+      - attach_workspace: *attach-ws
       - run: *lint
   typecheck:
     <<: *node-10
@@ -83,26 +92,19 @@ jobs:
   build:
     <<: *node-10
     steps:
-      - *&attach-ws
+      - attach_workspace: *attach-ws
       - run: # TODO: use jest-runner-babel soon, instead of lerna exec --parallel
           name: Build production files
           command: yarn run build
   deploy:
     <<: *node-10
     steps:
-      - *&attach-ws
+      - attach_workspace: *attach-ws
       - add-ssh-keys: # User machine's key fingerprint (CircleCI User Key)
           fingerprints:
             - "d1:7e:2a:2d:2f:07:8f:d9:b5:f6:41:57:77:03:e1:f0"
-      - run:
-          name: Configure git settings
-          command: |-
-            git config --global user.email "mameto2011@gmail.com"
-            git config --global user.name "Charlike Mike Reagent"
-      - run:
-          name: Configure npm settings
-          command: |-
-            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ./.npmrc
+      - run: *git
+      - run: *npm
       - run:
           name: Publish to npm and GitHub
           command: yarn run release --yes
