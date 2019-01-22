@@ -3,10 +3,10 @@
     "type:gen": "tsc -p ./tsconfig.gentypes.json",
     "type:check": "tsc -p ./tsconfig.check.json",
     "build": "babel src -d build -x .js,.jsx,.ts,.tsx,.mjs --delete-dir-on-start",
-    "postbuild": "ncc build build/index.js -o dist && rm -rf build",
+    "postbuild": "ncc build build/index.js -o dist --minify && rm -rf build",
     "test": "jest"
   },
-  "main": "dist/index.js",
+  "main": "index.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
   "repository": "tunnckoCore/monorepo",
