@@ -14,7 +14,7 @@
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",
   "publishConfig": {
     "access": "public",
-    "tag": "latest"
+    "tag": "beta-x"
   },
   "engines": {
     "node": "^8.10.0 || >=10.13.0"

@@ -14,7 +14,7 @@
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",
   "publishConfig": {
     "access": "public",
-    "tag": "latest"
+    "tag": "beta-x"
   },
   "engines": {
     "node": "^8.10.0 || >=10.13.0"
@@ -29,8 +29,8 @@
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
-  "version": "111.111.111",
-  "name": "foo-qux-bar",
+  "version": "1.0.4",
+  "name": "foo-bar-baz-qux",
   "description": "dasdasd",
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/packages/foo-qux-bar",
   "devDependencies": {}
