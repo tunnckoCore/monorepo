@@ -1,6 +1,6 @@
 import path from 'path';
 
-export function join(a: string, b: string) {
+export function bar(a: string, b: string) {
   return path.join('charlike', a, b);
 }
 
