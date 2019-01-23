@@ -5,6 +5,7 @@ import { parseHeader, stringifyHeader, validateHeader } from './header';
 import { Commit, CommitResult } from './types';
 
 export const FOO_BAR_QUX = 123;
+export const QQBAR = 444;
 
 /**
  * Receives a full commit message `string` and parses it into an `Commit` object
