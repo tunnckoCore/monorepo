@@ -29,17 +29,17 @@
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "name": "git-commits-since",
   "description": "Get all commits since given period of time or by default from latest git semver tag. Understands and follows both SemVer and the Conventional Commits specification.",
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/packages/git-commits-since",
   "devDependencies": {
-    "@tunnckocore/git-semver-tags": "^0.3.0",
+    "@tunnckocore/git-semver-tags": "^0.3.1",
     "@types/dedent": "^0.7.0",
     "dedent": "^0.7.0",
     "fs-extra": "^7.0.0",
     "git-raw-commits": "^2.0.0",
-    "parse-commit-message": "^4.0.0",
+    "parse-commit-message": "^4.0.1",
     "simple-git": "^1.107.0"
   }
 }
