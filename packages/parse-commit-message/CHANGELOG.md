@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/tunnckoCore/monorepo/compare/parse-commit-message@4.0.2...parse-commit-message@4.1.0) (2019-01-23)
+
+
+### Features
+
+* **parse-commit-message:** cleanup ([f270c9d](https://github.com/tunnckoCore/monorepo/commit/f270c9d))
+
+
+
+
+
 ## [4.0.2](https://github.com/tunnckoCore/monorepo/compare/parse-commit-message@4.0.1...parse-commit-message@4.0.2) (2019-01-23)
 
 
