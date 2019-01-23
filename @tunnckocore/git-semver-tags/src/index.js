@@ -1,8 +1,6 @@
 import { exec } from '@tunnckocore/execa';
 import semver from 'semver';
 
-const QUXZAZ = 123456;
-
 const regex = /tag:\s*(.+?)[,)]/gi;
 const cmd = 'git log --decorate --no-color';
 

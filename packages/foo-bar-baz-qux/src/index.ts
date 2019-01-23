@@ -1,7 +1,5 @@
 import path from 'path';
 
-export const FOOBAR = 123;
-
 export function barzzz(a: string, b: string) {
   return path.join('charlike', a, b);
 }
