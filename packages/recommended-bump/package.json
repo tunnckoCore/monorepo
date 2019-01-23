@@ -29,13 +29,13 @@
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "name": "recommended-bump",
   "description": "Calculates recommended bump (next semver version) based on given array of commit messages following Conventional Commits specification",
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/packages/recommended-bump",
   "devDependencies": {
     "@types/dedent": "^0.7.0",
     "dedent": "^0.7.0",
-    "parse-commit-message": "^4.0.1"
+    "parse-commit-message": "^4.0.2"
   }
 }
