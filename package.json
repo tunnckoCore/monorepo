@@ -18,8 +18,7 @@
     "build": "lerna exec --parallel 'BABEL_ENV=build yarn build'",
     "postbuild": "yarn run type:gen && yarn run format",
     "format": "prettier '**/*' --write",
-    "release": "echo fake-for-now",
-    "releaseXX": "lerna publish -m 'chore: release [skip ci]' --conventional-commits --changelog --sign-git-commit --sign-git-tag",
+    "release": "lerna publish -m 'chore: release [skip ci]' --conventional-commits --changelog",
     "import": "lerna import -y",
     "postimport": "rm -f {@tunnckocore,packages}/*/{.{git,es,ed,all-,pret,nyc}*,*.md,LICENSE,*.js}"
   },
