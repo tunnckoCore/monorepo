@@ -15,10 +15,10 @@ references:
       - image: circleci/node:10
   restore-cache: &restore-cache
       keys:
-        - v1-monorepo-{{ checksum "yarn.lock" }}
-        - v1-monorepo-
+        - v2-monorepo-{{ checksum "yarn.lock" }}
+        - v2-monorepo-
   save-cache: &save-cache
-    key: v1-monorepo-{{ checksum "yarn.lock" }}
+    key: v2-monorepo-{{ checksum "yarn.lock" }}
     paths:
       - ~/.cache/yarn
       - ~/.cache/yarn-packages-cache
