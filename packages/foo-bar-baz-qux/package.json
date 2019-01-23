@@ -29,7 +29,7 @@
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
-  "version": "1.1.3",
+  "version": "1.2.0",
   "name": "foo-bar-baz-qux",
   "description": "dasdasd",
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/packages/foo-qux-bar"

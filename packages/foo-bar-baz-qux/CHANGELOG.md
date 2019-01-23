@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/tunnckoCore/monorepo/compare/foo-bar-baz-qux@1.1.3...foo-bar-baz-qux@1.2.0) (2019-01-23)
+
+
+### Features
+
+* fake & cleanup ([f87520b](https://github.com/tunnckoCore/monorepo/commit/f87520b))
+
+
+
+
+
 ## [1.1.3](https://github.com/tunnckoCore/monorepo/compare/foo-bar-baz-qux@1.1.2...foo-bar-baz-qux@1.1.3) (2019-01-23)
 
 **Note:** Version bump only for package foo-bar-baz-qux
