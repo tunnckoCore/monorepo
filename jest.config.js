@@ -14,10 +14,6 @@ module.exports = {
   moduleFileExtensions: exts.concat('json'),
   moduleNameMapper: alias,
 
-  transform: {
-    '^.+\\.(ts|tsx|js|jsx)$': 'babel-jest',
-  },
-
   collectCoverage: false,
   collectCoverageFrom: [
     `**/src/**/*.{${exts.join(',')}}`,
