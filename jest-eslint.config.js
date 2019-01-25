@@ -14,6 +14,7 @@ module.exports = {
   testMatch: ['**/src/**/*'],
   testPathIgnorePatterns: ['.+\\.d\\.ts$'],
 
+  // resolver: require.resolve('jest-pnp-resolver'),
   moduleFileExtensions: exts.concat('json'),
   moduleNameMapper: alias,
 

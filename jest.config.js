@@ -14,6 +14,7 @@ module.exports = {
   moduleFileExtensions: exts.concat('json'),
   moduleNameMapper: alias,
 
+  // resolver: require.resolve('jest-pnp-resolver'),
   transform: {
     '^.+\\.(ts|tsx|js|jsx)$': 'babel-jest',
   },

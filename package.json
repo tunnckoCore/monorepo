@@ -22,6 +22,9 @@
     "import": "lerna import -y",
     "postimport": "rm -f {@tunnckocore,packages}/*/{.{git,es,ed,all-,pret,nyc}*,*.md,LICENSE,*.js}"
   },
+  "installConfig": {
+    "pnp": false
+  },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"
   },
@@ -35,12 +38,26 @@
     "@types/jest": "^23.3.12",
     "@types/node": "^10.12.18",
     "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "babel-plugin-module-resolver": "^3.1.2",
     "eslint": "^5.12.0",
-    "eslint-config-tunnckocore": "^2.0.0-rc.14",
-    "eslint-import-resolver-babel-module": "^5.0.0-beta.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.4.0",
+    "eslint-import-resolver-babel-module": "^5.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^22.1.3",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-markdown": "^1.0.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.12.3",
+    "eslint-plugin-react-hooks": "^0.0.0",
+    "eslint-plugin-unicorn": "^6.0.1",
     "jest": "^23.6.0",
+    "jest-pnp-resolver": "^1.0.2",
+    "jest-resolve": "^24.0.0",
     "jest-runner-eslint": "^0.7.1",
     "jest-runner-tsc": "^1.3.2",
     "lerna": "^3.10.5",

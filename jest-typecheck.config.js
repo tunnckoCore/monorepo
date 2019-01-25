@@ -13,6 +13,7 @@ module.exports = {
   testEnvironment: 'node',
   testMatch: ['**/src/**/*'],
 
+  // resolver: require.resolve('jest-pnp-resolver'),
   moduleFileExtensions: exts.concat('json'),
   moduleNameMapper: alias,
 
