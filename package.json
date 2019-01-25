@@ -33,7 +33,7 @@
     "@types/jest": "^23.3.13",
     "@types/node": "^10.12.18",
     "eslint": "^5.12.0",
-    "eslint-config-tunnckocore": "^2.0.0-rc.14",
+    "eslint-config-tunnckocore": "^3.0.0",
     "eslint-import-resolver-babel-module": "^5.0.0",
     "jest": "^24.0.0",
     "jest-runner-eslint": "^0.7.1",
