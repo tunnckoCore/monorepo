@@ -29,7 +29,7 @@
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
-  "version": "4.1.2",
+  "version": "4.1.3",
   "name": "parse-commit-message",
   "description": "Extensible parser for git commit messages following Conventional Commits Specification",
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/packages/parse-commit-message",
