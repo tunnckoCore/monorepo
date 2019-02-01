@@ -1,17 +1,17 @@
 'use strict';
 
-const pkg = require('./package.json');
-const { createAliases } = require('./support');
+const path = require('path');
+const pkg = require('../package.json');
+const { createAliases } = require('../support');
 
 const { exts, alias } = createAliases(pkg);
 
 module.exports = {
-  rootDir: __dirname,
-
+  rootDir: path.dirname(__dirname),
   displayName: 'lint',
 
   testEnvironment: 'node',
-  testMatch: ['**/src/**/*'],
+  testMatch: ['<rootDir>/**/src/**/*'],
   testPathIgnorePatterns: ['.+\\.d\\.ts$'],
 
   moduleFileExtensions: exts.concat('json'),
