@@ -14,7 +14,7 @@
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",
   "publishConfig": {
     "access": "public",
-    "tag": "beta-x"
+    "tag": "next"
   },
   "engines": {
     "node": "^8.10.0 || >=10.13.0"
@@ -29,13 +29,15 @@
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
-  "version": "3.2.3",
+  "version": "4.0.0-rc.3",
   "name": "parse-commit-message",
   "description": "Extensible parser for git commit messages following Conventional Commits Specification",
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/packages/parse-commit-message",
-  "devDependencies": {
+  "dependencies": {
     "collect-mentions": "^1.0.2",
-    "dedent": "^0.7.0",
+    "dedent": "^0.7.0"
+  },
+  "devDependencies": {
     "mixin-deep": "^2.0.0",
     "@types/dedent": "^0.7.0"
   }
