@@ -3,12 +3,10 @@
     "type:gen": "echo 'tsc -p ./tsconfig.gentypes.json'",
     "type:check": "echo 'tsc -p ./tsconfig.check.json'",
     "build": "babel src -d dist/esm -x .js,.jsx,.ts,.tsx,.mjs --delete-dir-on-start",
-    "postbuild": "ncc build dist/esm/index.js -o dist/cjs --minify",
-    "test": "jest"
+    "test": "devest test"
   },
-  "module": "dist/esm/index.js",
-  "main": "index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/",
+  "module": "dist/",
   "typings": "dist/index.d.ts",
   "repository": "tunnckoCore/monorepo",
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",

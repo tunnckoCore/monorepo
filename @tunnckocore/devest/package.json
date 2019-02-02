@@ -2,12 +2,13 @@
   "scripts": {
     "type:gen": "echo 'tsc -p ./tsconfig.gentypes.json'",
     "type:check": "echo 'tsc -p ./tsconfig.check.json'",
+    "build": "echo foo",
     "devest-cli": "node src/cli.js",
     "test": "yarn devest-cli test"
   },
   "main": "dist/",
   "module": "dist/",
-  "typings": "dist/typings/index.d.ts",
+  "typings": "dist/index.d.ts",
   "repository": "tunnckoCore/monorepo",
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",
   "publishConfig": {

@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "echo foo",
-    "test": "jest"
+    "test": "devest test"
   },
   "main": "src/index.js",
   "repository": "tunnckoCore/monorepo",
