@@ -5,10 +5,10 @@
   "license": "MIT",
   "scripts": {
     "postinstall": "lerna bootstrap",
-    "test": "jest --onlyChanged",
-    "test:ci": "yarn test --runInBand",
+    "test": "devest test",
+    "test:ci": "devest test --runInBand",
     "test:all": "lerna run test --parallel --since",
-    "lint": "jest -c jest-eslint.config.js --onlyChanged",
+    "lint": "devest lint --onlyChanged",
     "type:gen": "lerna run type:gen",
     "typecheck:slow": "jest -c jest-typecheck.config.js --onlyChanged",
     "tscheck": "lerna run --parallel type:check",
@@ -30,9 +30,10 @@
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.1.0",
-    "@tunnckocore/ncc": "^0.12.0",
+    "@tunnckocore/devest": "^0.4.0",
     "@types/jest": "^23.3.13",
     "@types/node": "^10.12.18",
+    "babel-plugin-module-resolver": "^3.1.3",
     "eslint": "^5.12.0",
     "eslint-config-tunnckocore": "^3.0.0",
     "eslint-import-resolver-babel-module": "^5.0.0",
@@ -46,6 +47,7 @@
   "jest-runner-eslint": {
     "cliOptions": {
       "format": "codeframe",
+      "quiet": true,
       "cache": true,
       "fix": true
     }
