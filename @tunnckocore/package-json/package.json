@@ -26,7 +26,7 @@
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
-  "version": "1.0.4-alpha.6",
+  "version": "1.0.4-alpha.7",
   "name": "@tunnckocore/package-json",
   "description": "Simple and fast getting of latest package.json metadata for a npm module, using axios and unpkg as a source, because npm registry is basically slow",
   "devDependencies": {
