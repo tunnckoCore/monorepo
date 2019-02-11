@@ -1,12 +1,8 @@
 tasks:
   install:
     image: node:10
-    command:
-      - yarn
-    args:
-      - install
-      - --pure-lockfile
-      - --frozen-lockfile
+    command: ["bash", "-c"]
+    args: ["yarn install --prefer-offline --pure-lockfile --frozen-lockfile || yarn install --pure-lockfile --frozen-lockfile"]
   prepare:
     image: node:10
     command:
