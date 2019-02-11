@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "license": "Apache-2.0",
   "scripts": {
+    "gitsize": "git bundle create git-bundle.log --all && du -sh git-bundle.log",
     "build:execa": "lerna exec --scope '@tunnckocore/execa' 'BABEL_ENV=build yarn run build'",
     "postinstall": "lerna bootstrap",
     "docs": "lerna exec --parallel 'yarn run docs'",
@@ -16,6 +17,7 @@
     "dev:test": "jest --watch --bail",
     "dev:lint": "yarn run lint --watch",
     "build": "lerna exec --parallel \"yarn run build --cwd $PWD --minify\"",
+    "postbuild": "yarn build:after",
     "build:after": "yarn run type:gen && yarn run docs && yarn run format",
     "precommit": "yarn lint && yarn type:check && yarn test && yarn build && yarn format",
     "commit": "yarn run dry",
