@@ -43,6 +43,8 @@ references:
     command: |-
       git config --global user.email "mameto2011@gmail.com"
       git config --global user.name "Charlike Mike Reagent"
+      git config --global user.signingkey "$GIT_SIGNING_KEY"
+      git config --global commit.gpgsign true
   npm: &npm
     name: Configure npm settings
     command: |-
