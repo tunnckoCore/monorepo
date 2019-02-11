@@ -21,8 +21,10 @@
     "dry": "git add -A && git commit -sS",
     "format": "prettier '**/*' --write",
     "fresh": "rm -rf {@tunnckocore,packages}/*/node_modules node_modules yarn.lock",
-    "release": "echo fake-for-now",
-    "releaseXX": "lerna publish -m 'chore: release [skip ci]' --conventional-commits --changelog --sign-git-commit --sign-git-tag",
+    "bump:alpha": "lerna version prerelease --preid alpha --github-release --conventional-commits --message 'chore(release): new versions [skip-ci]'",
+    "bump": "lerna version --github-release --conventional-commits --message 'chore(release): new versions [skip-ci]'",
+    "release": "echo foo",
+    "releaseXX": "lerna publish from-git",
     "import": "lerna import -y",
     "postimport": "rm -f {@tunnckocore,packages}/*/{.{git,es,ed,all-,pret,nyc}*,*.md,LICENSE,*.js}"
   },
