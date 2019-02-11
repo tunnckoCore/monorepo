@@ -102,6 +102,7 @@ jobs:
     <<: *node-10
     steps:
       - attach_workspace: *attach-ws
+      - restore_cache: *restore-cache
       - add_ssh_keys: # User machine's key fingerprint (CircleCI User Key)
           fingerprints:
             # Fingerprint of the special SSH key for CircleCI
