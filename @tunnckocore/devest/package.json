@@ -31,11 +31,11 @@
   },
   "license": "Apache-2.0",
   "licenseStart": "2017",
-  "version": "0.6.1-alpha.5",
+  "version": "0.6.1-alpha.6",
   "name": "@tunnckocore/devest",
   "description": "wip",
   "dependencies": {
-    "@tunnckocore/execa": "^2.4.1-alpha.5",
+    "@tunnckocore/execa": "^2.4.1-alpha.6",
     "mri": "^1.1.4"
   },
   "keywords": [],

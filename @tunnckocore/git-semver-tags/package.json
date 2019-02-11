@@ -26,11 +26,11 @@
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
-  "version": "0.3.1-alpha.5",
+  "version": "0.3.1-alpha.6",
   "name": "@tunnckocore/git-semver-tags",
   "description": "Get all semver valid flags for a git repository. Temporary fork of original git-semver-tags, promised api - async/await friendly, plus option for cwd",
   "devDependencies": {
-    "@tunnckocore/execa": "^2.4.1-alpha.5",
+    "@tunnckocore/execa": "^2.4.1-alpha.6",
     "semver": "^5.6.0"
   },
   "keywords": [],
