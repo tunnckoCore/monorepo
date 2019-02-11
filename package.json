@@ -28,7 +28,7 @@
     "fresh": "rm -rf {@tunnckocore,packages}/*/node_modules node_modules yarn.lock",
     "bump:alpha": "yarn run bump prerelease --preid alpha",
     "bump": "lerna version --yes",
-    "release": "yarn bump:alpha --force-publish && yarn release:publish",
+    "release": "yarn bump:alpha && yarn release:publish",
     "release:publish": "lerna publish from-git --yes",
     "import": "lerna import -y",
     "postimport": "rm -f {@tunnckocore,packages}/*/{.{git,es,ed,all-,pret,nyc}*,*.md,LICENSE,*.js}"

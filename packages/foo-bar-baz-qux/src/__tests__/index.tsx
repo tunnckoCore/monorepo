@@ -1,6 +1,6 @@
 // // import React from 'react';
 // import test from 'ava';
-import { join, add } from '..';
+import { join, add, qux } from '..';
 
 // test('join paths', (t) => {
 //   t.is(join('abc', 'qux'), 'charlike/abc/qux');
@@ -22,4 +22,8 @@ test('join paths', () => {
 test('add numbers', () => {
   // const foo = <div>foobar</div>;
   expect(add(20, 30)).toStrictEqual(60);
+});
+
+test('the qux', () => {
+  expect(qux('asd', 'gg')).toStrictEqual('asdgg');
 });
