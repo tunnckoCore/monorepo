@@ -46,7 +46,6 @@ references:
       git config --global user.name "Charlike Mike Reagent"
       git config --global user.signingkey "$GIT_SIGNING_KEY"
       git config --global commit.gpgsign true
-      git config --global gpg.program gpg2
   npm: &npm
     name: Configure npm settings
     command: |-
