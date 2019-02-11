@@ -14,7 +14,7 @@
     "type:check": "lerna exec --parallel 'yarn run type:check'",
     "dev:test": "jest --watch --bail",
     "dev:lint": "yarn run lint --watch",
-    "build": "lerna exec --parallel 'BABEL_ENV=build yarn run build'",
+    "build": "lerna exec --parallel 'BABEL_ENV=build yarn run build --minify'",
     "postbuild": "yarn run type:gen && yarn run format",
     "precommit": "yarn lint && yarn type:check && yarn test && yarn build && yarn format",
     "commit": "yarn run dry",

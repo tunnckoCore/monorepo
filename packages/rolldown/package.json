@@ -9,7 +9,7 @@
   "typings": "dist/typings/index.d.ts",
   "publishConfig": {
     "access": "public",
-    "tag": "latest"
+    "tag": "next"
   },
   "engines": {
     "node": "^8.10.0 || >=10.13.0"
