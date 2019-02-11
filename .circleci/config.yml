@@ -97,10 +97,11 @@ jobs:
       - attach_workspace: *attach-ws
       - add_ssh_keys: # User machine's key fingerprint (CircleCI User Key)
           fingerprints:
-            - "d1:7e:2a:2d:2f:07:8f:d9:b5:f6:41:57:77:03:e1:f0"
-      - run:
-          name: KeyScan GitHub
-          command: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+            # Fingerprint of the special SSH key for CircleCI
+            - "65:dd:e6:57:21:52:c4:c6:c8:59:b4:56:f3:65:ec:b4"
+      # - run:
+      #     name: KeyScan GitHub
+      #     command: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
       - run: *git
       - run: *npm
       - run:
