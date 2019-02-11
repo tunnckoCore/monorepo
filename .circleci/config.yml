@@ -6,27 +6,27 @@ version: 2.1
 
 references:
   node-8: &node-8
-    working_directory: ~/tunnckocore-monorepo
+    working_directory: ~/repo
     docker:
       - image: circleci/node:8
   node-10: &node-10
-    working_directory: ~/tunnckocore-monorepo
+    working_directory: ~/repo
     docker:
       - image: circleci/node:10
   restore-cache: &restore-cache
       keys:
-        - v2-monorepo-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
-        - v2-monorepo-{{ checksum "yarn.lock" }}
-        - v2-monorepo-
+        - v3-monorepo-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+        - v3-monorepo-{{ checksum "yarn.lock" }}
+        - v3-monorepo-
   save-cache: &save-cache
-    key: v2-monorepo-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+    key: v3-monorepo-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
     paths:
       - ~/.ssh
       - ~/.cache/yarn
       - ~/.cache/yarn-packages-cache
       - node_modules
   attach-ws: &attach-ws
-    at: ~/tunnckocore-monorepo
+    at: ~/repo
   yarn: &yarn
     name: Install Dependencies
     command: yarn install --prefer-offline || yarn install
@@ -42,7 +42,6 @@ references:
     name: Configure git settings
     command: |-
       git config user.email "mameto2011@gmail.com"
-      git config user.username tunnckoCore
       git config user.name "Charlike Mike Reagent"
       # git config user.signingkey "$GIT_SIGNING_KEY"
       # git config commit.gpgsign true
@@ -92,6 +91,7 @@ jobs:
     <<: *node-10
     steps:
       - attach_workspace: *attach-ws
+      - restore_cache: *restore-cache
       - run:
           name: Build production files
           command: yarn run build:ci
