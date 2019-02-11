@@ -2,8 +2,10 @@
   "scripts": {
     "type:gen": "tsc -p ./tsconfig.gentypes.json",
     "type:check": "tsc -p ./tsconfig.check.json",
-    "build": "rm -rf dist && rolldown",
-    "test": "devest test"
+    "prebuild": "rm -rf dist",
+    "build": "BABEL_ENV=build rolldown",
+    "test": "devest test",
+    "docs": "docks --outfile .verb.md && verb"
   },
   "main": "dist/",
   "module": "dist/",
@@ -27,24 +29,50 @@
   "version": "4.0.0-alpha.1",
   "name": "parse-commit-message",
   "description": "Extensible parser for git commit messages following Conventional Commits Specification",
-  "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/packages/parse-commit-message",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tunnckoCore/monorepo.git",
-    "directory": "packages/parse-commit-message"
-  },
-  "author": {
-    "name": "Charlike Mike Reagent",
-    "email": "mameto2011@gmail.com",
-    "url": "https://tunnckocore.com",
-    "twitter": "tunnckoCore",
-    "github": "tunnckoCore"
-  },
   "devDependencies": {
     "@types/dedent": "^0.7.0"
   },
   "optionalDependencies": {
     "collect-mentions": "^1.0.2",
     "dedent": "^0.7.0"
+  },
+  "keywords": [],
+  "homepage": "https://github.com/tunnckoCore/hq/tree/master/packages/parse-commit-message",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tunnckoCore/hq.git",
+    "directory": "packages/parse-commit-message"
+  },
+  "author": {
+    "name": "Charlike Mike Reagent",
+    "email": "mameto2011@gmail.com",
+    "url": "https://tunnckocore.com"
+  },
+  "meta": {
+    "author": {
+      "avatar": "https://avatars3.githubusercontent.com/u/5038030?v=4",
+      "twitter": "tunnckoCore",
+      "github": "tunnckoCore"
+    },
+    "repository": {
+      "slug": "tunnckoCore/hq",
+      "directory": "packages/parse-commit-message"
+    }
+  },
+  "verb": {
+    "run": true,
+    "toc": {
+      "render": true,
+      "method": "preWrite",
+      "maxdepth": 4
+    },
+    "layout": "empty",
+    "tasks": [
+      "readme"
+    ],
+    "lint": {
+      "reflinks": true
+    },
+    "reflinks": []
   }
 }

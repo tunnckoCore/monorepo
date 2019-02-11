@@ -6,6 +6,7 @@
   "scripts": {
     "build:execa": "lerna exec --scope '@tunnckocore/execa' 'BABEL_ENV=build yarn run build'",
     "postinstall": "lerna bootstrap",
+    "docs": "lerna exec --parallel 'yarn run docs'",
     "lint": "devest lint",
     "lint:ci": "devest lint --runInBand --onlyChanged",
     "test": "devest test",
@@ -14,16 +15,16 @@
     "type:check": "lerna exec --parallel 'yarn run type:check'",
     "dev:test": "jest --watch --bail",
     "dev:lint": "yarn run lint --watch",
-    "build": "lerna exec --parallel 'BABEL_ENV=build yarn run build --minify'",
-    "postbuild": "yarn run type:gen && yarn run format",
+    "build": "lerna exec --parallel 'yarn run build --minify'",
+    "postbuild": "yarn run type:gen && yarn run docs && yarn run format",
     "precommit": "yarn lint && yarn type:check && yarn test && yarn build && yarn format",
     "commit": "yarn run dry",
     "dry": "git add -A && git commit -sS",
     "format": "prettier '**/*' --write",
     "fresh": "rm -rf {@tunnckocore,packages}/*/node_modules node_modules yarn.lock",
     "bump:alpha": "yarn run bump prerelease --preid alpha",
-    "bump": "lerna version --yes --github-release --conventional-commits --message 'chore(release): new versions [skip ci]'",
-    "release": "yarn bump:alpha --force-publish && yarn release:publish",
+    "bump": "lerna version --yes --github-release --no-changelog --conventional-commits --message 'chore(release): new versions [skip ci]'",
+    "release": "yarn bump:alpha && yarn release:publish",
     "release:publish": "lerna publish from-git --yes",
     "import": "lerna import -y",
     "postimport": "rm -f {@tunnckocore,packages}/*/{.{git,es,ed,all-,pret,nyc}*,*.md,LICENSE,*.js}"
@@ -39,6 +40,7 @@
     "@types/node": "^10.12.24",
     "babel-jest": "^24.1.0",
     "babel-plugin-module-resolver": "^3.1.3",
+    "docks": "^0.7.0",
     "eslint": "^5.13.0",
     "eslint-config-tunnckocore": "^3.0.1-alpha.0",
     "eslint-import-resolver-babel-module": "^5.0.1",
@@ -48,7 +50,9 @@
     "lerna": "^3.11.0",
     "prettier": "^1.16.4",
     "rolldown": "^0.4.1-alpha.0",
-    "typescript": "^3.3.3"
+    "typescript": "^3.3.3",
+    "verb": "verbose/verb#dev",
+    "verb-generate-readme": "^0.8.0"
   },
   "jest-runner-eslint": {
     "cliOptions": {

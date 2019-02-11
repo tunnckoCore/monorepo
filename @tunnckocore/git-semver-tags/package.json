@@ -2,8 +2,10 @@
   "scripts": {
     "type:gen": "echo 'tsc -p ./tsconfig.gentypes.json'",
     "type:check": "echo 'tsc -p ./tsconfig.check.json'",
-    "build": "rm -rf dist && rolldown",
-    "test": "devest test"
+    "prebuild": "rm -rf dist",
+    "build": "BABEL_ENV=build rolldown",
+    "test": "devest test",
+    "docs": "docks --outfile .verb.md && verb"
   },
   "main": "dist/",
   "module": "dist/",
@@ -27,21 +29,47 @@
   "version": "0.3.1-alpha.1",
   "name": "@tunnckocore/git-semver-tags",
   "description": "Get all semver valid flags for a git repository. Temporary fork of original git-semver-tags, promised api - async/await friendly, plus option for cwd",
-  "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/@tunnckocore/git-semver-tags",
+  "optionalDependencies": {
+    "@tunnckocore/execa": "^2.4.1-alpha.1",
+    "semver": "^5.6.0"
+  },
+  "keywords": [],
+  "homepage": "https://github.com/tunnckoCore/hq/tree/master/@tunnckocore/git-semver-tags",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tunnckoCore/monorepo.git",
+    "url": "https://github.com/tunnckoCore/hq.git",
     "directory": "@tunnckocore/git-semver-tags"
   },
   "author": {
     "name": "Charlike Mike Reagent",
     "email": "mameto2011@gmail.com",
-    "url": "https://tunnckocore.com",
-    "twitter": "tunnckoCore",
-    "github": "tunnckoCore"
+    "url": "https://tunnckocore.com"
   },
-  "optionalDependencies": {
-    "@tunnckocore/execa": "^2.4.1-alpha.1",
-    "semver": "^5.6.0"
+  "meta": {
+    "author": {
+      "avatar": "https://avatars3.githubusercontent.com/u/5038030?v=4",
+      "twitter": "tunnckoCore",
+      "github": "tunnckoCore"
+    },
+    "repository": {
+      "slug": "tunnckoCore/hq",
+      "directory": "@tunnckocore/git-semver-tags"
+    }
+  },
+  "verb": {
+    "run": true,
+    "toc": {
+      "render": true,
+      "method": "preWrite",
+      "maxdepth": 4
+    },
+    "layout": "empty",
+    "tasks": [
+      "readme"
+    ],
+    "lint": {
+      "reflinks": true
+    },
+    "reflinks": []
   }
 }

@@ -2,8 +2,10 @@
   "scripts": {
     "type:gen": "echo 'tsc -p ./tsconfig.gentypes.json'",
     "type:check": "echo 'tsc -p ./tsconfig.check.json'",
-    "build": "echo 'rm -rf dist && rolldown'",
-    "test": "echo 'devest test'"
+    "prebuild": "rm -rf dist",
+    "build": "echo 'BABEL_ENV=build rolldown'",
+    "test": "echo 'devest test'",
+    "docs": "docks --outfile .verb.md && verb"
   },
   "main": "src/",
   "typings": "dist/typings/index.d.ts",
@@ -26,19 +28,6 @@
   "version": "3.0.1-alpha.1",
   "name": "eslint-config-tunnckocore",
   "description": "Shareable ESLint config for @tunnckoCore/hq mono-repository",
-  "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/packages/eslint-config-tunnckocore",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tunnckoCore/monorepo.git",
-    "directory": "packages/eslint-config-tunnckocore"
-  },
-  "author": {
-    "name": "Charlike Mike Reagent",
-    "email": "mameto2011@gmail.com",
-    "url": "https://tunnckocore.com",
-    "twitter": "tunnckoCore",
-    "github": "tunnckoCore"
-  },
   "dependencies": {
     "babel-eslint": "^10.0.1",
     "eslint-config-airbnb": "^17.1.0",
@@ -53,5 +42,44 @@
     "eslint-plugin-react": "^7.12.3",
     "eslint-plugin-react-hooks": "^1.0.0",
     "eslint-plugin-unicorn": "^7.1.0"
+  },
+  "keywords": [],
+  "homepage": "https://github.com/tunnckoCore/hq/tree/master/packages/eslint-config-tunnckocore",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tunnckoCore/hq.git",
+    "directory": "packages/eslint-config-tunnckocore"
+  },
+  "author": {
+    "name": "Charlike Mike Reagent",
+    "email": "mameto2011@gmail.com",
+    "url": "https://tunnckocore.com"
+  },
+  "meta": {
+    "author": {
+      "avatar": "https://avatars3.githubusercontent.com/u/5038030?v=4",
+      "twitter": "tunnckoCore",
+      "github": "tunnckoCore"
+    },
+    "repository": {
+      "slug": "tunnckoCore/hq",
+      "directory": "packages/eslint-config-tunnckocore"
+    }
+  },
+  "verb": {
+    "run": true,
+    "toc": {
+      "render": true,
+      "method": "preWrite",
+      "maxdepth": 4
+    },
+    "layout": "empty",
+    "tasks": [
+      "readme"
+    ],
+    "lint": {
+      "reflinks": true
+    },
+    "reflinks": []
   }
 }
