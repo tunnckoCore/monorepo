@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "license": "Apache-2.0",
   "scripts": {
+    "cleanup": "yarn fresh && yarn && yarn dry -m 'chore: re-sync, fresh install and lockfile'",
     "gitsize": "git bundle create git-bundle.log --all && du -sh git-bundle.log",
     "build:execa": "lerna exec --scope '@tunnckocore/execa' 'BABEL_ENV=build yarn run build'",
     "postinstall": "lerna bootstrap",
