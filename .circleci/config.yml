@@ -22,7 +22,6 @@ references:
     key: v2-monorepo-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
     paths:
       - ~/.ssh
-      - ~/.gitconfig
       - ~/.cache/yarn
       - ~/.cache/yarn-packages-cache
       - node_modules
@@ -42,10 +41,11 @@ references:
   git: &git
     name: Configure git settings
     command: |-
-      git config --global user.email "mameto2011@gmail.com"
-      git config --global user.name "Charlike Mike Reagent"
-      git config --global user.signingkey "$GIT_SIGNING_KEY"
-      git config --global commit.gpgsign true
+      git config user.email "mameto2011@gmail.com"
+      git config user.username tunnckoCore
+      git config user.name "Charlike Mike Reagent"
+      git config user.signingkey "$GIT_SIGNING_KEY"
+      git config commit.gpgsign true
   npm: &npm
     name: Configure npm settings
     command: |-
@@ -58,7 +58,6 @@ jobs:
       - checkout
       - run: *yarn
       - run: yarn build:execa
-      - run: *git
       - save_cache: *save-cache
       - persist_to_workspace:
           root: .
@@ -108,6 +107,7 @@ jobs:
       # - run:
       #     name: KeyScan GitHub
       #     command: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+      - run: *git
       - run: *npm
       - run:
           name: Publish to npm and GitHub
