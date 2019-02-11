@@ -23,7 +23,7 @@
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
-  "version": "3.0.1-alpha.1",
+  "version": "3.0.1-alpha.0",
   "name": "eslint-config-tunnckocore",
   "description": "Shareable ESLint config for @tunnckoCore/hq mono-repository",
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/packages/eslint-config-tunnckocore",

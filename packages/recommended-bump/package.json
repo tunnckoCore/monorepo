@@ -24,7 +24,7 @@
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
-  "version": "1.5.1-alpha.1",
+  "version": "1.5.1-alpha.0",
   "name": "recommended-bump",
   "description": "Calculates recommended bump (next semver version) based on given array of commit messages following Conventional Commits specification",
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/packages/recommended-bump",
