@@ -94,7 +94,7 @@ jobs:
       - attach_workspace: *attach-ws
       - run: # TODO: use jest-runner-babel soon, instead of lerna exec --parallel
           name: Build production files
-          command: yarn run build
+          command: yarn run build:ci
   deploy:
     <<: *node-10
     steps:
