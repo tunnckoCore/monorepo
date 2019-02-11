@@ -8,6 +8,10 @@ module.exports = createCommandConfig(({ exts }) => ({
   testEnvironment: 'node',
   testMatch: ['<rootDir>/**/__tests__/**/*'],
 
+  transform: {
+    // constructing `^.+\\.(js|mjs|jsx|ts|tsx)$` regex, dynamically
+    [`^.+\\.(${exts.join('|')})$`]: 'babel-jest',
+  },
   collectCoverage: false,
   collectCoverageFrom: [
     `<rootDir>/**/src/**/*.{${exts.join(',')}}`,

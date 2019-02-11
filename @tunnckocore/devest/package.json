@@ -2,15 +2,12 @@
   "scripts": {
     "type:gen": "echo 'tsc -p ./tsconfig.gentypes.json'",
     "type:check": "echo 'tsc -p ./tsconfig.check.json'",
-    "build": "echo foo",
-    "devest-cli": "node src/cli.js",
-    "test": "yarn devest-cli test"
+    "build": "echo 'rm -rf dist && rolldown'",
+    "test": "yarn cli test",
+    "cli": "node src/cli.js"
   },
-  "main": "dist/",
-  "module": "dist/",
-  "typings": "dist/index.d.ts",
-  "repository": "tunnckoCore/monorepo",
-  "author": "Charlike Mike Reagent (https://tunnckocore.com)",
+  "main": "src/cli.js",
+  "typings": "dist/typings/index.d.ts",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
@@ -23,7 +20,6 @@
     "node 10.13"
   ],
   "files": [
-    "dist",
     "src"
   ],
   "bin": {
@@ -35,7 +31,21 @@
   "name": "@tunnckocore/devest",
   "description": "wip",
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/@tunnckocore/devest",
-  "dependencies": {
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tunnckoCore/monorepo.git",
+    "directory": "@tunnckocore/devest"
+  },
+  "author": {
+    "name": "Charlike Mike Reagent",
+    "email": "mameto2011@gmail.com",
+    "url": "https://tunnckocore.com",
+    "twitter": "tunnckoCore",
+    "github": "tunnckoCore"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {
     "mri": "^1.1.4",
     "@tunnckocore/execa": "^2.2.1"
   }

@@ -11,13 +11,13 @@ const { createRunCommand, runSetup } = require('./support');
 
 const args = proc.argv.slice(2);
 const argv = mri(args, {
+  string: ['cwd'],
   default: {
     cwd: proc.cwd(),
   },
 });
 
 const runCommand = createRunCommand(args.slice(1), argv);
-
 const cmd = argv._[0];
 
 if (!cmd) {
@@ -40,4 +40,7 @@ if (!fs.existsSync(path.join(__dirname, 'commands', cmd, configName))) {
   runSetup(argv, configName);
 }
 
-runCommand(cmd, configName).catch((err) => proc.exit(err.code || 1));
+runCommand(cmd, configName).catch((err) => {
+  console.log(err);
+  proc.exit(err.code || 1);
+});

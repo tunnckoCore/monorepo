@@ -20,7 +20,7 @@
     "baseUrl": "./",
     "noEmit": false,
     "declaration": true,
-    "declarationDir": "./dist",
+    "declarationDir": "./dist/typings",
     "emitDeclarationOnly": true
   },
   "include": ["src"],

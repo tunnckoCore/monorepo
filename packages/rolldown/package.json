@@ -2,15 +2,14 @@
   "scripts": {
     "type:gen": "echo 'tsc -p ./tsconfig.gentypes.json'",
     "type:check": "echo 'tsc -p ./tsconfig.check.json'",
-    "build": "rm -rf dist && rolldown",
+    "build": "echo 'rm -rf dist && rolldown'",
     "test": "devest test"
   },
-  "main": "dist/",
-  "module": "dist/",
+  "main": "src/index.js",
   "typings": "dist/typings/index.d.ts",
   "publishConfig": {
     "access": "public",
-    "tag": "next"
+    "tag": "latest"
   },
   "engines": {
     "node": "^8.10.0 || >=10.13.0"
@@ -20,18 +19,21 @@
     "node 10.13"
   ],
   "files": [
-    "dist"
+    "src"
   ],
+  "bin": {
+    "rolldown": "src/cli.js"
+  },
   "license": "Apache-2.0",
   "licenseStart": "2017",
-  "version": "2.2.1",
-  "name": "@tunnckocore/execa",
-  "description": "Thin layer on top of [execa][] that allows executing multiple commands in parallel or in sequence",
-  "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/@tunnckocore/execa",
+  "version": "0.3.0",
+  "name": "rolldown",
+  "description": "wip",
+  "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/packages/rolldown",
   "repository": {
     "type": "git",
     "url": "https://github.com/tunnckoCore/monorepo.git",
-    "directory": "@tunnckocore/execa"
+    "directory": "packages/rolldown"
   },
   "author": {
     "name": "Charlike Mike Reagent",
@@ -40,11 +42,18 @@
     "twitter": "tunnckoCore",
     "github": "tunnckoCore"
   },
-  "dependencies": {},
+  "dependencies": {
+    "mri": "*",
+    "rollup": "*",
+    "rollup-plugin-terser": "*",
+    "rollup-plugin-commonjs": "*",
+    "rollup-plugin-progress": "*",
+    "rollup-plugin-filesize": "*",
+    "rollup-plugin-node-resolve": "*",
+    "rollup-plugin-babel": "*",
+    "rollup-plugin-json": "*",
+    "builtin-modules": "*"
+  },
   "devDependencies": {},
-  "optionalDependencies": {
-    "execa": "^1.0.0",
-    "p-map-series": "^1.0.0",
-    "split-cmd": "^1.0.0"
-  }
+  "optionalDependencies": {}
 }

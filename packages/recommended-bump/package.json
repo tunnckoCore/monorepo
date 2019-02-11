@@ -2,28 +2,25 @@
   "scripts": {
     "type:gen": "tsc -p ./tsconfig.gentypes.json",
     "type:check": "tsc -p ./tsconfig.check.json",
-    "build": "babel src -d dist/esm -x .js,.jsx,.ts,.tsx,.mjs --delete-dir-on-start",
+    "build": "rm -rf dist && rolldown",
     "test": "devest test"
   },
   "main": "dist/",
   "module": "dist/",
   "typings": "dist/typings/index.d.ts",
-  "repository": "tunnckoCore/monorepo",
-  "author": "Charlike Mike Reagent (https://tunnckocore.com)",
   "publishConfig": {
     "access": "public",
-    "tag": "beta-x"
+    "tag": "latest"
   },
   "engines": {
     "node": "^8.10.0 || >=10.13.0"
   },
   "browserslist": [
-    "node 8",
-    "node 10"
+    "node 8.10",
+    "node 10.13"
   ],
   "files": [
-    "dist",
-    "index.js"
+    "dist"
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
@@ -31,9 +28,24 @@
   "name": "recommended-bump",
   "description": "Calculates recommended bump (next semver version) based on given array of commit messages following Conventional Commits specification",
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/packages/recommended-bump",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tunnckoCore/monorepo.git",
+    "directory": "packages/recommended-bump"
+  },
+  "author": {
+    "name": "Charlike Mike Reagent",
+    "email": "mameto2011@gmail.com",
+    "url": "https://tunnckocore.com",
+    "twitter": "tunnckoCore",
+    "github": "tunnckoCore"
+  },
+  "dependencies": {},
   "devDependencies": {
-    "parse-commit-message": "^3.2.3",
     "@types/dedent": "^0.7.0",
     "dedent": "^0.7.0"
+  },
+  "optionalDependencies": {
+    "parse-commit-message": "^4.0.0-rc.4"
   }
 }

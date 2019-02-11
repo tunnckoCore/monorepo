@@ -8,7 +8,7 @@ module.exports = {
   presets: [
     [
       '@babel/preset-env',
-      { modules: process.env.BABEL_ENV === 'build' ? false : 'commonjs' },
+      // { modules: process.env.BABEL_ENV === 'build' ? false : 'commonjs' },
     ],
     '@babel/preset-react',
     '@babel/preset-typescript',
