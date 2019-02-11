@@ -98,6 +98,9 @@ jobs:
       - add_ssh_keys: # User machine's key fingerprint (CircleCI User Key)
           fingerprints:
             - "d1:7e:2a:2d:2f:07:8f:d9:b5:f6:41:57:77:03:e1:f0"
+      - run:
+          name: KeyScan GitHub
+          command: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
       - run: *git
       - run: *npm
       - run:
