@@ -15,11 +15,11 @@ references:
       - image: circleci/node:10
   restore-cache: &restore-cache
       keys:
-        - v1-monorepo-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
-        - v1-monorepo-{{ checksum "yarn.lock" }}
-        - v1-monorepo-
+        - v2-monorepo-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+        - v2-monorepo-{{ checksum "yarn.lock" }}
+        - v2-monorepo-
   save-cache: &save-cache
-    key: v1-monorepo-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+    key: v2-monorepo-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
     paths:
       - ~/.cache/yarn
       - ~/.cache/yarn-packages-cache
@@ -52,7 +52,6 @@ jobs:
     <<: *node-8
     steps:
       - checkout
-      - restore_cache: *restore-cache
       - run: *yarn
       - save_cache: *save-cache
       - persist_to_workspace:
@@ -63,13 +62,11 @@ jobs:
     <<: *node-8
     steps:
       - attach_workspace: *attach-ws
-      - restore_cache: *restore-cache
       - run: *test
   test-node-10:
     <<: *node-10
     steps:
       - attach_workspace: *attach-ws
-      - restore_cache: *restore-cache
       - run: *test
       - run:
           name: Send CodeCov Results
@@ -78,13 +75,11 @@ jobs:
     <<: *node-10
     steps:
       - attach_workspace: *attach-ws
-      - restore_cache: *restore-cache
       - run: *lint
   typecheck:
     <<: *node-10
     steps:
       - attach_workspace: *attach-ws
-      - restore_cache: *restore-cache
       - run:
           name: Type checking with TypeScript
           command: yarn run tscheck
@@ -92,7 +87,6 @@ jobs:
     <<: *node-10
     steps:
       - attach_workspace: *attach-ws
-      - restore_cache: *restore-cache
       - run: # TODO: use jest-runner-babel soon, instead of lerna exec --parallel
           name: Build production files
           command: yarn run build
