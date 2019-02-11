@@ -45,7 +45,7 @@
     "jest-runner-tsc": "^1.4.0",
     "lerna": "^3.11.0",
     "prettier": "^1.16.4",
-    "rolldown": "^0.3.0",
+    "rolldown": "^0.2.4",
     "typescript": "^3.3.3"
   },
   "jest-runner-eslint": {
