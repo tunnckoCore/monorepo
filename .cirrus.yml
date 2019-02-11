@@ -4,7 +4,7 @@ node_cache: &node_cache
   populate_script: yarn install --prefer-offline --frozen-lockfile || yarn install --frozen-lockfile
 
 container:
-  image: node:10-alpine
+  image: node:10
 
 lint_task:
   node_modules_cache: *node_cache
@@ -17,8 +17,8 @@ test_task:
   script: yarn run test --coverage
   container:
     matrix:
-      image: node:10-alpine
-      image: node:8-alpine
+      image: node:10
+      image: node:8
 
 typecheck_task:
   node_modules_cache: *node_cache
