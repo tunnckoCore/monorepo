@@ -7,6 +7,12 @@ tasks:
       - install
       - --pure-lockfile
       - --frozen-lockfile
+  prepare:
+    image: node:10
+    command:
+      - yarn
+    args:
+      - build:execa
   lint:
     image: node:10
     command:
