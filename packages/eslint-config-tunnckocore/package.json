@@ -3,7 +3,7 @@
     "type:gen": "echo 'tsc -p ./tsconfig.gentypes.json'",
     "type:check": "echo 'tsc -p ./tsconfig.check.json'",
     "prebuild": "rm -rf dist",
-    "build": "echo 'BABEL_ENV=build rolldown'",
+    "build": "echo 'BABEL_ENV=build rolldown --pkg-dir $PWD'",
     "test": "echo 'devest test'",
     "docs": "docks --outfile .verb.md && verb"
   },
@@ -25,7 +25,7 @@
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
-  "version": "3.0.1-alpha.1",
+  "version": "3.0.1-alpha.2",
   "name": "eslint-config-tunnckocore",
   "description": "Shareable ESLint config for @tunnckoCore/hq mono-repository",
   "dependencies": {
@@ -62,6 +62,7 @@
       "github": "tunnckoCore"
     },
     "repository": {
+      "depsType": "",
       "slug": "tunnckoCore/hq",
       "directory": "packages/eslint-config-tunnckocore"
     }

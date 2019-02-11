@@ -3,7 +3,7 @@
     "type:gen": "tsc -p ./tsconfig.gentypes.json",
     "type:check": "tsc -p ./tsconfig.check.json",
     "prebuild": "rm -rf dist",
-    "build": "BABEL_ENV=build rolldown",
+    "build": "BABEL_ENV=build rolldown --pkg-dir $PWD",
     "test": "devest test",
     "docs": "docks --outfile .verb.md && verb"
   },
@@ -26,10 +26,10 @@
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
-  "version": "1.0.4-alpha.1",
+  "version": "1.0.4-alpha.2",
   "name": "@tunnckocore/package-json",
   "description": "Simple and fast getting of latest package.json metadata for a npm module, using axios and unpkg as a source, because npm registry is basically slow",
-  "optionalDependencies": {
+  "devDependencies": {
     "axios": "^0.18.0",
     "parse-package-name": "^0.1.0"
   },
@@ -52,6 +52,7 @@
       "github": "tunnckoCore"
     },
     "repository": {
+      "depsType": "dev",
       "slug": "tunnckoCore/hq",
       "directory": "@tunnckocore/package-json"
     }

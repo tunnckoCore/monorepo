@@ -1,7 +1,7 @@
 'use strict';
 
-// const pkg = require('./package.json');
-// const { createAliases } = require('./support');
+const pkg = require('./package.json');
+const { createAliases } = require('./support');
 
 module.exports = {
   ignore: process.env.BABEL_ENV === 'build' ? ['**/__tests__/**'] : [],
@@ -14,5 +14,6 @@ module.exports = {
     '@babel/preset-typescript',
   ],
   comments: false,
-  // plugins: [['module-resolver', createAliases(pkg)]],
+  // ! important, we need that because the rollup resolving
+  plugins: [['module-resolver', createAliases(pkg)]],
 };

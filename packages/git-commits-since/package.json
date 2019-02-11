@@ -3,7 +3,7 @@
     "type:gen": "echo 'tsc -p ./tsconfig.gentypes.json'",
     "type:check": "echo 'tsc -p ./tsconfig.check.json'",
     "prebuild": "rm -rf dist",
-    "build": "BABEL_ENV=build rolldown",
+    "build": "BABEL_ENV=build rolldown --pkg-dir $PWD",
     "test": "devest test",
     "docs": "docks --outfile .verb.md && verb"
   },
@@ -26,7 +26,7 @@
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
-  "version": "2.0.4-alpha.1",
+  "version": "2.0.4-alpha.2",
   "name": "git-commits-since",
   "description": "Get all commits since given period of time or by default from latest git semver tag. Understands and follows both SemVer and the Conventional Commits specification.",
   "devDependencies": {
@@ -34,10 +34,8 @@
     "dedent": "^0.7.0",
     "fs-extra": "^7.0.0",
     "parse-commit-message": "^3.2.3",
-    "simple-git": "^1.107.0"
-  },
-  "optionalDependencies": {
-    "@tunnckocore/git-semver-tags": "^0.3.1-alpha.1",
+    "simple-git": "^1.107.0",
+    "@tunnckocore/git-semver-tags": "^0.3.1-alpha.2",
     "git-raw-commits": "^2.0.0"
   },
   "keywords": [],
@@ -62,6 +60,7 @@
       "github": "tunnckoCore"
     },
     "repository": {
+      "depsType": "dev",
       "slug": "tunnckoCore/hq",
       "directory": "packages/git-commits-since"
     }

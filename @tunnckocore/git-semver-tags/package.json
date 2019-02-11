@@ -3,7 +3,7 @@
     "type:gen": "echo 'tsc -p ./tsconfig.gentypes.json'",
     "type:check": "echo 'tsc -p ./tsconfig.check.json'",
     "prebuild": "rm -rf dist",
-    "build": "BABEL_ENV=build rolldown",
+    "build": "BABEL_ENV=build rolldown --pkg-dir $PWD",
     "test": "devest test",
     "docs": "docks --outfile .verb.md && verb"
   },
@@ -26,11 +26,11 @@
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
-  "version": "0.3.1-alpha.1",
+  "version": "0.3.1-alpha.2",
   "name": "@tunnckocore/git-semver-tags",
   "description": "Get all semver valid flags for a git repository. Temporary fork of original git-semver-tags, promised api - async/await friendly, plus option for cwd",
-  "optionalDependencies": {
-    "@tunnckocore/execa": "^2.4.1-alpha.1",
+  "devDependencies": {
+    "@tunnckocore/execa": "^2.4.1-alpha.2",
     "semver": "^5.6.0"
   },
   "keywords": [],
@@ -52,6 +52,7 @@
       "github": "tunnckoCore"
     },
     "repository": {
+      "depsType": "dev",
       "slug": "tunnckoCore/hq",
       "directory": "@tunnckocore/git-semver-tags"
     }
