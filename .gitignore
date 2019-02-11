@@ -9,4 +9,6 @@ package-lock.json
 shrinkwrap.json
 .eslintcache
 .config-*.js
-CHANGELOG.md
+# Okey, waiting lerna...
+# https://github.com/lerna/lerna/pull/1864#issuecomment-462293490
+# CHANGELOG.md

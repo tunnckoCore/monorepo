@@ -7,8 +7,7 @@
     "version": {
       "message": "chore: release [skip ci]",
       "githubRelease": true,
-      "conventionalCommits": true,
-      "ignoreChanges": ["CHANGELOG.md"]
+      "conventionalCommits": true
     }
   }
 }
