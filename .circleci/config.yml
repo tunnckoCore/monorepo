@@ -91,7 +91,6 @@ jobs:
     <<: *node-10
     steps:
       - attach_workspace: *attach-ws
-      - restore_cache: *restore-cache
       - run:
           name: Build production files
           command: yarn run build:ci
@@ -103,7 +102,6 @@ jobs:
     <<: *node-10
     steps:
       - attach_workspace: *attach-ws
-      - restore_cache: *restore-cache
       - add_ssh_keys: # User machine's key fingerprint (CircleCI User Key)
           fingerprints:
             # Fingerprint of the special SSH key for CircleCI
