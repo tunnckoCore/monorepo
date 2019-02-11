@@ -1363,6 +1363,24 @@
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
 
+"@tunnckocore/devest@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@tunnckocore/devest/-/devest-0.6.0.tgz#3bf4811c1c80146d9e03d06c865f9e6d9c3314a4"
+  integrity sha512-ZON5NkL8/ISH9pdCIDv5EtUYekGpFOhREXTbTpOThKnLLmOxSGupx5oqaDH+2Wzgj01YceeBBfiJMZFRcNqpUQ==
+  dependencies:
+    "@tunnckocore/execa" "^2.2.1"
+    mri "^1.1.4"
+
+"@tunnckocore/execa@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@tunnckocore/execa/-/execa-2.2.1.tgz#34557ab1a44af060edd9938b41d9508fffb3c399"
+  integrity sha512-YkRe0ny24JKuoxo/uIx7TzbunGnsfsQZ7neuIGPRnh1ykHG50FijGH9tUaTZfqzyrvMJF31Uh2QVmgEBjnFuXg==
+  dependencies:
+    esm "^3.0.84"
+    execa "^1.0.0"
+    p-map-series "^1.0.0"
+    split-cmd "^1.0.0"
+
 "@types/dedent@^0.7.0":
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@types/dedent/-/dedent-0.7.0.tgz#155f339ca404e6dd90b9ce46a3f78fd69ca9b050"
@@ -2879,12 +2897,38 @@ eslint-config-airbnb@^17.1.0:
     object.assign "^4.1.0"
     object.entries "^1.0.4"
 
+eslint-config-prettier@^3.4.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-3.6.0.tgz#8ca3ffac4bd6eeef623a0651f9d754900e3ec217"
+  integrity sha512-ixJ4U3uTLXwJts4rmSVW/lMXjlGwCijhBJHk8iVqKKSifeI0qgFEfWl8L63isfc8Od7EiBALF6BX3jKLluf/jQ==
+  dependencies:
+    get-stdin "^6.0.0"
+
 eslint-config-prettier@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-4.0.0.tgz#16cedeea0a56e74de60dcbbe3be0ab2c645405b9"
   integrity sha512-kWuiJxzV5NwOwZcpyozTzDT5KJhBw292bbYro9Is7BWnbNMg15Gmpluc1CTetiCatF8DRkNvgPAOaSyg+bYr3g==
   dependencies:
     get-stdin "^6.0.0"
+
+eslint-config-tunnckocore@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-tunnckocore/-/eslint-config-tunnckocore-3.0.0.tgz#d826f383f79180adb27105e24354379ae450d9fc"
+  integrity sha512-o6rz3DqD4+k5SfTpKLzk904NinGkjjm6qlGhiYpOMHcnvNBLCeLeh4o5dLGHWaU2eoDZXrmcijjVf3XXFTUUCg==
+  dependencies:
+    babel-eslint "^10.0.1"
+    eslint-config-airbnb "^17.1.0"
+    eslint-config-prettier "^3.4.0"
+    eslint-plugin-import "^2.14.0"
+    eslint-plugin-jest "^22.1.3"
+    eslint-plugin-jsx-a11y "^6.1.2"
+    eslint-plugin-markdown "^1.0.0"
+    eslint-plugin-node "^8.0.1"
+    eslint-plugin-prettier "^3.0.0"
+    eslint-plugin-promise "^4.0.1"
+    eslint-plugin-react "^7.12.3"
+    eslint-plugin-react-hooks "^0.0.0"
+    eslint-plugin-unicorn "^7.1.0"
 
 eslint-import-resolver-babel-module@^5.0.1:
   version "5.0.1"
@@ -2985,6 +3029,11 @@ eslint-plugin-promise@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-4.0.1.tgz#2d074b653f35a23d1ba89d8e976a985117d1c6a2"
   integrity sha512-Si16O0+Hqz1gDHsys6RtFRrW7cCTB6P7p3OJmKp3Y3dxpQE2qwOA7d3xnV+0mBmrPoi0RBnxlCKvqu70te6wjg==
+
+eslint-plugin-react-hooks@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-0.0.0.tgz#9988f14082a159931c3dfa9ba699130457da927a"
+  integrity sha512-SXyU7C3E8AJbXKMdb10P/zHazcxzfuWR5OFwAVZKXVU7P/H56NLszVG6WdQBo9Pt80FfnPXtUGGbWhs3/98N4w==
 
 eslint-plugin-react-hooks@^1.0.0:
   version "1.0.1"
@@ -6972,6 +7021,22 @@ rimraf@2, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2, rimraf@~2.6.2:
   integrity sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==
   dependencies:
     glob "^7.1.3"
+
+rolldown@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/rolldown/-/rolldown-0.3.0.tgz#ff8922aa64c62e4ad2492bcc985dfe35b5f005b1"
+  integrity sha512-mP4+lGsgVzxG2U/EqIwZ9+LOph/ytsG+/LY3fFtovZRNeOOa7vnDNsf2uLJi6zL8RKtN7cFvSXWlV/0rWjtzjQ==
+  dependencies:
+    builtin-modules "^3.0.0"
+    mri "^1.1.4"
+    rollup "^1.1.2"
+    rollup-plugin-babel "^4.3.2"
+    rollup-plugin-commonjs "^9.2.0"
+    rollup-plugin-filesize "^6.0.1"
+    rollup-plugin-json "^3.1.0"
+    rollup-plugin-node-resolve "^4.0.0"
+    rollup-plugin-progress "^1.0.0"
+    rollup-plugin-terser "^4.0.4"
 
 rollup-plugin-babel@^4.3.2:
   version "4.3.2"
