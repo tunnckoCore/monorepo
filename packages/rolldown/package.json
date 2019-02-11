@@ -26,7 +26,7 @@
   },
   "license": "Apache-2.0",
   "licenseStart": "2017",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "name": "rolldown",
   "description": "wip",
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/packages/rolldown",
