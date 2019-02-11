@@ -28,9 +28,9 @@
   },
   "license": "Apache-2.0",
   "licenseStart": "2017",
-  "version": "0.4.1-alpha.3",
+  "version": "0.4.1-alpha.4",
   "name": "rolldown",
-  "description": "wip",
+  "description": "wip wip wip wip wip wip wip wip wip wip wip",
   "dependencies": {
     "builtin-modules": "^3.0.0",
     "mri": "^1.1.4",
