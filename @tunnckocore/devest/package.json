@@ -27,7 +27,7 @@
   },
   "license": "Apache-2.0",
   "licenseStart": "2017",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "name": "@tunnckocore/devest",
   "description": "wip",
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/@tunnckocore/devest",
@@ -43,10 +43,10 @@
     "twitter": "tunnckoCore",
     "github": "tunnckoCore"
   },
-  "dependencies": {},
-  "devDependencies": {},
-  "optionalDependencies": {
+  "dependencies": {
     "mri": "^1.1.4",
     "@tunnckocore/execa": "^2.2.1"
-  }
+  },
+  "devDependencies": {},
+  "optionalDependencies": {}
 }
