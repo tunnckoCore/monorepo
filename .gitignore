@@ -9,3 +9,4 @@ package-lock.json
 shrinkwrap.json
 .eslintcache
 .config-*.js
+CHANGELOG.md

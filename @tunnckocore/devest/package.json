@@ -22,7 +22,9 @@
     "node 10.13"
   ],
   "files": [
-    "src"
+    "src",
+    "!src/commands/*/.config-*",
+    "!src/__tests__/*"
   ],
   "bin": {
     "devest": "src/cli.js"
