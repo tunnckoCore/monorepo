@@ -53,6 +53,7 @@ jobs:
     steps:
       - checkout
       - run: *yarn
+      - run: yarn build:execa
       - save_cache: *save-cache
       - persist_to_workspace:
           root: .
