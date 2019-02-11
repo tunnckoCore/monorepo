@@ -7,35 +7,36 @@ container:
   image: node:10-alpine
 
 lint_task:
-  test_script: yarn run lint
   node_modules_cache: *node_cache
+  install_script: yarn install --offline --frozen-lockfile
+  script: yarn run lint
 
 test_task:
-  test_script: yarn run test --coverage
   node_modules_cache: *node_cache
+  install_script: yarn install --offline --frozen-lockfile
+  script: yarn run test --coverage
   container:
     matrix:
       image: node:10-alpine
       image: node:8-alpine
 
 typecheck_task:
-  test_script: yarn run type:check
   node_modules_cache: *node_cache
+  install_script: yarn install --offline --frozen-lockfile
+  script: yarn run type:check
 
 build_task:
-  test_script: yarn run build:ci
   node_modules_cache: *node_cache
+  install_script: yarn install --offline --frozen-lockfile
+  script: yarn run build:ci
   depends_on:
     - lint
     - test
     - typecheck
 
-publish_task:
+deploy_task:
   depends_on:
-    - lint
-    - test
     - build
-    - typecheck
   only_if: $BRANCH == "master"
   test_script: yarn run release
   node_modules_cache: *node_cache
