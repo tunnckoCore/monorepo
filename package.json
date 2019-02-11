@@ -21,6 +21,7 @@
     "commit": "yarn run dry",
     "dry": "git add -A && git commit -sS",
     "format": "prettier '**/*' --write",
+    "fresh": "rm -rf {@tunnckocore,packages}/*/node_modules node_modules yarn.lock",
     "release": "echo fake-for-now",
     "releaseXX": "lerna publish -m 'chore: release [skip ci]' --conventional-commits --changelog --sign-git-commit --sign-git-tag",
     "import": "lerna import -y",
