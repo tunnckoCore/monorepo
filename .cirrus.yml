@@ -1,0 +1,41 @@
+node_cache: &node_cache
+  folder: node_modules
+  fingerprint_script: cat yarn.lock
+  populate_script: yarn install --prefer-offline --frozen-lockfile || yarn install --frozen-lockfile
+
+container:
+  image: node:10-alpine
+
+lint_task:
+  test_script: yarn run lint
+  node_modules_cache: *node_cache
+
+test_task:
+  test_script: yarn run test --coverage
+  node_modules_cache: *node_cache
+  container:
+    matrix:
+      image: node:10-alpine
+      image: node:8-alpine
+
+typecheck_task:
+  test_script: yarn run type:check
+  node_modules_cache: *node_cache
+
+build_task:
+  test_script: yarn run build:ci
+  node_modules_cache: *node_cache
+  depends_on:
+    - lint
+    - test
+    - typecheck
+
+publish_task:
+  depends_on:
+    - lint
+    - test
+    - build
+    - typecheck
+  only_if: $BRANCH == "master"
+  test_script: yarn run release
+  node_modules_cache: *node_cache
