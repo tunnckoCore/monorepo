@@ -12,5 +12,3 @@
     }
   }
 }
-
-// --github-release --conventional-commits --message 'chore(release): new versions [skip ci]'
