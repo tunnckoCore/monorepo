@@ -33,11 +33,11 @@ references:
   test: &test
     # TODO: add the `--all` flag when needed, to overwrite the --onlyChanged
     name: Run Tests
-    command: yarn run test:ci
+    command: yarn run test:ci --all
   lint: &lint
     # TODO: add the `--all` flag when needed, to overwrite the --onlyChanged
     name: Lint Packages
-    command: yarn run lint:ci
+    command: yarn run lint:ci --all
   git: &git
     name: Configure git settings
     command: |-
