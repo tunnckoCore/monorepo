@@ -24,6 +24,7 @@ references:
       - ~/.cache/yarn
       - ~/.cache/yarn-packages-cache
       - node_modules
+      - ~/.ssh
   attach-ws: &attach-ws
     at: ~/tunnckocore-monorepo
   yarn: &yarn
@@ -59,7 +60,6 @@ jobs:
           root: .
           paths:
             - .
-            - ~/.ssh
   test-node-8:
     <<: *node-8
     steps:
