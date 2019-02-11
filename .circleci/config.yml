@@ -21,6 +21,7 @@ references:
   save-cache: &save-cache
     key: v3-monorepo-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
     paths:
+      - ~/.ssh
       - ~/.cache/yarn
       - ~/.cache/yarn-packages-cache
       - node_modules
