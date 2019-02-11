@@ -6,10 +6,10 @@
   "scripts": {
     "build:execa": "lerna exec --scope '@tunnckocore/execa' 'BABEL_ENV=build yarn run build'",
     "postinstall": "lerna bootstrap && yarn build:execa",
-    "test": "devest test",
-    "test:ci": "devest test --runInBand",
-    "test:all": "lerna run test --parallel --since",
     "lint": "devest lint",
+    "lint:ci": "devest lint --runInBand --onlyChanged",
+    "test": "devest test",
+    "test:ci": "devest test --coverage --runInBand --onlyChanged",
     "type:gen": "lerna exec 'yarn run type:gen'",
     "type:check": "lerna exec --parallel 'yarn run type:check'",
     "dev:test": "jest --watch --bail",
