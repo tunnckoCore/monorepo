@@ -4,11 +4,11 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "postinstall": "lerna bootstrap",
+    "build:execa": "lerna exec --scope '@tunnckocore/execa' 'BABEL_ENV=build yarn run build'",
+    "postinstall": "lerna bootstrap && yarn build:execa",
     "test": "devest test",
     "test:ci": "devest test --runInBand",
     "test:all": "lerna run test --parallel --since",
-    "prelint": "lerna exec --scope '@tunnckocore/execa' 'BABEL_ENV=build yarn run build'",
     "lint": "devest lint",
     "type:gen": "lerna exec 'yarn run type:gen'",
     "typecheck:slow": "jest -c jest-typecheck.config.js",
