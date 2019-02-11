@@ -21,7 +21,7 @@
     "dry": "git add -A && git commit -sS",
     "format": "prettier '**/*' --write",
     "fresh": "rm -rf {@tunnckocore,packages}/*/node_modules node_modules yarn.lock",
-    "bump:alpha": "lerna version prerelease --preid alpha --github-release --conventional-commits --message 'chore(release): new versions [skip-ci]'",
+    "bump:alpha": "yarn run bump prerelease --preid alpha",
     "bump": "lerna version --github-release --conventional-commits --message 'chore(release): new versions [skip-ci]'",
     "release": "echo foo",
     "releaseXX": "lerna publish from-git",
