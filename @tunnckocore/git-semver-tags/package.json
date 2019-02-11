@@ -43,7 +43,7 @@
   "dependencies": {},
   "devDependencies": {},
   "optionalDependencies": {
-    "@tunnckocore/execa": "^2.2.1",
+    "@tunnckocore/execa": "^2.4.0",
     "semver": "^5.6.0"
   }
 }
