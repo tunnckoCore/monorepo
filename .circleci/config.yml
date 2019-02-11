@@ -21,7 +21,6 @@ references:
   save-cache: &save-cache
     key: v3-monorepo-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
     paths:
-      - ~/.ssh
       - ~/.cache/yarn
       - ~/.cache/yarn-packages-cache
       - node_modules
@@ -29,7 +28,7 @@ references:
     at: ~/repo
   yarn: &yarn
     name: Install Dependencies
-    command: yarn install --prefer-offline || yarn install
+    command: yarn install --prefer-offline --pure-lockfile --frozen-lockfile || yarn install --pure-lockfile --frozen-lockfile
   test: &test
     # TODO: add the `--all` flag when needed, to overwrite the --onlyChanged
     name: Run Tests
@@ -48,7 +47,7 @@ references:
   npm: &npm
     name: Configure npm settings
     command: |-
-      echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ./.npmrc
+      echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
 
 jobs:
   install:
@@ -113,6 +112,7 @@ jobs:
       #     command: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
       - run: *git
       - run: *npm
+      - run: git status
       - run:
           name: Publish to npm and GitHub
           command: yarn run release

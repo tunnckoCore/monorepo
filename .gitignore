@@ -3,6 +3,7 @@ coverage
 build
 dist
 
+.npmrc
 *.log
 *~
 package-lock.json
