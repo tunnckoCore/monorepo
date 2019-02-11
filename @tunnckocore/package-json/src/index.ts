@@ -1,4 +1,4 @@
-import axios from 'axios';
+import nodeFetch from 'node-fetch';
 
 // @ts-ignore
 import parse from 'parse-package-name';
@@ -37,5 +37,5 @@ export default async function packageJson(
       ? endpoint(name, tag)
       : `https://unpkg.com/${name}@${tag}/package.json`;
 
-  return axios.get(url).then((res) => res.data);
+  return nodeFetch(url).then((res) => res.json());
 }

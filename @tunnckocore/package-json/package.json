@@ -30,7 +30,7 @@
   "name": "@tunnckocore/package-json",
   "description": "Simple and fast getting of latest package.json metadata for a npm module, using axios and unpkg as a source, because npm registry is basically slow",
   "devDependencies": {
-    "axios": "^0.18.0",
+    "node-fetch": "^2.3.0",
     "parse-package-name": "^0.1.0"
   },
   "keywords": [],
@@ -72,5 +72,8 @@
       "reflinks": true
     },
     "reflinks": []
+  },
+  "dependencies": {
+    "node-fetch": "^2.3.0"
   }
 }
