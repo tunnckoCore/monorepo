@@ -22,7 +22,7 @@
     "format": "prettier '**/*' --write",
     "fresh": "rm -rf {@tunnckocore,packages}/*/node_modules node_modules yarn.lock",
     "bump:alpha": "yarn run bump prerelease --preid alpha",
-    "bump": "lerna version --github-release --conventional-commits --message 'chore(release): new versions [skip ci]'",
+    "bump": "lerna version --yes --github-release --conventional-commits --message 'chore(release): new versions [skip ci]'",
     "release": "yarn bump:alpha --force-publish && yarn release:publish",
     "release:publish": "lerna publish from-git --yes",
     "import": "lerna import -y",
