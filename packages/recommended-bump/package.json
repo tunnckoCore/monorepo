@@ -45,6 +45,6 @@
     "dedent": "^0.7.0"
   },
   "optionalDependencies": {
-    "parse-commit-message": "^4.0.0-alpha.1"
+    "parse-commit-message": "^4.0.0-alpha.0"
   }
 }

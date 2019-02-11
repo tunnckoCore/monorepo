@@ -48,7 +48,7 @@
     "simple-git": "^1.107.0"
   },
   "optionalDependencies": {
-    "@tunnckocore/git-semver-tags": "^0.3.1-alpha.1",
+    "@tunnckocore/git-semver-tags": "^0.3.1-alpha.0",
     "git-raw-commits": "^2.0.0"
   }
 }
