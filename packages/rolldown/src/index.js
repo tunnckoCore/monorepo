@@ -26,7 +26,7 @@ async function createConfig(input, options) {
 
   // eslint-disable-next-line import/no-dynamic-require, global-require
   const pkg = require(join('package.json'));
-  const deps = Object.keys(pkg.dependencies);
+  const deps = Object.keys(Object.assign({}, pkg.dependencies));
 
   const exts = arrayify(opts.extensions);
   const extensions =
