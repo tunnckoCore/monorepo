@@ -8,12 +8,12 @@ container:
 
 lint_task:
   node_modules_cache: *node_cache
-  install_script: yarn install --offline --frozen-lockfile
+  install_script: yarn install --offline --frozen-lockfile && yarn run build:execa
   script: yarn run lint
 
 test_task:
   node_modules_cache: *node_cache
-  install_script: yarn install --offline --frozen-lockfile
+  install_script: yarn install --offline --frozen-lockfile && yarn run build:execa
   script: yarn run test --coverage
   container:
     matrix:
