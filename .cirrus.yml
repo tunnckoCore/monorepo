@@ -12,11 +12,9 @@ lint_task:
   script: yarn run build:execa && yarn run lint --run-in-band
 
 test_task:
-  depends_on:
-    - lint
   node_modules_cache: *node_cache
   # install_script: yarn install --offline --frozen-lockfile && yarn run build:execa
-  script: yarn run test --coverage --run-in-band
+  script: yarn run build:execa && yarn run test --coverage --run-in-band
   container:
     matrix:
       image: node:10
