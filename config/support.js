@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const cwd = __dirname;
+const cwd = path.dirname(__dirname);
 
 /**
  * Create explicit alias key/value pair from the current

@@ -1,7 +1,7 @@
 'use strict';
 
 const pkg = require('./package.json');
-const { createAliases } = require('./support');
+const { createAliases } = require('./config/support');
 
 module.exports = {
   ignore: process.env.BABEL_ENV === 'build' ? ['**/__tests__/**'] : [],

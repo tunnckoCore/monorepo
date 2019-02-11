@@ -92,9 +92,13 @@ jobs:
     <<: *node-10
     steps:
       - attach_workspace: *attach-ws
-      - run: # TODO: use jest-runner-babel soon, instead of lerna exec --parallel
+      - run:
           name: Build production files
           command: yarn run build:ci
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
   deploy:
     <<: *node-10
     steps:
@@ -111,7 +115,7 @@ jobs:
       - run: *npm
       - run:
           name: Publish to npm and GitHub
-          command: yarn run release --yes
+          command: yarn run release
 
 
 workflows:

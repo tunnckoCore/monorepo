@@ -1,5 +1,5 @@
 'use strict';
 
-module.exports = {
-  extends: '../../babel.config.js',
-};
+const config = require('../../babel.config');
+
+module.exports = Object.assign({}, config, {});

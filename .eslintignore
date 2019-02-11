@@ -1,9 +1,0 @@
-node_modules
-coverage
-build
-dist
-
-**/*.d.ts
-*.log
-*~
-package-lock.json
