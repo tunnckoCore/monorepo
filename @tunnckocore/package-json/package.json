@@ -24,7 +24,7 @@
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
-  "version": "1.0.3",
+  "version": "1.0.4-alpha.0",
   "name": "@tunnckocore/package-json",
   "description": "Simple and fast getting of latest package.json metadata for a npm module, using axios and unpkg as a source, because npm registry is basically slow",
   "homepage": "https://github.com/tunnckoCore/monorepo/tree/master/@tunnckocore/package-json",
@@ -40,8 +40,6 @@
     "twitter": "tunnckoCore",
     "github": "tunnckoCore"
   },
-  "dependencies": {},
-  "devDependencies": {},
   "optionalDependencies": {
     "axios": "^0.18.0",
     "parse-package-name": "^0.1.0"

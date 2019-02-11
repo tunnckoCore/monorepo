@@ -24,7 +24,7 @@
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
-  "version": "1.0.8",
+  "version": "1.0.9-alpha.0",
   "name": "foo-bar-baz-qux",
   "description": "dasdasd",
   "repository": {
@@ -38,8 +38,5 @@
     "url": "https://tunnckocore.com",
     "twitter": "tunnckoCore",
     "github": "tunnckoCore"
-  },
-  "dependencies": {},
-  "devDependencies": {},
-  "optionalDependencies": {}
+  }
 }
