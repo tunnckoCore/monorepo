@@ -4348,25 +4348,6 @@ eslint-config-prettier@^4.0.0:
   dependencies:
     get-stdin "^6.0.0"
 
-eslint-config-tunnckocore@^3.0.1-alpha.4:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-tunnckocore/-/eslint-config-tunnckocore-3.0.1.tgz#701e688a825877f724fab85ae89a67aa9635938f"
-  integrity sha512-3MbYAY70ICE51NKigZfgDtHjtZnqvdudnH/2r7kZJlA6jSCVImOMC76Le/rDlDtIpEMWq06Pyp1pOWXtRZNtZw==
-  dependencies:
-    babel-eslint "^10.0.1"
-    eslint-config-airbnb "^17.1.0"
-    eslint-config-prettier "^4.0.0"
-    eslint-plugin-import "^2.14.0"
-    eslint-plugin-jest "^22.1.3"
-    eslint-plugin-jsx-a11y "^6.1.2"
-    eslint-plugin-markdown "^1.0.0"
-    eslint-plugin-node "^8.0.1"
-    eslint-plugin-prettier "^3.0.0"
-    eslint-plugin-promise "^4.0.1"
-    eslint-plugin-react "^7.12.3"
-    eslint-plugin-react-hooks "^1.0.0"
-    eslint-plugin-unicorn "^7.1.0"
-
 eslint-import-resolver-babel-module@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/eslint-import-resolver-babel-module/-/eslint-import-resolver-babel-module-5.0.1.tgz#02e36fbefa7aaf8ff0d298ed2651ea48ad26dd1e"
