@@ -2,5 +2,15 @@
   "packages": ["packages/*", "@tunnckocore/*"],
   "version": "independent",
   "npmClient": "yarn",
-  "useWorkspaces": true
+  "useWorkspaces": true,
+  "command": {
+    "version": {
+      "message": "chore: release [skip ci]",
+      "githubRelease": true,
+      "conventionalCommits": true,
+      "ignoreChanges": ["**/*/CHANGELOG.md"]
+    }
+  }
 }
+
+// --github-release --conventional-commits --message 'chore(release): new versions [skip ci]'
