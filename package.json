@@ -8,7 +8,7 @@
     "test": "devest test",
     "test:ci": "devest test --runInBand",
     "test:all": "lerna run test --parallel --since",
-    "prelint": "lerna exec --scope '*execa*' 'BABEL_ENV=build yarn run build'",
+    "prelint": "lerna exec --scope '@tunnckocore/execa' 'BABEL_ENV=build yarn run build'",
     "lint": "devest lint",
     "type:gen": "lerna exec 'yarn run type:gen'",
     "typecheck:slow": "jest -c jest-typecheck.config.js",
