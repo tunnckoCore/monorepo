@@ -1,10 +1,12 @@
 tasks:
-  build:
+  install:
     image: node:10
     command:
       - yarn
     args:
       - install
+      - --pure-lockfile
+      - --frozen-lockfile
   lint:
     image: node:10
     command:
@@ -18,3 +20,9 @@ tasks:
     args:
       - test
       - --coverage
+  build:
+    image: node:10
+    command:
+      - yarn
+    args:
+      - build:ci
