@@ -58,22 +58,22 @@ jobs:
       - run: *yarn
       - run: yarn build:execa
       - save_cache: *save-cache
-      # - persist_to_workspace:
-      #     root: .
-      #     paths:
-      #       - .
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
   test-node-8:
     <<: *node-8
     steps:
-      - checkout
-      # - attach_workspace: *attach-ws
+      # - checkout
+      - attach_workspace: *attach-ws
       - restore_cache: *restore-cache
       - run: *test
   test-node-10:
     <<: *node-10
     steps:
-      - checkout
-      # - attach_workspace: *attach-ws
+      # - checkout
+      - attach_workspace: *attach-ws
       - restore_cache: *restore-cache
       - run: *test
       - run:
@@ -82,15 +82,15 @@ jobs:
   lint:
     <<: *node-10
     steps:
-      - checkout
-      # - attach_workspace: *attach-ws
+      # - checkout
+      - attach_workspace: *attach-ws
       - restore_cache: *restore-cache
       - run: *lint
   typecheck:
     <<: *node-10
     steps:
-      - checkout
-      # - attach_workspace: *attach-ws
+      # - checkout
+      - attach_workspace: *attach-ws
       - restore_cache: *restore-cache
       - run:
           name: Type checking with TypeScript
@@ -98,8 +98,8 @@ jobs:
   build:
     <<: *node-10
     steps:
-      - checkout
-      # - attach_workspace: *attach-ws
+      # - checkout
+      - attach_workspace: *attach-ws
       - restore_cache: *restore-cache
       - run:
           name: Build for Production
@@ -111,8 +111,8 @@ jobs:
   deploy:
     <<: *node-10
     steps:
-      - checkout
-      # - attach_workspace: *attach-ws
+      # - checkout
+      - attach_workspace: *attach-ws
       - restore_cache: *restore-cache
       - add_ssh_keys: # User machine's key fingerprint (CircleCI User Key)
           fingerprints: # Fingerprint of the special SSH key for CircleCI
