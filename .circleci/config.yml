@@ -6,10 +6,12 @@ version: 2.1
 
 references:
   node-8: &node-8
+    parallelism: 4
     working_directory: ~/repo
     docker:
       - image: circleci/node:8
   node-10: &node-10
+    parallelism: 4
     working_directory: ~/repo
     docker:
       - image: circleci/node:10
