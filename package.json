@@ -17,7 +17,7 @@
     "type:check": "lerna exec --parallel 'yarn run type:check'",
     "dev:test": "jest --watch --bail",
     "dev:lint": "yarn run lint --watch",
-    "build": "lerna exec --parallel \"yarn run build --cwd $PWD\"",
+    "build": "lerna exec --parallel \"yarn run build --cwd $PWD --minify\"",
     "precommit": "yarn lint && yarn type:check && yarn test && yarn format",
     "commit": "yarn run dry",
     "dry": "git add -A && git commit -sS",

@@ -58,19 +58,21 @@ jobs:
       - run: *yarn
       - run: yarn build:execa
       - save_cache: *save-cache
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
+      # - persist_to_workspace:
+      #     root: .
+      #     paths:
+      #       - .
   test-node-8:
     <<: *node-8
     steps:
+      - checkout
       # - attach_workspace: *attach-ws
       - restore_cache: *restore-cache
       - run: *test
   test-node-10:
     <<: *node-10
     steps:
+      - checkout
       # - attach_workspace: *attach-ws
       - restore_cache: *restore-cache
       - run: *test
@@ -80,12 +82,14 @@ jobs:
   lint:
     <<: *node-10
     steps:
+      - checkout
       # - attach_workspace: *attach-ws
       - restore_cache: *restore-cache
       - run: *lint
   typecheck:
     <<: *node-10
     steps:
+      - checkout
       # - attach_workspace: *attach-ws
       - restore_cache: *restore-cache
       - run:
@@ -94,6 +98,7 @@ jobs:
   build:
     <<: *node-10
     steps:
+      - checkout
       # - attach_workspace: *attach-ws
       - restore_cache: *restore-cache
       - run:
@@ -106,6 +111,7 @@ jobs:
   deploy:
     <<: *node-10
     steps:
+      - checkout
       # - attach_workspace: *attach-ws
       - restore_cache: *restore-cache
       - add_ssh_keys: # User machine's key fingerprint (CircleCI User Key)
