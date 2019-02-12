@@ -65,12 +65,14 @@ jobs:
   test-node-8:
     <<: *node-8
     steps:
-      - attach_workspace: *attach-ws
+      # - attach_workspace: *attach-ws
+      - restore_cache: *restore-cache
       - run: *test
   test-node-10:
     <<: *node-10
     steps:
-      - attach_workspace: *attach-ws
+      # - attach_workspace: *attach-ws
+      - restore_cache: *restore-cache
       - run: *test
       - run:
           name: Send CodeCov Results
@@ -78,22 +80,25 @@ jobs:
   lint:
     <<: *node-10
     steps:
-      - attach_workspace: *attach-ws
+      # - attach_workspace: *attach-ws
+      - restore_cache: *restore-cache
       - run: *lint
   typecheck:
     <<: *node-10
     steps:
-      - attach_workspace: *attach-ws
+      # - attach_workspace: *attach-ws
+      - restore_cache: *restore-cache
       - run:
           name: Type checking with TypeScript
           command: yarn run type:check
   build:
     <<: *node-10
     steps:
-      - attach_workspace: *attach-ws
+      # - attach_workspace: *attach-ws
+      - restore_cache: *restore-cache
       - run:
-          name: Build production files
-          command: yarn run build:ci
+          name: Build for Production
+          command: yarn run build
       - persist_to_workspace:
           root: .
           paths:
@@ -101,11 +106,10 @@ jobs:
   deploy:
     <<: *node-10
     steps:
-      - attach_workspace: *attach-ws
+      # - attach_workspace: *attach-ws
       - restore_cache: *restore-cache
       - add_ssh_keys: # User machine's key fingerprint (CircleCI User Key)
-          fingerprints:
-            # Fingerprint of the special SSH key for CircleCI
+          fingerprints: # Fingerprint of the special SSH key for CircleCI
             - "65:dd:e6:57:21:52:c4:c6:c8:59:b4:56:f3:65:ec:b4"
       # - run:
       #     name: KeyScan GitHub
@@ -131,15 +135,16 @@ workflows:
             - install
       - typecheck:
           requires:
-            - lint
+            - install
       - test-node-8:
           requires:
-            - lint
+            - install
       - test-node-10:
           requires:
-            - lint
+            - install
       - build:
           requires:
+            - lint
             - typecheck
             - test-node-8
             - test-node-10
