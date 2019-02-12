@@ -26,11 +26,11 @@
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
-  "version": "2.0.4-alpha.9",
+  "version": "2.0.4-alpha.10",
   "name": "git-commits-since",
   "description": "Get all commits since given period of time or by default from latest git semver tag. Understands and follows both SemVer and the Conventional Commits specification.",
   "devDependencies": {
-    "@tunnckocore/git-semver-tags": "^0.3.1-alpha.9",
+    "@tunnckocore/git-semver-tags": "^0.3.1-alpha.10",
     "@types/dedent": "^0.7.0",
     "dedent": "^0.7.0",
     "fs-extra": "^7.0.0",

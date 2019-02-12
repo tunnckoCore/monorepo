@@ -25,7 +25,7 @@
   ],
   "license": "Apache-2.0",
   "licenseStart": "2018",
-  "version": "3.0.1-alpha.9",
+  "version": "3.0.1-alpha.10",
   "name": "eslint-config-tunnckocore",
   "description": "Shareable ESLint config for @tunnckoCore/hq mono-repository",
   "dependencies": {

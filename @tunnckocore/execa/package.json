@@ -26,7 +26,7 @@
   ],
   "license": "Apache-2.0",
   "licenseStart": "2017",
-  "version": "2.4.1-alpha.9",
+  "version": "2.4.1-alpha.10",
   "name": "@tunnckocore/execa",
   "description": "Thin layer on top of [execa][] that allows executing multiple commands in parallel or in sequence",
   "devDependencies": {
