@@ -30,7 +30,7 @@
     "devest": "src/cli.js"
   },
   "license": "Apache-2.0",
-  "licenseStart": "2017",
+  "licenseStart": "2019",
   "version": "0.6.1-alpha.8",
   "name": "@tunnckocore/devest",
   "description": "wip",
@@ -50,19 +50,15 @@
     "email": "mameto2011@gmail.com",
     "url": "https://tunnckocore.com"
   },
-  "meta": {
-    "author": {
+  "verb": {
+    "data": {
+      "depsType": "dep",
+      "directory": "@tunnckocore/devest",
       "avatar": "https://avatars3.githubusercontent.com/u/5038030?v=4",
       "twitter": "tunnckoCore",
       "github": "tunnckoCore"
     },
-    "repository": {
-      "depsType": "",
-      "slug": "tunnckoCore/hq",
-      "directory": "@tunnckocore/devest"
-    }
-  },
-  "verb": {
+    "readme": "../../config/readme-template.md",
     "run": true,
     "toc": {
       "render": true,

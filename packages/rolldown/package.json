@@ -55,19 +55,15 @@
     "email": "mameto2011@gmail.com",
     "url": "https://tunnckocore.com"
   },
-  "meta": {
-    "author": {
+  "verb": {
+    "data": {
+      "depsType": "dep",
+      "directory": "packages/rolldown",
       "avatar": "https://avatars3.githubusercontent.com/u/5038030?v=4",
       "twitter": "tunnckoCore",
       "github": "tunnckoCore"
     },
-    "repository": {
-      "depsType": "",
-      "slug": "tunnckoCore/hq",
-      "directory": "packages/rolldown"
-    }
-  },
-  "verb": {
+    "readme": "../../config/readme-template.md",
     "run": true,
     "toc": {
       "render": true,

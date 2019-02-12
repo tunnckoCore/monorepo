@@ -48,24 +48,17 @@
   "author": {
     "name": "Charlike Mike Reagent",
     "email": "mameto2011@gmail.com",
-    "url": "https://tunnckocore.com",
-    "username": "Charlike Mike Reagent",
-    "twitter": "Charlike Mike Reagent",
-    "linkedin": "jonschlinkert"
+    "url": "https://tunnckocore.com"
   },
-  "meta": {
-    "author": {
+  "verb": {
+    "data": {
+      "depsType": "dev",
+      "directory": "packages/git-commits-since",
       "avatar": "https://avatars3.githubusercontent.com/u/5038030?v=4",
       "twitter": "tunnckoCore",
       "github": "tunnckoCore"
     },
-    "repository": {
-      "depsType": "dev",
-      "slug": "tunnckoCore/hq",
-      "directory": "packages/git-commits-since"
-    }
-  },
-  "verb": {
+    "readme": "../../config/readme-template.md",
     "run": true,
     "toc": {
       "render": true,
