@@ -31,7 +31,7 @@
   "description": "Get all semver valid flags for a git repository. Temporary fork of original git-semver-tags, promised api - async/await friendly, plus option for cwd",
   "devDependencies": {
     "@tunnckocore/execa": "^2.4.1-alpha.8",
-    "semver": "^5.6.0"
+    "semver": "^6.0.0"
   },
   "keywords": [],
   "homepage": "https://github.com/tunnckoCore/hq/tree/master/@tunnckocore/git-semver-tags",
