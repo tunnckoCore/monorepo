@@ -31,7 +31,7 @@
   "description": "Thin layer on top of [execa][] that allows executing multiple commands in parallel or in sequence",
   "devDependencies": {
     "execa": "^1.0.0",
-    "p-map-series": "^1.0.0",
+    "p-map-series": "^2.0.0",
     "split-cmd": "^1.0.0"
   },
   "keywords": [],
