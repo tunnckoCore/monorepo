@@ -45,7 +45,7 @@
     "eslint-import-resolver-babel-module": "^5.0.1",
     "jest": "^24.1.0",
     "jest-runner-eslint": "^0.7.3",
-    "lerna": "^3.11.0",
+    "lerna": "^3.14.1",
     "prettier": "^1.16.4",
     "typescript": "^3.3.3",
     "verb": "verbose/verb#dev",
