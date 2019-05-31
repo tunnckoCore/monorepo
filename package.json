@@ -46,7 +46,7 @@
     "jest": "^24.1.0",
     "jest-runner-eslint": "^0.7.3",
     "lerna": "^3.14.1",
-    "prettier": "^1.16.4",
+    "prettier": "^1.17.1",
     "typescript": "^3.3.3",
     "verb": "verbose/verb#dev",
     "verb-generate-readme": "^0.8.0"
