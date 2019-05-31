@@ -4480,10 +4480,10 @@ eslint-plugin-react@^7.12.3:
     prop-types "^15.6.2"
     resolve "^1.9.0"
 
-eslint-plugin-unicorn@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-8.0.0.tgz#62d5a1f7ab492e470f32eeccec861b3c0ddcd56a"
-  integrity sha512-CcGWxyj7cGWDHhu7DEWHf361yKg+WMbXbAsbfQdfslbi3gjCTUlwmPD8maGyCz98rA6IN+C8DA+Hjb9p8vufuA==
+eslint-plugin-unicorn@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-9.0.0.tgz#53e0a9043ad27f11f10846603915251d03584165"
+  integrity sha512-D0NbpmL6paSpwVrwdc/eePpp2KyPU9R+rEXKN+EjE8YqhELwF8wvixcpY5BenztzT2KZQiWWWyHfZmM9bTyRpA==
   dependencies:
     clean-regexp "^1.0.0"
     eslint-ast-utils "^1.0.0"
