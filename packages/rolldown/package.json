@@ -32,7 +32,7 @@
   "name": "rolldown",
   "description": "wip wip wip wip wip wip wip wip wip wip wip",
   "dependencies": {
-    "builtin-modules": "^3.0.0",
+    "builtin-modules": "^3.1.0",
     "mri": "^1.1.4",
     "rollup": "^1.1.2",
     "rollup-plugin-babel": "^4.3.2",
