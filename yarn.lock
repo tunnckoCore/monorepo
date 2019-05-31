@@ -9261,9 +9261,9 @@ p-map-series@^1.0.0:
     p-reduce "^1.0.0"
 
 p-map-series@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/p-map-series/-/p-map-series-2.0.0.tgz#c9bb0d98c0093cbfa27187781bf593069bc9ed08"
-  integrity sha512-nQEtKwL3aEaCRHeHBnMj2kWnDGLSUZUEtf7LHlrzm6i0dMEiSahsuRDf37yTtO+BpMhcHPWEjLvnDD0YUIZ0FA==
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/p-map-series/-/p-map-series-2.1.0.tgz#7560d4c452d9da0c07e692fdbfe6e2c81a2a91f2"
+  integrity sha512-RpYIIK1zXSNEOdwxcfe7FdvGcs7+y5n8rifMhMNWvaxRNMPINJHF5GDeuVxWqnfrcHPSCnp7Oo5yNXHId9Av2Q==
 
 p-map@^1.2.0:
   version "1.2.0"
