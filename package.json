@@ -43,7 +43,7 @@
     "docks": "^0.7.0",
     "eslint": "^5.13.0",
     "eslint-import-resolver-babel-module": "^5.0.1",
-    "jest": "^24.1.0",
+    "jest": "^24.8.0",
     "jest-runner-eslint": "^0.7.3",
     "lerna": "^3.14.1",
     "prettier": "^1.16.4",
