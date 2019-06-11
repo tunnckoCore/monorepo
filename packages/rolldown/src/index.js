@@ -81,7 +81,7 @@ async function createConfig(input, options) {
 
   const isCLI = inputFile.includes('cli');
   const license = `/** Released under the ${opts.license ||
-    pkg.license} License, @tunnckoCore & contributors. */`;
+    pkg.license} License, @tunnckoCore <opensource@tunnckocore.com> & contributors. */`;
 
   const outMap = {
     cjs: {
@@ -93,7 +93,7 @@ async function createConfig(input, options) {
       preferConst: true,
 
       // don't break oldschool/classic/normal node.js
-      outro: isCLI ? '' : 'module.exports = exports.default || exports;',
+      outro: isCLI ? '' : (opts.classic ? 'module.exports = exports.default || exports;' : ''),
     },
     esm: {
       exports: 'named',
@@ -119,7 +119,14 @@ async function createConfig(input, options) {
     output = formats.map((x) => outMap[x]);
   }
 
-  const workspaces = ['@tunnckocore', 'packages'];
+  let workspaces = [];
+
+  if (typeof opts.workspaces === 'string') {
+    workspaces = opts.workspaces.split(',').map((x) => x.trim());
+  }
+  if (typeof opts.workspaces === 'boolean') {
+    workspaces = ['@tunnckocore', 'packages'];
+  }
 
   return {
     input: inputFile,
@@ -134,9 +141,11 @@ async function createConfig(input, options) {
       // progress(),
       resolve({
         preferBuiltins: true,
-        module: true,
-        jsnext: true,
-        main: true,
+
+        mainFields: ['module', 'main'],
+        // module: true,
+        // jsnext: true,
+        // main: true,
         extensions,
         customResolveOptions: {
           extensions,
@@ -187,14 +196,11 @@ async function createConfig(input, options) {
             return pkgJson;
           },
           moduleDirectory: path.join(opts.cwd, 'node_modules'),
-          paths: [
-            path.join(opts.cwd, 'packages'),
-            path.join(opts.cwd, '@tunnckocore'),
-          ],
+          paths: workspaces.map((ws) => path.join(opts.cwd, ws)),
         },
       }),
       json({ preferConst: true }),
-      babel({
+      opts.babel && babel({
         exclude: 'node_modules/**',
         externalHelpers: true,
         extensions,
@@ -204,11 +210,11 @@ async function createConfig(input, options) {
       }),
       opts.minify && terser.terser(),
       filesize({
-        showBrotliSize: false,
-        showGzippedSize: false,
+        showBrotliSize: true,
+        showGzippedSize: true,
         showMinifiedSize: true,
       }),
-    ],
+    ].filter(Boolean),
   };
 }
 
