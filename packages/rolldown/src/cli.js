@@ -9,6 +9,8 @@ const { createConfig, arrayify } = require('./index'); // eslint-disable-line im
 const argv = argParser(process.argv.slice(2), {
   default: {
     cwd: process.cwd(),
+    classic: true,
+    babel: true,
     // pkgDir: '.',
   },
   alias: {
@@ -17,8 +19,11 @@ const argv = argParser(process.argv.slice(2), {
     P: ['pkg-dir', 'pkgdir', 'pkgDir'],
     f: 'format',
     m: 'minify',
+    B: 'babel',
     x: ['ext', 'extensions'],
     l: ['license'],
+    W: ['workspace', 'workspaces'],
+    C: ['add-module-exports', 'module-exports', 'classic'],
   },
 });
 
