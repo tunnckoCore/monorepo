@@ -36,7 +36,7 @@
     "fs-extra": "^8.0.0",
     "git-raw-commits": "^2.0.0",
     "parse-commit-message": "^3.2.3",
-    "simple-git": "^1.107.0"
+    "simple-git": "^3.5.0"
   },
   "keywords": [],
   "homepage": "https://github.com/tunnckoCore/hq/tree/master/packages/git-commits-since",
